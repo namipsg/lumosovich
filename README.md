@@ -1,17 +1,22 @@
 # Lumosovich ✨
 
-A modern Node.js wrapper for the TMDB API.
+A small, typed Node.js wrapper for the TMDB API.
 
-**Lumosovich** gives you a clean, developer-friendly interface for working with movies, TV shows, people, search, and other data available through The Movie Database API.
+**Lumosovich** is being built incrementally for movies, TV shows, people, search, and other data available through The Movie Database API. It currently supports IMDb-ID lookup, search, and movie, TV, and person details.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
 Light up the movie database.
 
-## Installation
+## Current status
+
+This is a pre-release development package. IMDb-ID lookup, search, movie/TV/person details, and TV season/episode details are implemented. ApiCMS uses the adapter as its default metadata provider, with the legacy provider available by explicit configuration.
+
+Install dependencies and build from this checkout:
 
 ```bash
-npm install lumosovich
+npm install
+npm run build
 ```
 
 ## Quick Start
@@ -23,116 +28,117 @@ const tmdb = new Lumosovich({
   apiKey: process.env.TMDB_API_KEY,
 });
 
-const movie = await tmdb.movies.get(550);
+const matches = await tmdb.find.byExternalId('tt1375666', 'imdb_id');
+const movieId = matches.movie_results[0]?.id;
 
-console.log(movie.title);
-// Fight Club
-```
+console.log(movieId);
+// A numeric TMDB ID, if TMDB has a match
 
-## Why Lumosovich?
-
-Working directly with an HTTP API shouldn't mean repeating URLs, query parameters, authentication, response handling, and TypeScript definitions throughout your application.
-
-Lumosovich puts a small, predictable API between your application and TMDB.
-
-```js
-const results = await tmdb.search.movies('Interstellar');
-```
-
-Instead of:
-
-```js
-const response = await fetch(
-  `https://api.themoviedb.org/3/search/movie?query=Interstellar`,
-  {
-    headers: {
-      Authorization: `Bearer ${process.env.TMDB_ACCESS_TOKEN}`,
-    },
-  }
-);
-
-const results = await response.json();
-```
-
-## Features
-
-* 🎬 Movies
-* 📺 TV shows
-* 👤 People
-* 🔎 Search
-* 🎭 Genres
-* 📈 Trending content
-* 🖼️ Images and metadata
-* 📄 Pagination
-* 🌍 Languages and regions
-* 🔐 TMDB authentication
-* 🟦 TypeScript support
-* ⚡ Promise-based API
-* 🪶 Lightweight Node.js interface
-
-> The exact API surface is still being designed. Lumosovich aims to stay close to TMDB while making common operations pleasant to use.
-
-## Usage
-
-### Movies
-
-```js
-const movie = await tmdb.movies.get(550);
-
-console.log(movie.title);
-console.log(movie.releaseDate);
-console.log(movie.overview);
-```
-
-### Search
-
-```js
-const movies = await tmdb.search.movies('Blade Runner');
-
-for (const movie of movies.results) {
+if (movieId) {
+  const movie = await tmdb.movies.get(movieId);
   console.log(movie.title);
 }
 ```
 
-### TV Shows
+## Why Lumosovich?
+
+Working directly with an HTTP API shouldn't mean repeating URLs, query parameters, authentication, and TypeScript definitions throughout your application.
+
+Lumosovich puts a small, predictable API between your application and TMDB. It keeps TMDB's numeric IDs and `snake_case` response fields intact. IMDb IDs such as `tt1375666` and `nm0000138` are external IDs, not interchangeable with TMDB IDs.
 
 ```js
+const matches = await tmdb.find.byExternalId('nm0000138', 'imdb_id');
+const personId = matches.person_results[0]?.id;
+```
+
+The full find response is returned. Empty arrays mean no match; if TMDB returns multiple hits, Lumosovich does not guess which one to use.
+
+## Search
+
+```js
+const movies = await tmdb.search.movies('Inception', { year: 2010, page: 1 });
+const shows = await tmdb.search.tv('Game of Thrones', {
+  firstAirDateYear: 2011,
+});
+const mixed = await tmdb.search.multi('The Office');
+```
+
+Search returns TMDB's paginated `page`, `results`, `total_pages`, and `total_results` fields. Multi-search can include people as well as movies and TV shows; callers that want only content should filter `results` by `media_type`. TMDB multi-search has no year parameter, so year filtering belongs in the caller. Search options use `page`, `language`, and `includeAdult`; movie search also accepts `year`, `primaryReleaseYear`, and `region`, while TV search accepts `year` and `firstAirDateYear`.
+
+## Details and optional enrichment
+
+Detail methods require numeric TMDB IDs. By default they fetch only the top-level record:
+
+```js
+const movie = await tmdb.movies.get(27205);
 const show = await tmdb.tv.get(1399);
-
-console.log(show.name);
+const person = await tmdb.people.get(6193);
 ```
 
-### People
+Use `append` to request relevant same-namespace data in the same HTTP call:
 
 ```js
-const person = await tmdb.people.get(287);
+const enrichedMovie = await tmdb.movies.get(27205, {
+  language: 'fa-IR',
+  append: ['credits', 'images', 'videos', 'external_ids', 'release_dates'],
+  imageLanguages: ['fa', 'en', 'null'],
+});
 
-console.log(person.name);
+const enrichedShow = await tmdb.tv.get(1399, {
+  append: ['aggregate_credits', 'images', 'content_ratings'],
+  imageLanguages: ['en', 'null'],
+});
+
+const enrichedPerson = await tmdb.people.get(6193, {
+  append: ['combined_credits', 'external_ids'],
+});
 ```
 
-### Trending
+`imageLanguages` requires `images` in `append`; `'null'` includes language-neutral assets. For TV, `aggregate_credits` covers the whole series, whereas `credits` represents the latest season. Responses retain TMDB fields and image paths rather than inventing IMDb-shaped values: `vote_average` is a TMDB score, not an IMDb rating, and person details do not provide awards or height.
+
+## Seasons and episodes
 
 ```js
-const trending = await tmdb.trending.movies('week');
+const season = await tmdb.tv.seasons.get(1399, 1);
+const firstEpisode = season.episodes.find((episode) => episode.episode_number === 1);
 
-console.log(trending.results);
+if (firstEpisode) {
+  const detail = await tmdb.tv.episodes.get(1399, 1, 1, {
+    append: ['external_ids', 'images'],
+    imageLanguages: ['en', 'null'],
+  });
+  console.log(detail.id, detail.external_ids?.imdb_id);
+}
 ```
+
+Season and episode coordinates are numeric TMDB identifiers and slots. Season `0` is supported for specials. The wrapper checks returned series and episode identity before passing details to callers; missing IMDb IDs remain missing rather than being fabricated.
+
+## Image URLs
+
+TMDB detail responses contain image paths. Build a safe public image URL with:
+
+```js
+const posterUrl = tmdb.images.url('/poster.jpg', 'w500');
+```
+
+The size defaults to `original`. Missing paths return `undefined`; invalid paths or unsupported sizes throw a `TypeError`.
 
 ## TypeScript
 
-Lumosovich is designed with TypeScript in mind.
+The package ships ESM and CommonJS entry points plus TypeScript declarations. Responses retain upstream `snake_case` fields.
 
 ```ts
-import { Lumosovich, Movie } from 'lumosovich';
+import { Lumosovich, type FindResponse } from 'lumosovich';
 
 const tmdb = new Lumosovich({
   apiKey: process.env.TMDB_API_KEY!,
 });
 
-const movie: Movie = await tmdb.movies.get(550);
+const matches: FindResponse = await tmdb.find.byExternalId(
+  'tt1375666',
+  'imdb_id',
+);
 ```
-
-API responses and parameters can be fully typed, making TMDB easier to explore directly from your editor.
 
 ## Configuration
 
@@ -145,32 +151,26 @@ const tmdb = new Lumosovich({
 
 Additional configuration options will be documented as the library evolves.
 
+Supply exactly one credential: a v3 `apiKey` or an API Read Access `accessToken`. `language` defaults to `en-US` and can be overridden per call. Requests time out after 10 seconds by default; set `timeoutMs` to change this. An injectable `fetch` is available for testing.
+
 ## Error Handling
 
 ```js
 try {
-  const movie = await tmdb.movies.get(550);
+  const matches = await tmdb.find.byExternalId('tt1375666', 'imdb_id');
 } catch (error) {
   console.error(error);
 }
 ```
 
-Lumosovich will expose API and request errors in a consistent format so applications don't have to deal with transport-level details everywhere.
+Failures throw `TmdbError` with `code` and, for HTTP failures, `status`. Codes are `HTTP_ERROR`, `RATE_LIMITED`, `TIMEOUT`, `NETWORK_ERROR`, and `INVALID_RESPONSE`. Errors do not echo request URLs, credentials, or upstream response bodies. A `429` is surfaced without automatic retry so callers can decide when to try again.
 
 ## Requirements
 
 * Node.js 18+
-* A TMDB API key or access token
+* A TMDB API key or API Read Access Token
 
 ## Development
-
-Clone the repository and install dependencies:
-
-```bash
-git clone <repository-url>
-cd lumosovich
-npm install
-```
 
 Run the test suite:
 
@@ -184,9 +184,17 @@ Build the package:
 npm run build
 ```
 
+With a local TMDB v3 key, run the opt-in live smoke test:
+
+```bash
+TMDB_API_KEY=... npm run test:live
+```
+
+The key is read from the environment, never from a tracked file. This checks a small stable movie/TV/person fixture and the season/episode path; it is separate from the offline test suite.
+
 ## Roadmap
 
-Lumosovich is under active development.
+Next: live ApiCMS smoke tests against TMDB and packaging/release checks. Trending and broader TMDB coverage can follow after the ApiCMS automation workflows are supported.
 
 The goal is to cover the TMDB API while keeping the library:
 
@@ -210,7 +218,7 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 ## License
 
-MIT
+GPL-3.0-only; see [LICENSE](./LICENSE).
 
 ---
 

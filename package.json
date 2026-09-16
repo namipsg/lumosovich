@@ -1,0 +1,34 @@
+{
+  "name": "lumosovich",
+  "version": "0.1.0",
+  "description": "A small, typed Node.js client for the TMDB API",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "GPL-3.0-only",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && esbuild src/index.ts --bundle --platform=node --format=cjs --target=node18 --outfile=dist/index.cjs",
+    "test": "npm run build && node --test test/*.test.mjs",
+    "test:live": "npm run build && node test/live-smoke.mjs",
+    "prepack": "npm run build"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "typescript": "^5.0.0"
+  }
+}

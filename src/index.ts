@@ -1,0 +1,112 @@
+import { createMovieMethods, createPersonMethods, createTvMethods } from './details.js';
+import { TmdbHttpClient } from './http.js';
+import { createImageMethods } from './images.js';
+import { createSearchMethods } from './search.js';
+import type {
+  ExternalIdSource,
+  FindOptions,
+  FindResponse,
+  LumosovichOptions,
+  SearchMethods,
+} from './types.js';
+import { validateFindResponse } from './validation.js';
+import type { MovieMethods, PersonMethods, TvMethods } from './detail-types.js';
+import type { ImageMethods } from './images.js';
+
+export { TmdbError } from './errors.js';
+export type { TmdbErrorCode } from './errors.js';
+export type { ImageMethods, ImageSize } from './images.js';
+export type {
+  CreditPerson,
+  CreditsResponse,
+  DetailOptions,
+  EpisodeAppend,
+  EpisodeDetailOptions,
+  ExternalIdsResponse,
+  Genre,
+  ImageAsset,
+  ImagesResponse,
+  MovieAppend,
+  MovieDetailOptions,
+  MovieDetails,
+  MovieMethods,
+  MovieReleaseDatesResponse,
+  PersonAppend,
+  PersonCombinedCreditsResponse,
+  PersonCredit,
+  PersonDetailOptions,
+  PersonDetails,
+  PersonMethods,
+  SeasonAppend,
+  SeasonDetailOptions,
+  TvAppend,
+  TvContentRatingsResponse,
+  TvDetailOptions,
+  TvDetails,
+  TvEpisodeDetails,
+  TvEpisodeSummary,
+  TvMethods,
+  TvSeasonDetails,
+  TvSeasonSummary,
+  Video,
+  VideosResponse,
+} from './detail-types.js';
+export type {
+  ExternalIdSource,
+  FindEpisodeHit,
+  FindHit,
+  FindOptions,
+  FindResponse,
+  LumosovichOptions,
+  MovieSearchHit,
+  MovieSearchOptions,
+  MultiSearchHit,
+  PersonSearchHit,
+  SearchMethods,
+  SearchOptions,
+  SearchPage,
+  TmdbId,
+  TvSearchHit,
+  TvSearchOptions,
+} from './types.js';
+
+/** A small TMDB client with raw, typed responses. */
+export class Lumosovich {
+  readonly find: {
+    byExternalId: (
+      externalId: string,
+      source: ExternalIdSource,
+      options?: FindOptions,
+    ) => Promise<FindResponse>;
+  };
+  readonly search: SearchMethods;
+  readonly movies: MovieMethods;
+  readonly tv: TvMethods;
+  readonly people: PersonMethods;
+  readonly images: ImageMethods;
+
+  constructor(options: LumosovichOptions) {
+    const http = new TmdbHttpClient(options);
+
+    this.find = {
+      byExternalId: async (externalId, source, findOptions = {}) => {
+        if (typeof externalId !== 'string' || !externalId.trim()) {
+          throw new TypeError('externalId must not be empty');
+        }
+        if (source !== 'imdb_id') {
+          throw new TypeError('Unsupported external ID source');
+        }
+        const payload = await http.get(
+          `find/${encodeURIComponent(externalId.trim())}`,
+          { external_source: source, language: findOptions.language },
+        );
+        return validateFindResponse(payload);
+      },
+    };
+    this.search = createSearchMethods(http);
+    this.movies = createMovieMethods(http);
+    this.tv = createTvMethods(http);
+    this.people = createPersonMethods(http);
+    this.images = createImageMethods();
+  }
+}
