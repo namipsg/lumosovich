@@ -1,5 +1,8 @@
 # Lumosovich ✨
 
+[![npm version](https://img.shields.io/npm/v/lumosovich.svg)](https://www.npmjs.com/package/lumosovich)
+[![license](https://img.shields.io/npm/l/lumosovich.svg)](./LICENSE)
+
 A small, typed Node.js wrapper for the TMDB API.
 
 **Lumosovich** is being built incrementally for movies, TV shows, people, search, and other data available through The Movie Database API. It currently supports IMDb-ID lookup, search, and movie, TV, and person details.
@@ -10,16 +13,19 @@ Light up the movie database.
 
 ## Current status
 
-This is a pre-release development package. IMDb-ID lookup, search, movie/TV/person details, and TV season/episode details are implemented. ApiCMS uses the adapter as its default metadata provider, with the legacy provider available by explicit configuration.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich). This is an early `0.x` release with IMDb-ID lookup, search, movie/TV/person details, and TV season/episode details.
 
-Install dependencies and build from this checkout:
+## Installation
 
 ```bash
-npm install
-npm run build
+npm install lumosovich
 ```
 
+Requires Node.js 18+ and a TMDB v3 API key or API Read Access Token. Keep your credential in an environment variable; do not commit it to your project.
+
 ## Quick Start
+
+Set `TMDB_API_KEY` in your environment before running this example:
 
 ```js
 import { Lumosovich } from 'lumosovich';
@@ -39,6 +45,8 @@ if (movieId) {
   console.log(movie.title);
 }
 ```
+
+CommonJS projects can use `const { Lumosovich } = require('lumosovich');` instead.
 
 ## Why Lumosovich?
 
@@ -172,9 +180,10 @@ Failures throw `TmdbError` with `code` and, for HTTP failures, `status`. Codes a
 
 ## Development
 
-Run the test suite:
+From a checkout, install dependencies and run the offline test suite:
 
 ```bash
+npm ci
 npm test
 ```
 
@@ -194,7 +203,7 @@ The key is read from the environment, never from a tracked file. This checks a s
 
 ## Roadmap
 
-Next: live ApiCMS smoke tests against TMDB and packaging/release checks. Trending and broader TMDB coverage can follow after the ApiCMS automation workflows are supported.
+Trending and broader TMDB coverage can follow the initial IMDb-ID lookup, search, and detail workflows.
 
 The goal is to cover the TMDB API while keeping the library:
 

@@ -2,6 +2,22 @@
   "name": "lumosovich",
   "version": "0.1.0",
   "description": "A small, typed Node.js client for the TMDB API",
+  "keywords": [
+    "tmdb",
+    "themoviedb",
+    "movie",
+    "tv",
+    "api-client",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/namipsg/lumosovich.git"
+  },
+  "homepage": "https://github.com/namipsg/lumosovich#readme",
+  "bugs": {
+    "url": "https://github.com/namipsg/lumosovich/issues"
+  },
   "type": "module",
   "engines": {
     "node": ">=18"
