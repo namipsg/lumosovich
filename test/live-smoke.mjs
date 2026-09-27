@@ -2,13 +2,14 @@ import assert from 'node:assert/strict';
 import { Lumosovich, TmdbError } from '../dist/index.js';
 
 const apiKey = process.env.TMDB_API_KEY?.trim();
-if (!apiKey) {
-  console.error('Set TMDB_API_KEY for the opt-in live smoke test.');
+const accessToken = process.env.TMDB_ACCESS_TOKEN?.trim();
+if (!apiKey && !accessToken) {
+  console.error('Set TMDB_API_KEY or TMDB_ACCESS_TOKEN for the opt-in live smoke test.');
   process.exitCode = 2;
 } else {
   let step = 'find movie';
   try {
-    const tmdb = new Lumosovich({ apiKey });
+    const tmdb = new Lumosovich({ apiKey, accessToken });
     const movieMatches = await tmdb.find.byExternalId('tt1375666', 'imdb_id');
     assert.equal(movieMatches.movie_results.length, 1);
     const movieId = movieMatches.movie_results[0].id;
@@ -43,7 +44,31 @@ if (!apiKey) {
       append: ['external_ids'],
     });
     assert.equal(person.external_ids?.imdb_id, 'nm0000138');
-    console.log('TMDB live smoke passed: find, search, movie, TV, person, season, episode.');
+
+    for (const [method, query] of [
+      ['tv', 'Game of Thrones'], ['multi', 'Inception'],
+      ['people', 'Leonardo DiCaprio'], ['collections', 'Star Wars'],
+      ['companies', 'Lucasfilm'], ['keywords', 'space'],
+    ]) {
+      step = `search ${method}`;
+      const page = await tmdb.search[method](query);
+      assert.ok(page.results.length > 0);
+    }
+
+    step = 'configuration details';
+    const configuration = await tmdb.configuration.get();
+    assert.ok(configuration.images.poster_sizes.includes('original'));
+    for (const method of ['countries', 'jobs', 'languages', 'primaryTranslations', 'timezones']) {
+      step = `configuration ${method}`;
+      assert.ok((await tmdb.configuration[method]()).length > 0);
+    }
+    for (const method of ['movies', 'tv']) {
+      step = `${method} certifications`;
+      assert.ok((await tmdb.certifications[method]()).certifications.US.length > 0);
+      step = `${method} genres`;
+      assert.ok((await tmdb.genres[method]()).genres.length > 0);
+    }
+    console.log('TMDB live smoke passed: find, all search/reference endpoints, movie, TV, person, season, episode.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);

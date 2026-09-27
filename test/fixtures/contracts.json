@@ -1,0 +1,50 @@
+{
+  "find-by-id": {
+    "args": [" external/id?x ", "wikidata_id", {"language": "fa-IR"}],
+    "pathParameters": {"external_id": "external/id?x"},
+    "query": {"language": "fa-IR", "external_source": "wikidata_id"}
+  },
+  "search-collection": {
+    "args": [" A/B? C & D ", {"language": "fa-IR", "page": 2, "region": "IR", "includeAdult": false}],
+    "query": {"language": "fa-IR", "query": "A/B? C & D", "page": "2", "region": "IR", "include_adult": "false"}
+  },
+  "search-company": {
+    "args": [" A/B? C & D ", {"page": 2}],
+    "query": {"query": "A/B? C & D", "page": "2"}
+  },
+  "search-keyword": {
+    "args": [" A/B? C & D ", {"page": 2}],
+    "query": {"query": "A/B? C & D", "page": "2"}
+  },
+  "search-movie": {
+    "args": [" A/B? C & D ", {"language": "fa-IR", "page": 2, "includeAdult": false, "year": 2010, "primaryReleaseYear": 2010, "region": "IR"}],
+    "query": {"language": "fa-IR", "query": "A/B? C & D", "page": "2", "include_adult": "false", "year": "2010", "primary_release_year": "2010", "region": "IR"}
+  },
+  "search-multi": {
+    "args": [" A/B? C & D ", {"language": "fa-IR", "page": 2, "includeAdult": true}],
+    "query": {"language": "fa-IR", "query": "A/B? C & D", "page": "2", "include_adult": "true"}
+  },
+  "search-person": {
+    "args": [" A/B? C & D ", {"language": "fa-IR", "page": 2, "includeAdult": false}],
+    "query": {"language": "fa-IR", "query": "A/B? C & D", "page": "2", "include_adult": "false"}
+  },
+  "search-tv": {
+    "args": [" A/B? C & D ", {"language": "fa-IR", "page": 2, "includeAdult": false, "year": 2011, "firstAirDateYear": 2011}],
+    "query": {"language": "fa-IR", "query": "A/B? C & D", "page": "2", "include_adult": "false", "year": "2011", "first_air_date_year": "2011"}
+  },
+  "configuration-details": {"args": [], "query": {}},
+  "configuration-countries": {"args": [{"language": "fa-IR"}], "query": {"language": "fa-IR"}},
+  "configuration-jobs": {"args": [], "query": {}},
+  "configuration-languages": {"args": [], "query": {}},
+  "configuration-primary-translations": {"args": [], "query": {}},
+  "configuration-timezones": {"args": [], "query": {}},
+  "certification-movie-list": {"args": [], "query": {}},
+  "certifications-tv-list": {"args": [], "query": {}},
+  "genre-movie-list": {"args": [{"language": "fa-IR"}], "query": {"language": "fa-IR"}},
+  "genre-tv-list": {"args": [{"language": "fa-IR"}], "query": {"language": "fa-IR"}},
+  "movie-details": {"args": [11], "pathParameters": {"movie_id": 11}, "query": {"language": "en-US"}},
+  "person-details": {"args": [31], "pathParameters": {"person_id": 31}, "query": {"language": "en-US"}},
+  "tv-series-details": {"args": [1399], "pathParameters": {"series_id": 1399}, "query": {"language": "en-US"}},
+  "tv-season-details": {"args": [1399, 1], "pathParameters": {"series_id": 1399, "season_number": 1}, "query": {"language": "en-US"}},
+  "tv-episode-details": {"args": [1399, 1, 1], "pathParameters": {"series_id": 1399, "season_number": 1, "episode_number": 1}, "query": {"language": "en-US"}}
+}

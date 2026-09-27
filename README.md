@@ -1,11 +1,11 @@
 # Lumosovich ✨
 
 [![npm version](https://img.shields.io/npm/v/lumosovich.svg)](https://www.npmjs.com/package/lumosovich)
-[![license](https://img.shields.io/npm/l/lumosovich.svg)](./LICENSE)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namipsg/lumosovich/blob/main/LICENSE)
 
 A small, typed Node.js wrapper for the TMDB API.
 
-**Lumosovich** is being built incrementally for movies, TV shows, people, search, and other data available through The Movie Database API. It currently supports IMDb-ID lookup, search, and movie, TV, and person details.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, all search endpoints, configuration, certifications, genres, and movie, TV, and person details.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -13,7 +13,16 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich). This is an early `0.x` release with IMDb-ID lookup, search, movie/TV/person details, and TV season/episode details.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.2.0` covers **23 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+
+New in `0.2.0`:
+
+* Search for people, collections, companies, and keywords, completing all seven search endpoints.
+* Fetch configuration, country/language/job/timezone lists, certifications, and genres.
+* Find objects using any of TMDB's eight documented external-ID sources.
+* Use the package under the MIT license.
+
+The release passes 75 offline tests, TypeScript declaration checks, and a live smoke test of all 23 implemented operations.
 
 ## Installation
 
@@ -48,6 +57,10 @@ if (movieId) {
 
 CommonJS projects can use `const { Lumosovich } = require('lumosovich');` instead.
 
+For an API Read Access Token, initialize the client with
+`accessToken: process.env.TMDB_ACCESS_TOKEN` in place of `apiKey`. Supply exactly
+one credential.
+
 ## Why Lumosovich?
 
 Working directly with an HTTP API shouldn't mean repeating URLs, query parameters, authentication, and TypeScript definitions throughout your application.
@@ -61,6 +74,10 @@ const personId = matches.person_results[0]?.id;
 
 The full find response is returned. Empty arrays mean no match; if TMDB returns multiple hits, Lumosovich does not guess which one to use.
 
+Find accepts `imdb_id`, `facebook_id`, `instagram_id`, `tvdb_id`, `tiktok_id`,
+`twitter_id`, `wikidata_id`, and `youtube_id`. Source availability varies by
+object type; see [TMDB's Find reference](https://developer.themoviedb.org/reference/find-by-id).
+
 ## Search
 
 ```js
@@ -69,9 +86,52 @@ const shows = await tmdb.search.tv('Game of Thrones', {
   firstAirDateYear: 2011,
 });
 const mixed = await tmdb.search.multi('The Office');
+const people = await tmdb.search.people('Leonardo DiCaprio');
+const collections = await tmdb.search.collections('Star Wars', { region: 'US' });
+const companies = await tmdb.search.companies('Lucasfilm', { page: 1 });
+const keywords = await tmdb.search.keywords('space');
 ```
 
-Search returns TMDB's paginated `page`, `results`, `total_pages`, and `total_results` fields. Multi-search can include people as well as movies and TV shows; callers that want only content should filter `results` by `media_type`. TMDB multi-search has no year parameter, so year filtering belongs in the caller. Search options use `page`, `language`, and `includeAdult`; movie search also accepts `year`, `primaryReleaseYear`, and `region`, while TV search accepts `year` and `firstAirDateYear`.
+Search returns TMDB's paginated `page`, `results`, `total_pages`, and `total_results` fields. Multi-search can include people as well as movies and TV shows; callers that want only content should filter `results` by `media_type`. TMDB multi-search has no year parameter, so year filtering belongs in the caller. People results retain their `known_for` movie/TV records.
+
+| Method | Supported options |
+| --- | --- |
+| `search.movies` | `page`, `language`, `includeAdult`, `year`, `primaryReleaseYear`, `region` |
+| `search.tv` | `page`, `language`, `includeAdult`, `year`, `firstAirDateYear` |
+| `search.multi` | `page`, `language`, `includeAdult` |
+| `search.people` | `page`, `language`, `includeAdult` |
+| `search.collections` | `page`, `language`, `includeAdult`, `region` |
+| `search.companies` | `page` |
+| `search.keywords` | `page` |
+
+Queries must be non-empty strings and pages must be positive integers. Company
+and keyword search have no language or adult-filter parameters.
+
+## Configuration, certifications, and genres
+
+```js
+const config = await tmdb.configuration.get();
+console.log(config.images.secure_base_url, config.images.poster_sizes);
+
+const countries = await tmdb.configuration.countries({ language: 'fa-IR' });
+const jobs = await tmdb.configuration.jobs();
+const languages = await tmdb.configuration.languages();
+const translations = await tmdb.configuration.primaryTranslations();
+const timezones = await tmdb.configuration.timezones();
+
+const movieCertifications = await tmdb.certifications.movies();
+const tvCertifications = await tmdb.certifications.tv();
+console.log(movieCertifications.certifications.US);
+
+const movieGenres = await tmdb.genres.movies({ language: 'fa-IR' });
+const tvGenres = await tmdb.genres.tv();
+console.log(movieGenres.genres);
+```
+
+Configuration lists return raw arrays; certifications remain grouped by region
+under `certifications`, and genre lists remain under `genres`. Countries and
+genres accept a language override. Other reference methods take no options and
+send no language parameter. Configuration is fetched explicitly without caching.
 
 ## Details and optional enrichment
 
@@ -148,18 +208,17 @@ const matches: FindResponse = await tmdb.find.byExternalId(
 );
 ```
 
-## Configuration
+## Client options
 
 ```js
 const tmdb = new Lumosovich({
   apiKey: process.env.TMDB_API_KEY,
   language: 'en-US',
+  timeoutMs: 10_000,
 });
 ```
 
-Additional configuration options will be documented as the library evolves.
-
-Supply exactly one credential: a v3 `apiKey` or an API Read Access `accessToken`. `language` defaults to `en-US` and can be overridden per call. Requests time out after 10 seconds by default; set `timeoutMs` to change this. An injectable `fetch` is available for testing.
+Supply exactly one credential: a v3 `apiKey` or an API Read Access `accessToken`. `language` defaults to `en-US` on localized endpoints and can be overridden per call. Requests time out after 10 seconds by default; set `timeoutMs` to change this. An injectable `fetch` is available for testing.
 
 ## Error Handling
 
@@ -180,12 +239,19 @@ Failures throw `TmdbError` with `code` and, for HTTP failures, `status`. Codes a
 
 ## Development
 
-From a checkout, install dependencies and run the offline test suite:
+Clone the [GitHub repository](https://github.com/namipsg/lumosovich), install dependencies, and run the offline test suite:
 
 ```bash
+git clone https://github.com/namipsg/lumosovich.git
+cd lumosovich
 npm ci
 npm test
 ```
+
+The suite checks the pinned OpenAPI coverage ledger, generated response fixtures,
+request contracts, ESM/CommonJS entry points, and exported TypeScript declarations.
+Print the operation coverage count with `npm run check:coverage`; regenerate
+response fixtures after a reviewed baseline change with `npm run fixtures:generate`.
 
 Build the package:
 
@@ -193,17 +259,22 @@ Build the package:
 npm run build
 ```
 
-With a local TMDB v3 key, run the opt-in live smoke test:
+With a local TMDB v3 key or Read Access Token, run the opt-in live smoke test:
 
 ```bash
 TMDB_API_KEY=... npm run test:live
+# Or: TMDB_ACCESS_TOKEN=... npm run test:live
 ```
 
-The key is read from the environment, never from a tracked file. This checks a small stable movie/TV/person fixture and the season/episode path; it is separate from the offline test suite.
+The credential is read from the environment, never from a tracked file. This checks
+all 23 implemented operations: find, every search and reference endpoint, and
+movie/TV/person/season/episode details. Live testing is separate from the offline
+suite and makes read-only requests.
 
 ## Roadmap
 
-Trending and broader TMDB coverage can follow the initial IMDb-ID lookup, search, and detail workflows.
+Broader movie and TV resources, discovery, trending, and other TMDB endpoints will
+expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:
 
@@ -215,7 +286,8 @@ The goal is to cover the TMDB API while keeping the library:
 
 ## Contributing
 
-Issues, bug reports, feature requests, and pull requests are welcome.
+Issues, bug reports, feature requests, and pull requests are welcome on
+[GitHub](https://github.com/namipsg/lumosovich/issues).
 
 If you're proposing a new API, try to keep it consistent with the rest of Lumosovich and reasonably close to the concepts used by TMDB itself.
 
@@ -227,7 +299,10 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 ## License
 
-GPL-3.0-only; see [LICENSE](./LICENSE).
+MIT; see [LICENSE](https://github.com/namipsg/lumosovich/blob/main/LICENSE).
+
+Starting with `0.2.0`, Lumosovich is distributed under the MIT license. Previously
+published `0.1.x` packages retain their original GPL-3.0-only license.
 
 ---
 

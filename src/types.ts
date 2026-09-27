@@ -1,8 +1,16 @@
 /** TMDB-native numeric identifier. IMDb identifiers are separate external IDs. */
 export type TmdbId = number;
 
-/** The first supported external-ID source. More sources can be added later. */
-export type ExternalIdSource = 'imdb_id';
+/** External-ID sources supported by TMDB's find endpoint. */
+export type ExternalIdSource =
+  | 'imdb_id'
+  | 'facebook_id'
+  | 'instagram_id'
+  | 'tvdb_id'
+  | 'tiktok_id'
+  | 'twitter_id'
+  | 'wikidata_id'
+  | 'youtube_id';
 
 /** A raw TMDB find hit. Additional upstream fields retain their snake_case names. */
 export interface FindHit {
@@ -29,10 +37,17 @@ export interface FindOptions {
   language?: string;
 }
 
-export interface SearchOptions {
-  language?: string;
+export interface PageOptions {
   page?: number;
+}
+
+export interface SearchOptions extends PageOptions {
+  language?: string;
   includeAdult?: boolean;
+}
+
+export interface CollectionSearchOptions extends SearchOptions {
+  region?: string;
 }
 
 export interface MovieSearchOptions extends SearchOptions {
@@ -71,7 +86,36 @@ export interface TvSearchHit extends FindHit {
 
 export interface PersonSearchHit extends FindHit {
   name?: string;
+  original_name?: string;
+  adult?: boolean;
+  gender?: number;
+  known_for_department?: string;
+  popularity?: number;
   profile_path?: string | null;
+  known_for?: Array<
+    | (MovieSearchHit & { media_type: 'movie' })
+    | (TvSearchHit & { media_type: 'tv' })
+  >;
+}
+
+export interface CollectionSearchHit extends FindHit {
+  name?: string;
+  original_name?: string;
+  original_language?: string;
+  adult?: boolean;
+  overview?: string;
+  poster_path?: string | null;
+  backdrop_path?: string | null;
+}
+
+export interface CompanySearchHit extends FindHit {
+  name?: string;
+  logo_path?: string | null;
+  origin_country?: string;
+}
+
+export interface KeywordSearchHit extends FindHit {
+  name?: string;
 }
 
 export type MultiSearchHit =
@@ -80,7 +124,11 @@ export type MultiSearchHit =
   | (PersonSearchHit & { media_type: 'person' });
 
 export interface SearchMethods {
+  collections(query: string, options?: CollectionSearchOptions): Promise<SearchPage<CollectionSearchHit>>;
+  companies(query: string, options?: PageOptions): Promise<SearchPage<CompanySearchHit>>;
+  keywords(query: string, options?: PageOptions): Promise<SearchPage<KeywordSearchHit>>;
   movies(query: string, options?: MovieSearchOptions): Promise<SearchPage<MovieSearchHit>>;
+  people(query: string, options?: SearchOptions): Promise<SearchPage<PersonSearchHit>>;
   tv(query: string, options?: TvSearchOptions): Promise<SearchPage<TvSearchHit>>;
   multi(query: string, options?: SearchOptions): Promise<SearchPage<MultiSearchHit>>;
 }

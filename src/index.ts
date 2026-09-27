@@ -2,6 +2,8 @@ import { createMovieMethods, createPersonMethods, createTvMethods } from './deta
 import { TmdbHttpClient } from './http.js';
 import { createImageMethods } from './images.js';
 import { createSearchMethods } from './search.js';
+import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
+import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
 import type {
   ExternalIdSource,
   FindOptions,
@@ -16,6 +18,21 @@ import type { ImageMethods } from './images.js';
 export { TmdbError } from './errors.js';
 export type { TmdbErrorCode } from './errors.js';
 export type { ImageMethods, ImageSize } from './images.js';
+export type {
+  Certification,
+  CertificationMethods,
+  CertificationsResponse,
+  ConfigurationMethods,
+  ConfigurationResponse,
+  Country,
+  CountryTimezones,
+  DepartmentJobs,
+  GenreMethods,
+  GenresResponse,
+  ImageConfiguration,
+  Language,
+  LanguageOptions,
+} from './reference-types.js';
 export type {
   CreditPerson,
   CreditsResponse,
@@ -52,15 +69,20 @@ export type {
   VideosResponse,
 } from './detail-types.js';
 export type {
+  CollectionSearchHit,
+  CollectionSearchOptions,
+  CompanySearchHit,
   ExternalIdSource,
   FindEpisodeHit,
   FindHit,
   FindOptions,
   FindResponse,
   LumosovichOptions,
+  KeywordSearchHit,
   MovieSearchHit,
   MovieSearchOptions,
   MultiSearchHit,
+  PageOptions,
   PersonSearchHit,
   SearchMethods,
   SearchOptions,
@@ -84,16 +106,25 @@ export class Lumosovich {
   readonly tv: TvMethods;
   readonly people: PersonMethods;
   readonly images: ImageMethods;
+  readonly configuration: ConfigurationMethods;
+  readonly certifications: CertificationMethods;
+  readonly genres: GenreMethods;
 
   constructor(options: LumosovichOptions) {
     const http = new TmdbHttpClient(options);
 
     this.find = {
       byExternalId: async (externalId, source, findOptions = {}) => {
-        if (typeof externalId !== 'string' || !externalId.trim()) {
-          throw new TypeError('externalId must not be empty');
+        if (
+          typeof externalId !== 'string' || !externalId.trim() ||
+          ['.', '..'].includes(externalId.trim())
+        ) {
+          throw new TypeError('externalId must be a non-empty path identifier');
         }
-        if (source !== 'imdb_id') {
+        if (![
+          'imdb_id', 'facebook_id', 'instagram_id', 'tvdb_id',
+          'tiktok_id', 'twitter_id', 'wikidata_id', 'youtube_id',
+        ].includes(source)) {
           throw new TypeError('Unsupported external ID source');
         }
         const payload = await http.get(
@@ -108,5 +139,8 @@ export class Lumosovich {
     this.tv = createTvMethods(http);
     this.people = createPersonMethods(http);
     this.images = createImageMethods();
+    this.configuration = createConfigurationMethods(http);
+    this.certifications = createCertificationMethods(http);
+    this.genres = createGenreMethods(http);
   }
 }

@@ -2,7 +2,7 @@ import { TmdbError } from './errors.js';
 import type { TvEpisodeDetails, TvSeasonDetails } from './detail-types.js';
 import type { FindResponse, FindHit, SearchPage } from './types.js';
 
-function isRecord(value: unknown): value is Record<string, unknown> {
+export function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value);
 }
 
@@ -15,7 +15,7 @@ function hasId(value: unknown): value is FindHit {
   );
 }
 
-function invalidResponse(): never {
+export function invalidResponse(): never {
   throw new TmdbError('INVALID_RESPONSE', 'TMDB returned an unexpected response');
 }
 

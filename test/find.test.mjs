@@ -111,3 +111,34 @@ test('rejects missing or conflicting credentials', () => {
     TypeError,
   );
 });
+
+test('supports every documented external source and encodes external IDs', async () => {
+  const sources = [
+    'imdb_id', 'facebook_id', 'instagram_id', 'tvdb_id',
+    'tiktok_id', 'twitter_id', 'wikidata_id', 'youtube_id',
+  ];
+  const requests = [];
+  const client = new Lumosovich({
+    apiKey: 'test-key',
+    fetch: async (url) => {
+      requests.push(new URL(url));
+      return new Response(JSON.stringify({
+        movie_results: [], tv_results: [], person_results: [],
+        tv_season_results: [], tv_episode_results: [],
+      }));
+    },
+  });
+  for (const source of sources) {
+    await client.find.byExternalId(' A/B?C&D ', source);
+    const url = requests.at(-1);
+    assert.equal(url.pathname, '/3/find/A%2FB%3FC%26D');
+    assert.equal(url.searchParams.get('external_source'), source);
+  }
+  for (const source of ['unknown', '', null, 42]) {
+    await assert.rejects(client.find.byExternalId('id', source), TypeError);
+  }
+  for (const id of ['', ' ', null, 42, '.', ' .. ']) {
+    await assert.rejects(client.find.byExternalId(id, 'imdb_id'), TypeError);
+  }
+  assert.equal(requests.length, sources.length);
+});

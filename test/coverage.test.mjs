@@ -1,0 +1,68 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+import { Lumosovich } from '../dist/index.js';
+import { checkCoverage, loadCoverage } from '../scripts/check-coverage.mjs';
+
+const baseline = loadCoverage();
+const { ledger, spec, contracts, responses } = baseline;
+
+test('the ledger maps all pinned OpenAPI operations and completes the first group', () => {
+  const coverage = checkCoverage(baseline);
+  assert.equal(coverage.total, 152);
+  const group = ledger.operations.filter((entry) =>
+    /^\/3\/(find|search|configuration|certification|genre)(\/|$)/.test(entry.path));
+  assert.equal(group.length, 18);
+  assert.ok(group.every((entry) => entry.publicMethod));
+});
+
+test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {
+  for (const mutate of [
+    (data) => data.ledger.operations.pop(),
+    (data) => data.ledger.operations.push(data.ledger.operations[0]),
+    (data) => { data.ledger.operations[0].path = '/3/wrong'; },
+    (data) => { data.ledger.operations[0].httpMethod = 'POST'; },
+    (data) => { data.ledger.operations.find((entry) => entry.publicMethod).publicMethod = 'missing.method'; },
+    (data) => { delete data.contracts['search-movie']; },
+    (data) => { delete data.responses['configuration-details']; },
+  ]) {
+    const data = structuredClone(baseline);
+    mutate(data);
+    assert.throws(() => checkCoverage(data));
+  }
+});
+
+for (const entry of ledger.operations.filter((operation) => operation.publicMethod)) {
+  test(`OpenAPI contract: ${entry.operationId} → ${entry.publicMethod}`, async () => {
+    const contract = contracts[entry.operationId];
+    const response = responses[entry.operationId];
+    const requests = [];
+    const client = new Lumosovich({
+      accessToken: 'contract-token',
+      fetch: async (url, init) => {
+        requests.push({ url: new URL(url), init });
+        return new Response(JSON.stringify(response));
+      },
+    });
+    const keys = entry.publicMethod.split('.');
+    const method = keys.pop();
+    const resource = keys.reduce((object, key) => object[key], client);
+    assert.deepEqual(await resource[method](...contract.args), response);
+    assert.equal(requests.length, 1);
+    const { url, init } = requests[0];
+    const expectedPath = entry.path.replace(/\{([^}]+)\}/g, (_match, key) => {
+      assert.ok(Object.hasOwn(contract.pathParameters, key));
+      return encodeURIComponent(contract.pathParameters[key]);
+    });
+    assert.equal(url.origin, 'https://api.themoviedb.org');
+    assert.equal(url.pathname, expectedPath);
+    assert.equal(init.method ?? 'GET', entry.httpMethod);
+    assert.deepEqual(Object.fromEntries(url.searchParams), contract.query);
+    const operation = spec.paths[entry.path][entry.httpMethod.toLowerCase()];
+    const allowed = operation.parameters?.filter((parameter) => parameter.in === 'query').map((parameter) => parameter.name) ?? [];
+    for (const key of url.searchParams.keys()) assert.ok(allowed.includes(key), `Unsupported parameter: ${key}`);
+    assert.equal(init.headers.authorization, 'Bearer contract-token');
+    assert.equal(init.headers.accept, 'application/json');
+    assert.ok(init.signal instanceof AbortSignal);
+    assert.equal(url.searchParams.has('api_key'), false);
+  });
+}

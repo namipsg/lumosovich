@@ -4,6 +4,11 @@ import type { LumosovichOptions } from './types.js';
 type QueryValue = string | number | boolean | undefined;
 export type QueryParameters = Record<string, QueryValue>;
 
+interface GetOptions {
+  /** Omit language on endpoints that do not accept it. */
+  includeLanguage?: boolean;
+}
+
 const API_BASE_URL = 'https://api.themoviedb.org/3/';
 const DEFAULT_TIMEOUT_MS = 10_000;
 const MAX_TIMEOUT_MS = 2_147_483_647;
@@ -42,13 +47,19 @@ export class TmdbHttpClient {
     }
   }
 
-  async get(path: string, parameters: QueryParameters = {}): Promise<unknown> {
+  async get(
+    path: string,
+    parameters: QueryParameters = {},
+    options: GetOptions = {},
+  ): Promise<unknown> {
     const url = new URL(path, API_BASE_URL);
-    const language = parameters.language ?? this.language;
-    if (typeof language !== 'string' || !language.trim()) {
-      throw new TypeError('language must not be empty');
+    if (options.includeLanguage !== false) {
+      const language = parameters.language ?? this.language;
+      if (typeof language !== 'string' || !language.trim()) {
+        throw new TypeError('language must not be empty');
+      }
+      url.searchParams.set('language', language);
     }
-    url.searchParams.set('language', language);
     for (const [key, value] of Object.entries(parameters)) {
       if (key !== 'language' && value !== undefined) {
         url.searchParams.set(key, String(value));

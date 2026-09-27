@@ -1,0 +1,919 @@
+{
+  "source": "https://developer.themoviedb.org/openapi/tmdb-api.json",
+  "snapshotDate": "2026-09-27",
+  "sha256": "1c709375fe994e58c5a35aba7c9abfa7f28aa7103ed6c2052ea5ab0b62af081b",
+  "operations": [
+    {
+      "operationId": "authentication-validate-key",
+      "httpMethod": "GET",
+      "path": "/3/authentication",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-details",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-add-favorite",
+      "httpMethod": "POST",
+      "path": "/3/account/{account_id}/favorite",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-add-to-watchlist",
+      "httpMethod": "POST",
+      "path": "/3/account/{account_id}/watchlist",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-get-favorites",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/favorite/movies",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-favorite-tv",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/favorite/tv",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-lists",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/lists",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-rated-movies",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/rated/movies",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-rated-tv",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/rated/tv",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-rated-tv-episodes",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/rated/tv/episodes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-watchlist-movies",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/watchlist/movies",
+      "publicMethod": null
+    },
+    {
+      "operationId": "account-watchlist-tv",
+      "httpMethod": "GET",
+      "path": "/3/account/{account_id}/watchlist/tv",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-create-guest-session",
+      "httpMethod": "GET",
+      "path": "/3/authentication/guest_session/new",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-create-request-token",
+      "httpMethod": "GET",
+      "path": "/3/authentication/token/new",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-create-session",
+      "httpMethod": "POST",
+      "path": "/3/authentication/session/new",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-create-session-from-v4-token",
+      "httpMethod": "POST",
+      "path": "/3/authentication/session/convert/4",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-create-session-from-login",
+      "httpMethod": "POST",
+      "path": "/3/authentication/token/validate_with_login",
+      "publicMethod": null
+    },
+    {
+      "operationId": "authentication-delete-session",
+      "httpMethod": "DELETE",
+      "path": "/3/authentication/session",
+      "publicMethod": null
+    },
+    {
+      "operationId": "certification-movie-list",
+      "httpMethod": "GET",
+      "path": "/3/certification/movie/list",
+      "publicMethod": "certifications.movies"
+    },
+    {
+      "operationId": "certifications-tv-list",
+      "httpMethod": "GET",
+      "path": "/3/certification/tv/list",
+      "publicMethod": "certifications.tv"
+    },
+    {
+      "operationId": "changes-movie-list",
+      "httpMethod": "GET",
+      "path": "/3/movie/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "changes-people-list",
+      "httpMethod": "GET",
+      "path": "/3/person/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "changes-tv-list",
+      "httpMethod": "GET",
+      "path": "/3/tv/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "collection-details",
+      "httpMethod": "GET",
+      "path": "/3/collection/{collection_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "collection-images",
+      "httpMethod": "GET",
+      "path": "/3/collection/{collection_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "collection-translations",
+      "httpMethod": "GET",
+      "path": "/3/collection/{collection_id}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "company-details",
+      "httpMethod": "GET",
+      "path": "/3/company/{company_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "company-alternative-names",
+      "httpMethod": "GET",
+      "path": "/3/company/{company_id}/alternative_names",
+      "publicMethod": null
+    },
+    {
+      "operationId": "company-images",
+      "httpMethod": "GET",
+      "path": "/3/company/{company_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "configuration-details",
+      "httpMethod": "GET",
+      "path": "/3/configuration",
+      "publicMethod": "configuration.get"
+    },
+    {
+      "operationId": "configuration-countries",
+      "httpMethod": "GET",
+      "path": "/3/configuration/countries",
+      "publicMethod": "configuration.countries"
+    },
+    {
+      "operationId": "configuration-jobs",
+      "httpMethod": "GET",
+      "path": "/3/configuration/jobs",
+      "publicMethod": "configuration.jobs"
+    },
+    {
+      "operationId": "configuration-languages",
+      "httpMethod": "GET",
+      "path": "/3/configuration/languages",
+      "publicMethod": "configuration.languages"
+    },
+    {
+      "operationId": "configuration-primary-translations",
+      "httpMethod": "GET",
+      "path": "/3/configuration/primary_translations",
+      "publicMethod": "configuration.primaryTranslations"
+    },
+    {
+      "operationId": "configuration-timezones",
+      "httpMethod": "GET",
+      "path": "/3/configuration/timezones",
+      "publicMethod": "configuration.timezones"
+    },
+    {
+      "operationId": "credit-details",
+      "httpMethod": "GET",
+      "path": "/3/credit/{credit_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "discover-movie",
+      "httpMethod": "GET",
+      "path": "/3/discover/movie",
+      "publicMethod": null
+    },
+    {
+      "operationId": "discover-tv",
+      "httpMethod": "GET",
+      "path": "/3/discover/tv",
+      "publicMethod": null
+    },
+    {
+      "operationId": "find-by-id",
+      "httpMethod": "GET",
+      "path": "/3/find/{external_id}",
+      "publicMethod": "find.byExternalId"
+    },
+    {
+      "operationId": "genre-movie-list",
+      "httpMethod": "GET",
+      "path": "/3/genre/movie/list",
+      "publicMethod": "genres.movies"
+    },
+    {
+      "operationId": "genre-tv-list",
+      "httpMethod": "GET",
+      "path": "/3/genre/tv/list",
+      "publicMethod": "genres.tv"
+    },
+    {
+      "operationId": "guest-session-rated-movies",
+      "httpMethod": "GET",
+      "path": "/3/guest_session/{guest_session_id}/rated/movies",
+      "publicMethod": null
+    },
+    {
+      "operationId": "guest-session-rated-tv",
+      "httpMethod": "GET",
+      "path": "/3/guest_session/{guest_session_id}/rated/tv",
+      "publicMethod": null
+    },
+    {
+      "operationId": "guest-session-rated-tv-episodes",
+      "httpMethod": "GET",
+      "path": "/3/guest_session/{guest_session_id}/rated/tv/episodes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "keyword-details",
+      "httpMethod": "GET",
+      "path": "/3/keyword/{keyword_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "keyword-movies",
+      "httpMethod": "GET",
+      "path": "/3/keyword/{keyword_id}/movies",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-add-movie",
+      "httpMethod": "POST",
+      "path": "/3/list/{list_id}/add_item",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-check-item-status",
+      "httpMethod": "GET",
+      "path": "/3/list/{list_id}/item_status",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-clear",
+      "httpMethod": "POST",
+      "path": "/3/list/{list_id}/clear",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-create",
+      "httpMethod": "POST",
+      "path": "/3/list",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-delete",
+      "httpMethod": "DELETE",
+      "path": "/3/list/{list_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-details",
+      "httpMethod": "GET",
+      "path": "/3/list/{list_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "list-remove-movie",
+      "httpMethod": "POST",
+      "path": "/3/list/{list_id}/remove_item",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-now-playing-list",
+      "httpMethod": "GET",
+      "path": "/3/movie/now_playing",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-popular-list",
+      "httpMethod": "GET",
+      "path": "/3/movie/popular",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-top-rated-list",
+      "httpMethod": "GET",
+      "path": "/3/movie/top_rated",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-upcoming-list",
+      "httpMethod": "GET",
+      "path": "/3/movie/upcoming",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-details",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}",
+      "publicMethod": "movies.get"
+    },
+    {
+      "operationId": "movie-account-states",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/account_states",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-alternative-titles",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/alternative_titles",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-changes",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-credits",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-external-ids",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/external_ids",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-images",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-keywords",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/keywords",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-latest-id",
+      "httpMethod": "GET",
+      "path": "/3/movie/latest",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-lists",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/lists",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-recommendations",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/recommendations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-release-dates",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/release_dates",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-reviews",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/reviews",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-similar",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/similar",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-translations",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-videos",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/videos",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-watch-providers",
+      "httpMethod": "GET",
+      "path": "/3/movie/{movie_id}/watch/providers",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-add-rating",
+      "httpMethod": "POST",
+      "path": "/3/movie/{movie_id}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "movie-delete-rating",
+      "httpMethod": "DELETE",
+      "path": "/3/movie/{movie_id}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "network-details",
+      "httpMethod": "GET",
+      "path": "/3/network/{network_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "details-copy",
+      "httpMethod": "GET",
+      "path": "/3/network/{network_id}/alternative_names",
+      "publicMethod": null
+    },
+    {
+      "operationId": "alternative-names-copy",
+      "httpMethod": "GET",
+      "path": "/3/network/{network_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-popular-list",
+      "httpMethod": "GET",
+      "path": "/3/person/popular",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-details",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}",
+      "publicMethod": "people.get"
+    },
+    {
+      "operationId": "person-changes",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-combined-credits",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/combined_credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-external-ids",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/external_ids",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-images",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-latest-id",
+      "httpMethod": "GET",
+      "path": "/3/person/latest",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-movie-credits",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/movie_credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-tv-credits",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/tv_credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "person-tagged-images",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/tagged_images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "translations",
+      "httpMethod": "GET",
+      "path": "/3/person/{person_id}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "review-details",
+      "httpMethod": "GET",
+      "path": "/3/review/{review_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "search-collection",
+      "httpMethod": "GET",
+      "path": "/3/search/collection",
+      "publicMethod": "search.collections"
+    },
+    {
+      "operationId": "search-company",
+      "httpMethod": "GET",
+      "path": "/3/search/company",
+      "publicMethod": "search.companies"
+    },
+    {
+      "operationId": "search-keyword",
+      "httpMethod": "GET",
+      "path": "/3/search/keyword",
+      "publicMethod": "search.keywords"
+    },
+    {
+      "operationId": "search-movie",
+      "httpMethod": "GET",
+      "path": "/3/search/movie",
+      "publicMethod": "search.movies"
+    },
+    {
+      "operationId": "search-multi",
+      "httpMethod": "GET",
+      "path": "/3/search/multi",
+      "publicMethod": "search.multi"
+    },
+    {
+      "operationId": "search-person",
+      "httpMethod": "GET",
+      "path": "/3/search/person",
+      "publicMethod": "search.people"
+    },
+    {
+      "operationId": "search-tv",
+      "httpMethod": "GET",
+      "path": "/3/search/tv",
+      "publicMethod": "search.tv"
+    },
+    {
+      "operationId": "trending-all",
+      "httpMethod": "GET",
+      "path": "/3/trending/all/{time_window}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "trending-movies",
+      "httpMethod": "GET",
+      "path": "/3/trending/movie/{time_window}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "trending-people",
+      "httpMethod": "GET",
+      "path": "/3/trending/person/{time_window}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "trending-tv",
+      "httpMethod": "GET",
+      "path": "/3/trending/tv/{time_window}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-airing-today-list",
+      "httpMethod": "GET",
+      "path": "/3/tv/airing_today",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-on-the-air-list",
+      "httpMethod": "GET",
+      "path": "/3/tv/on_the_air",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-popular-list",
+      "httpMethod": "GET",
+      "path": "/3/tv/popular",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-top-rated-list",
+      "httpMethod": "GET",
+      "path": "/3/tv/top_rated",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-details",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}",
+      "publicMethod": "tv.get"
+    },
+    {
+      "operationId": "tv-series-account-states",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/account_states",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-aggregate-credits",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/aggregate_credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-alternative-titles",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/alternative_titles",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-changes",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-content-ratings",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/content_ratings",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-credits",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-episode-groups",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/episode_groups",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-external-ids",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/external_ids",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-images",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-keywords",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/keywords",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-latest-id",
+      "httpMethod": "GET",
+      "path": "/3/tv/latest",
+      "publicMethod": null
+    },
+    {
+      "operationId": "lists-copy",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/lists",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-recommendations",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/recommendations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-reviews",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/reviews",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-screened-theatrically",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/screened_theatrically",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-similar",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/similar",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-translations",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-videos",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/videos",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-watch-providers",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/watch/providers",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-add-rating",
+      "httpMethod": "POST",
+      "path": "/3/tv/{series_id}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-series-delete-rating",
+      "httpMethod": "DELETE",
+      "path": "/3/tv/{series_id}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-details",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}",
+      "publicMethod": "tv.seasons.get"
+    },
+    {
+      "operationId": "tv-season-account-states",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/account_states",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-aggregate-credits",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/aggregate_credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-changes-by-id",
+      "httpMethod": "GET",
+      "path": "/3/tv/season/{season_id}/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-credits",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-external-ids",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/external_ids",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-images",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-translations",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-videos",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/videos",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-season-watch-providers",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/watch/providers",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-details",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}",
+      "publicMethod": "tv.episodes.get"
+    },
+    {
+      "operationId": "tv-episode-account-states",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/account_states",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-changes-by-id",
+      "httpMethod": "GET",
+      "path": "/3/tv/episode/{episode_id}/changes",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-credits",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/credits",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-external-ids",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/external_ids",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-images",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/images",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-translations",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/translations",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-videos",
+      "httpMethod": "GET",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/videos",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-add-rating",
+      "httpMethod": "POST",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-delete-rating",
+      "httpMethod": "DELETE",
+      "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/rating",
+      "publicMethod": null
+    },
+    {
+      "operationId": "tv-episode-group-details",
+      "httpMethod": "GET",
+      "path": "/3/tv/episode_group/{tv_episode_group_id}",
+      "publicMethod": null
+    },
+    {
+      "operationId": "watch-providers-available-regions",
+      "httpMethod": "GET",
+      "path": "/3/watch/providers/regions",
+      "publicMethod": null
+    },
+    {
+      "operationId": "watch-providers-movie-list",
+      "httpMethod": "GET",
+      "path": "/3/watch/providers/movie",
+      "publicMethod": null
+    },
+    {
+      "operationId": "watch-provider-tv-list",
+      "httpMethod": "GET",
+      "path": "/3/watch/providers/tv",
+      "publicMethod": null
+    }
+  ]
+}

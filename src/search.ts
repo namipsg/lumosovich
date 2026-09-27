@@ -1,9 +1,15 @@
 import type { QueryParameters } from './http.js';
 import { TmdbHttpClient } from './http.js';
 import type {
+  CollectionSearchHit,
+  CollectionSearchOptions,
+  CompanySearchHit,
+  KeywordSearchHit,
   MovieSearchHit,
   MovieSearchOptions,
   MultiSearchHit,
+  PageOptions,
+  PersonSearchHit,
   SearchMethods,
   SearchOptions,
   TvSearchHit,
@@ -26,9 +32,9 @@ function year(value: number | undefined, name: string): number | undefined {
   return value;
 }
 
-function commonParameters(
+function pageParameters(
   query: string,
-  options: SearchOptions,
+  options: PageOptions,
 ): QueryParameters {
   if (
     options.page !== undefined &&
@@ -36,6 +42,18 @@ function commonParameters(
   ) {
     throw new TypeError('page must be a positive integer');
   }
+  return { query: searchQuery(query), page: options.page };
+}
+
+function region(value: string | undefined): string | undefined {
+  if (value !== undefined && (typeof value !== 'string' || !value.trim())) {
+    throw new TypeError('region must not be empty');
+  }
+  return value;
+}
+
+function commonParameters(query: string, options: SearchOptions): QueryParameters {
+  const parameters = pageParameters(query, options);
   if (
     options.includeAdult !== undefined &&
     typeof options.includeAdult !== 'boolean'
@@ -43,20 +61,35 @@ function commonParameters(
     throw new TypeError('includeAdult must be a boolean');
   }
   return {
-    query: searchQuery(query),
+    ...parameters,
     language: options.language,
-    page: options.page,
     include_adult: options.includeAdult,
   };
 }
 
 export function createSearchMethods(http: TmdbHttpClient): SearchMethods {
   return {
+    async collections(query: string, options: CollectionSearchOptions = {}) {
+      const payload = await http.get('search/collection', {
+        ...commonParameters(query, options),
+        region: region(options.region),
+      });
+      return validateSearchPage<CollectionSearchHit>(payload);
+    },
+    async companies(query: string, options: PageOptions = {}) {
+      const payload = await http.get(
+        'search/company', pageParameters(query, options), { includeLanguage: false },
+      );
+      return validateSearchPage<CompanySearchHit>(payload);
+    },
+    async keywords(query: string, options: PageOptions = {}) {
+      const payload = await http.get(
+        'search/keyword', pageParameters(query, options), { includeLanguage: false },
+      );
+      return validateSearchPage<KeywordSearchHit>(payload);
+    },
     async movies(query: string, options: MovieSearchOptions = {}) {
       const parameters = commonParameters(query, options);
-      if (options.region !== undefined && !options.region.trim()) {
-        throw new TypeError('region must not be empty');
-      }
       const payload = await http.get('search/movie', {
         ...parameters,
         year: year(options.year, 'year'),
@@ -64,9 +97,13 @@ export function createSearchMethods(http: TmdbHttpClient): SearchMethods {
           options.primaryReleaseYear,
           'primaryReleaseYear',
         ),
-        region: options.region,
+        region: region(options.region),
       });
       return validateSearchPage<MovieSearchHit>(payload);
+    },
+    async people(query: string, options: SearchOptions = {}) {
+      const payload = await http.get('search/person', commonParameters(query, options));
+      return validateSearchPage<PersonSearchHit>(payload);
     },
     async tv(query: string, options: TvSearchOptions = {}) {
       const payload = await http.get('search/tv', {
