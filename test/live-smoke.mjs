@@ -20,6 +20,37 @@ if (!apiKey && !accessToken) {
     const movie = await tmdb.movies.get(movieId, { append: ['external_ids'] });
     assert.equal(movie.external_ids?.imdb_id, 'tt1375666');
 
+    const metadataMovieId = 550;
+    for (const [method, options] of [
+      ['alternativeTitles', { country: 'US' }],
+      ['credits', { language: 'en-US' }],
+      ['externalIds'],
+      ['images', { imageLanguages: ['en', 'null'] }],
+      ['keywords'],
+      ['releaseDates'],
+      ['translations'],
+      ['videos'],
+      ['watchProviders'],
+    ]) {
+      step = `movie ${method}`;
+      assert.equal((await tmdb.movies[method](metadataMovieId, options)).id, metadataMovieId);
+    }
+    step = 'movie changes';
+    assert.ok(Array.isArray((await tmdb.movies.changes(metadataMovieId)).changes));
+    step = 'latest movie';
+    assert.ok((await tmdb.movies.latest()).id > 0);
+
+    const collectionId = 10;
+    for (const method of ['get', 'images', 'translations']) {
+      step = `collection ${method}`;
+      assert.equal((await tmdb.collections[method](collectionId)).id, collectionId);
+    }
+    const companyId = 1;
+    for (const method of ['get', 'alternativeNames', 'images']) {
+      step = `company ${method}`;
+      assert.equal((await tmdb.companies[method](companyId)).id, companyId);
+    }
+
     step = 'find TV';
     const tvMatches = await tmdb.find.byExternalId('tt0944947', 'imdb_id');
     assert.equal(tvMatches.tv_results.length, 1);
@@ -68,7 +99,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: find, all search/reference endpoints, movie, TV, person, season, episode.');
+    console.log('TMDB live smoke passed: all 40 implemented operations.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { loadBaseline, readJson } from './spec-baseline.mjs';
 
-// Keep two items per array and two certification regions; retain raw field names.
+// Keep two items per array and two certification/provider regions; retain raw field names.
 function compact(value) {
   if (Array.isArray(value)) return value.slice(0, 2).map(compact);
   if (value !== null && typeof value === 'object') {
@@ -22,7 +22,11 @@ for (const entry of ledger.operations.filter((operation) => operation.publicMeth
   const examples = operation.responses['200']?.content?.['application/json']?.examples;
   const example = Object.values(examples ?? {})[0]?.value;
   if (example === undefined) throw new Error(`No official example for ${entry.operationId}`);
-  fixtures[entry.operationId] = compact(typeof example === 'string' ? JSON.parse(example) : example);
+  const fixture = compact(typeof example === 'string' ? JSON.parse(example) : example);
+  if (entry.operationId === 'movie-watch-providers') {
+    fixture.results = Object.fromEntries(Object.entries(fixture.results).slice(0, 2));
+  }
+  fixtures[entry.operationId] = fixture;
 }
 if (process.argv.includes('--check')) {
   assert.deepEqual(readJson('test/fixtures/responses.json'), fixtures, 'Response fixtures differ from the pinned OpenAPI examples; run npm run fixtures:generate.');

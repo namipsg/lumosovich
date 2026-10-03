@@ -5,7 +5,7 @@
 
 A small, typed Node.js wrapper for the TMDB API.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, all search endpoints, configuration, certifications, genres, and movie, TV, and person details.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, all search endpoints, configuration, certifications, genres, movie metadata, collections, companies, and movie, TV, and person details.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -13,16 +13,15 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.2.0` covers **23 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.3.0` covers **40 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-New in `0.2.0`:
+New in `0.3.0`:
 
-* Search for people, collections, companies, and keywords, completing all seven search endpoints.
-* Fetch configuration, country/language/job/timezone lists, certifications, and genres.
-* Find objects using any of TMDB's eight documented external-ID sources.
-* Use the package under the MIT license.
+* Fetch movie alternative titles, changes, credits, external IDs, images, keywords, release dates, translations, videos, watch providers, and the latest movie.
+* Fetch collection details, images, and translations.
+* Fetch company details, alternative names, and logos.
 
-The release passes 75 offline tests, TypeScript declaration checks, and a live smoke test of all 23 implemented operations.
+The release passes 96 offline tests, TypeScript declaration checks, and a live smoke test of all 40 implemented operations.
 
 ## Installation
 
@@ -164,6 +163,46 @@ const enrichedPerson = await tmdb.people.get(6193, {
 
 `imageLanguages` requires `images` in `append`; `'null'` includes language-neutral assets. For TV, `aggregate_credits` covers the whole series, whereas `credits` represents the latest season. Responses retain TMDB fields and image paths rather than inventing IMDb-shaped values: `vote_average` is a TMDB score, not an IMDb rating, and person details do not provide awards or height.
 
+## Movie metadata, collections, and companies
+
+Movie metadata is available as individual requests as well as through supported `append` targets on `movies.get`:
+
+```js
+const titles = await tmdb.movies.alternativeTitles(550, { country: 'US' });
+const credits = await tmdb.movies.credits(550, { language: 'en-US' });
+const externalIds = await tmdb.movies.externalIds(550);
+const images = await tmdb.movies.images(550, {
+  imageLanguages: ['en', 'null'],
+});
+const keywords = await tmdb.movies.keywords(550);
+const releaseDates = await tmdb.movies.releaseDates(550);
+const translations = await tmdb.movies.translations(550);
+const videos = await tmdb.movies.videos(550);
+const providers = await tmdb.movies.watchProviders(550);
+const changes = await tmdb.movies.changes(550, {
+  startDate: '2024-01-01',
+  endDate: '2024-01-05',
+  page: 1,
+});
+const latestMovie = await tmdb.movies.latest();
+```
+
+`watchProviders().results` is keyed by country code. `changes()` returns TMDB's `changes` array and accepts optional `YYYY-MM-DD` dates and a positive page. `latest()` returns the most recently created movie record, which may be incomplete while it is being edited on TMDB.
+
+```js
+const collection = await tmdb.collections.get(10, { language: 'en-US' });
+const collectionImages = await tmdb.collections.images(10, {
+  imageLanguages: ['en', 'null'],
+});
+const collectionTranslations = await tmdb.collections.translations(10);
+
+const company = await tmdb.companies.get(1);
+const alternativeNames = await tmdb.companies.alternativeNames(1);
+const companyImages = await tmdb.companies.images(1);
+```
+
+`collections.get().parts` contains the collection's movie records. `movies.images()` and `collections.images()` accept a language override and `imageLanguages`; company methods and the nonlocalized movie/collection methods send no language parameter. All methods return TMDB's raw `snake_case` fields and require numeric TMDB IDs, except `movies.latest()`.
+
 ## Seasons and episodes
 
 ```js
@@ -267,13 +306,12 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 23 implemented operations: find, every search and reference endpoint, and
-movie/TV/person/season/episode details. Live testing is separate from the offline
-suite and makes read-only requests.
+all 40 implemented operations, including the movie metadata, collection, and company
+methods. Live testing is separate from the offline suite and makes read-only requests.
 
 ## Roadmap
 
-Broader movie and TV resources, discovery, trending, and other TMDB endpoints will
+Movie catalogs, broader TV resources, discovery, trending, and other TMDB endpoints will
 expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:

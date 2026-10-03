@@ -1,5 +1,7 @@
 import { TmdbHttpClient } from './http.js';
 import type { QueryParameters } from './http.js';
+import { createMovieMetadataMethods } from './metadata.js';
+import { positiveId } from './ids.js';
 import type {
   DetailOptions,
   EpisodeAppend,
@@ -53,13 +55,6 @@ const EPISODE_APPEND: readonly EpisodeAppend[] = [
   'videos',
 ];
 
-function detailId(id: TmdbId): TmdbId {
-  if (!Number.isSafeInteger(id) || id < 1) {
-    throw new TypeError('TMDB ID must be a positive integer');
-  }
-  return id;
-}
-
 function slotNumber(value: number, label: string): number {
   if (!Number.isSafeInteger(value) || value < 0) {
     throw new TypeError(`${label} must be a nonnegative integer`);
@@ -105,8 +100,9 @@ function detailParameters<TAppend extends string>(
 
 export function createMovieMethods(http: TmdbHttpClient): MovieMethods {
   return {
+    ...createMovieMetadataMethods(http),
     async get(id: TmdbId, options = {}): Promise<MovieDetails> {
-      const validId = detailId(id);
+      const validId = positiveId(id);
       const payload = await http.get(
         `movie/${validId}`,
         detailParameters(options, MOVIE_APPEND),
@@ -119,7 +115,7 @@ export function createMovieMethods(http: TmdbHttpClient): MovieMethods {
 export function createTvMethods(http: TmdbHttpClient): TvMethods {
   return {
     async get(id: TmdbId, options = {}): Promise<TvDetails> {
-      const validId = detailId(id);
+      const validId = positiveId(id);
       const payload = await http.get(
         `tv/${validId}`,
         detailParameters(options, TV_APPEND),
@@ -132,7 +128,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
         seasonNumber: number,
         options: SeasonDetailOptions = {},
       ): Promise<TvSeasonDetails> {
-        const validSeriesId = detailId(seriesId);
+        const validSeriesId = positiveId(seriesId);
         const validSeason = slotNumber(seasonNumber, 'seasonNumber');
         const payload = await http.get(
           `tv/${validSeriesId}/season/${validSeason}`,
@@ -148,7 +144,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
         episodeNumber: number,
         options: EpisodeDetailOptions = {},
       ): Promise<TvEpisodeDetails> {
-        const validSeriesId = detailId(seriesId);
+        const validSeriesId = positiveId(seriesId);
         const validSeason = slotNumber(seasonNumber, 'seasonNumber');
         const validEpisode = slotNumber(episodeNumber, 'episodeNumber');
         const payload = await http.get(
@@ -169,7 +165,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
 export function createPersonMethods(http: TmdbHttpClient): PersonMethods {
   return {
     async get(id: TmdbId, options = {}): Promise<PersonDetails> {
-      const validId = detailId(id);
+      const validId = positiveId(id);
       const payload = await http.get(
         `person/${validId}`,
         detailParameters(options, PERSON_APPEND),

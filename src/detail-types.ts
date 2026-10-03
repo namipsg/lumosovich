@@ -1,4 +1,5 @@
 import type { TmdbId } from './types.js';
+import type { MovieMetadataMethods } from './metadata-types.js';
 
 export interface Genre {
   id: TmdbId;
@@ -63,7 +64,7 @@ export interface ExternalIdsResponse {
 }
 
 export interface MovieReleaseDatesResponse {
-  id?: TmdbId;
+  id: TmdbId;
   results: Array<{
     iso_3166_1: string;
     release_dates: Array<{ certification?: string; release_date?: string; type?: number }>;
@@ -244,7 +245,7 @@ export interface PersonDetails {
   [key: string]: unknown;
 }
 
-export interface MovieMethods {
+export interface MovieMethods extends MovieMetadataMethods {
   get(id: TmdbId, options?: MovieDetailOptions): Promise<MovieDetails>;
 }
 

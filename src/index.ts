@@ -1,6 +1,7 @@
 import { createMovieMethods, createPersonMethods, createTvMethods } from './details.js';
 import { TmdbHttpClient } from './http.js';
 import { createImageMethods } from './images.js';
+import { createCollectionMethods, createCompanyMethods } from './metadata.js';
 import { createSearchMethods } from './search.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
@@ -14,6 +15,7 @@ import type {
 import { validateFindResponse } from './validation.js';
 import type { MovieMethods, PersonMethods, TvMethods } from './detail-types.js';
 import type { ImageMethods } from './images.js';
+import type { CollectionMethods, CompanyMethods } from './metadata-types.js';
 
 export { TmdbError } from './errors.js';
 export type { TmdbErrorCode } from './errors.js';
@@ -33,6 +35,31 @@ export type {
   Language,
   LanguageOptions,
 } from './reference-types.js';
+export type {
+  CollectionDetails,
+  CollectionImagesResponse,
+  CollectionMethods,
+  CompanyAlternativeNamesResponse,
+  CompanyDetails,
+  CompanyImagesResponse,
+  CompanyMethods,
+  ImageOptions,
+  MovieAlternativeTitlesOptions,
+  MovieAlternativeTitlesResponse,
+  MovieChange,
+  MovieChangesOptions,
+  MovieChangesResponse,
+  MovieCreditsResponse,
+  MovieExternalIdsResponse,
+  MovieImagesResponse,
+  MovieKeywordsResponse,
+  MovieMetadataMethods,
+  MovieVideosResponse,
+  MovieWatchProvidersResponse,
+  Translation,
+  TranslationsResponse,
+  WatchProvider,
+} from './metadata-types.js';
 export type {
   CreditPerson,
   CreditsResponse,
@@ -103,6 +130,8 @@ export class Lumosovich {
   };
   readonly search: SearchMethods;
   readonly movies: MovieMethods;
+  readonly collections: CollectionMethods;
+  readonly companies: CompanyMethods;
   readonly tv: TvMethods;
   readonly people: PersonMethods;
   readonly images: ImageMethods;
@@ -136,6 +165,8 @@ export class Lumosovich {
     };
     this.search = createSearchMethods(http);
     this.movies = createMovieMethods(http);
+    this.collections = createCollectionMethods(http);
+    this.companies = createCompanyMethods(http);
     this.tv = createTvMethods(http);
     this.people = createPersonMethods(http);
     this.images = createImageMethods();

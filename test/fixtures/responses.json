@@ -55,6 +55,175 @@
       ]
     }
   },
+  "collection-details": {
+    "id": 10,
+    "name": "Star Wars Collection",
+    "original_language": "en",
+    "original_name": "Star Wars Collection",
+    "overview": "An epic space-opera theatrical film series, which depicts the adventures of various characters \"a long time ago in a galaxy far, far away….\"",
+    "poster_path": "/22dj38IckjzEEUZwN1tPU5VJ1qq.jpg",
+    "backdrop_path": "/4z9ijhgEthfRHShoOvMaBlpciXS.jpg",
+    "parts": [
+      {
+        "adult": false,
+        "backdrop_path": "/2w4xG178RpB4MDAIfTkqAuSJzec.jpg",
+        "id": 11,
+        "name": "Star Wars",
+        "original_name": "Star Wars",
+        "overview": "Princess Leia is captured and held hostage by the evil Imperial forces in their effort to take over the galactic Empire. Venturesome Luke Skywalker and dashing captain Han Solo team together with the loveable robot duo R2-D2 and C-3PO to rescue the beautiful princess and restore peace and justice in the Empire.",
+        "poster_path": "/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
+        "media_type": "movie",
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 15.8557,
+        "release_date": "1977-05-25",
+        "video": false,
+        "vote_average": 8.205,
+        "vote_count": 21522
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/dMZxEdrWIzUmUoOz2zvmFuutbj7.jpg",
+        "id": 1891,
+        "name": "The Empire Strikes Back",
+        "original_name": "The Empire Strikes Back",
+        "overview": "The epic saga continues as Luke Skywalker, in hopes of defeating the evil Galactic Empire, learns the ways of the Jedi from aging master Yoda. But Darth Vader is more determined than ever to capture Luke. Meanwhile, rebel leader Princess Leia, cocky Han Solo, Chewbacca, and droids C-3PO and R2-D2 are thrown into various stages of capture, betrayal and despair.",
+        "poster_path": "/nNAeTmF4CtdSgMDplXTDPOpYzsX.jpg",
+        "media_type": "movie",
+        "original_language": "en",
+        "genre_ids": [
+          12,
+          28
+        ],
+        "popularity": 6.7352,
+        "release_date": "1980-05-20",
+        "video": false,
+        "vote_average": 8.395,
+        "vote_count": 17713
+      }
+    ]
+  },
+  "collection-images": {
+    "id": 10,
+    "backdrops": [
+      {
+        "aspect_ratio": 1.778,
+        "height": 1080,
+        "iso_639_1": null,
+        "file_path": "/d8duYyyC9J5T825Hg7grmaabfxQ.jpg",
+        "vote_average": 5.464,
+        "vote_count": 30,
+        "width": 1920
+      },
+      {
+        "aspect_ratio": 1.778,
+        "height": 720,
+        "iso_639_1": null,
+        "file_path": "/zZDkgOmFMVYpGAkR9Tkxw0CRnxX.jpg",
+        "vote_average": 5.454,
+        "vote_count": 3,
+        "width": 1280
+      }
+    ],
+    "posters": [
+      {
+        "aspect_ratio": 0.667,
+        "height": 3000,
+        "iso_639_1": "en",
+        "file_path": "/r8Ph5MYXL04Qzu4QBbq2KjqwtkQ.jpg",
+        "vote_average": 5.516,
+        "vote_count": 14,
+        "width": 2000
+      },
+      {
+        "aspect_ratio": 0.667,
+        "height": 3000,
+        "iso_639_1": "pt",
+        "file_path": "/suaJuFprbgdZaTE0mOt0xWIGFyQ.jpg",
+        "vote_average": 5.454,
+        "vote_count": 3,
+        "width": 2000
+      }
+    ]
+  },
+  "collection-translations": {
+    "id": 10,
+    "translations": [
+      {
+        "iso_3166_1": "AE",
+        "iso_639_1": "ar",
+        "name": "العربية",
+        "english_name": "Arabic",
+        "data": {
+          "title": "",
+          "overview": "",
+          "homepage": ""
+        }
+      },
+      {
+        "iso_3166_1": "BG",
+        "iso_639_1": "bg",
+        "name": "български език",
+        "english_name": "Bulgarian",
+        "data": {
+          "title": "Междузвездни войни (поредица)",
+          "overview": "Междузвездни войни е поредица от шест филма проследяващи живота на Анакин Скайуокър. Открит от джедая Куай-Гон Джин на пустинната планета Татуин Анакин е все още дете, но постепенно се превръща в силния Дарт Вейдър, дясната ръка на Императорът, който почти успява да унищожи джедайте.",
+          "homepage": ""
+        }
+      }
+    ]
+  },
+  "company-details": {
+    "description": "",
+    "headquarters": "San Francisco, California",
+    "homepage": "https://www.lucasfilm.com",
+    "id": 1,
+    "logo_path": "/o86DbpburjxrqAzEDhXZcyE8pDb.png",
+    "name": "Lucasfilm Ltd.",
+    "origin_country": "US",
+    "parent_company": null
+  },
+  "company-alternative-names": {
+    "id": 1,
+    "results": [
+      {
+        "name": "루카스필름",
+        "type": ""
+      },
+      {
+        "name": "Lucasfilm Limited, LLC",
+        "type": ""
+      }
+    ]
+  },
+  "company-images": {
+    "id": 1,
+    "logos": [
+      {
+        "aspect_ratio": 2.97979797979798,
+        "file_path": "/o86DbpburjxrqAzEDhXZcyE8pDb.png",
+        "height": 99,
+        "id": "5aa080d6c3a3683fea00011e",
+        "file_type": ".svg",
+        "vote_average": 5.384,
+        "vote_count": 2,
+        "width": 295
+      },
+      {
+        "aspect_ratio": 3.03951367781155,
+        "file_path": "/tlVSws0RvvtPBwViUyOFAO0vcQS.png",
+        "height": 329,
+        "id": "63306b352b8a430096598b3d",
+        "file_type": ".svg",
+        "vote_average": 5.312,
+        "vote_count": 1,
+        "width": 1000
+      }
+    ]
+  },
   "configuration-details": {
     "images": {
       "base_url": "http://image.tmdb.org/t/p/",
@@ -262,6 +431,402 @@
     "video": false,
     "vote_average": 8.2,
     "vote_count": 22061
+  },
+  "movie-alternative-titles": {
+    "id": 550,
+    "titles": [
+      {
+        "iso_3166_1": "RS",
+        "title": "Borilački klub",
+        "type": ""
+      },
+      {
+        "iso_3166_1": "IL",
+        "title": "Mo'adon Krav",
+        "type": "romanization"
+      }
+    ]
+  },
+  "movie-changes": {
+    "changes": [
+      {
+        "key": "images",
+        "items": [
+          {
+            "id": "643197b96dea3a00d4377270",
+            "action": "added",
+            "time": "2023-04-08 16:35:05 UTC",
+            "iso_639_1": "",
+            "iso_3166_1": "",
+            "value": {
+              "poster": {
+                "file_path": "/s9ZrHprviFCx3azfWNBtt1LPSnL.jpg"
+              }
+            }
+          },
+          {
+            "id": "643197bae92d8300f46c92f5",
+            "action": "added",
+            "time": "2023-04-08 16:35:06 UTC",
+            "iso_639_1": "",
+            "iso_3166_1": "",
+            "value": {
+              "poster": {
+                "file_path": "/xQjGTWyNHXqqACOanXwOk1mOnxU.jpg"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "plot_keywords",
+        "items": [
+          {
+            "id": "6431bb5d8289a000b73bd64d",
+            "action": "added",
+            "time": "2023-04-08 19:07:09 UTC",
+            "iso_639_1": "",
+            "iso_3166_1": "",
+            "value": {
+              "name": "breaking the fourth wall",
+              "id": 11687
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "movie-credits": {
+    "id": 550,
+    "cast": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 819,
+        "known_for_department": "Acting",
+        "name": "Edward Norton",
+        "original_name": "Edward Norton",
+        "popularity": 26.99,
+        "profile_path": "/8nytsqL59SFJTVYVrN72k6qkGgJ.jpg",
+        "cast_id": 4,
+        "character": "The Narrator",
+        "credit_id": "52fe4250c3a36847f80149f3",
+        "order": 0
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 287,
+        "known_for_department": "Acting",
+        "name": "Brad Pitt",
+        "original_name": "Brad Pitt",
+        "popularity": 45.202,
+        "profile_path": "/huV2cdcolEUwJy37QvH914vup7d.jpg",
+        "cast_id": 5,
+        "character": "Tyler Durden",
+        "credit_id": "52fe4250c3a36847f80149f7",
+        "order": 1
+      }
+    ],
+    "crew": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 376,
+        "known_for_department": "Production",
+        "name": "Arnon Milchan",
+        "original_name": "Arnon Milchan",
+        "popularity": 2.931,
+        "profile_path": "/b2hBExX4NnczNAnLuTBF4kmNhZm.jpg",
+        "credit_id": "55731b8192514111610027d7",
+        "department": "Production",
+        "job": "Executive Producer"
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 605,
+        "known_for_department": "Costume & Make-Up",
+        "name": "Michael Kaplan",
+        "original_name": "Michael Kaplan",
+        "popularity": 4.294,
+        "profile_path": "/bNarnI5K4XYIKaHsX6HAitllyQr.jpg",
+        "credit_id": "5894c4eac3a3685ec6000218",
+        "department": "Costume & Make-Up",
+        "job": "Costume Design"
+      }
+    ]
+  },
+  "movie-external-ids": {
+    "id": 550,
+    "imdb_id": "tt0137523",
+    "wikidata_id": null,
+    "facebook_id": "FightClub",
+    "instagram_id": null,
+    "twitter_id": null
+  },
+  "movie-images": {
+    "backdrops": [
+      {
+        "aspect_ratio": 1.778,
+        "height": 800,
+        "iso_639_1": null,
+        "file_path": "/hZkgoQYus5vegHoetLkCJzb17zJ.jpg",
+        "vote_average": 5.622,
+        "vote_count": 20,
+        "width": 1422
+      },
+      {
+        "aspect_ratio": 1.778,
+        "height": 720,
+        "iso_639_1": "en",
+        "file_path": "/fygeMr16EcxJiYhdiO1LEr7iHtI.jpg",
+        "vote_average": 5.318,
+        "vote_count": 3,
+        "width": 1280
+      }
+    ],
+    "id": 550,
+    "logos": [
+      {
+        "aspect_ratio": 5.203,
+        "height": 79,
+        "iso_639_1": "he",
+        "file_path": "/c1KLulrIhUqY5fT42nmC5aERGCp.png",
+        "vote_average": 5.312,
+        "vote_count": 1,
+        "width": 411
+      },
+      {
+        "aspect_ratio": 8.502,
+        "height": 235,
+        "iso_639_1": "pt",
+        "file_path": "/qqAcl1YIT5Sa2nx8tKQcervQCco.png",
+        "vote_average": 5.312,
+        "vote_count": 1,
+        "width": 1998
+      }
+    ],
+    "posters": [
+      {
+        "aspect_ratio": 0.667,
+        "height": 900,
+        "iso_639_1": "pt",
+        "file_path": "/r3pPehX4ik8NLYPpbDRAh0YRtMb.jpg",
+        "vote_average": 5.258,
+        "vote_count": 6,
+        "width": 600
+      },
+      {
+        "aspect_ratio": 0.667,
+        "height": 1350,
+        "iso_639_1": "ru",
+        "file_path": "/66RvLrRJTm4J8l3uHXWF09AICol.jpg",
+        "vote_average": 5.522,
+        "vote_count": 4,
+        "width": 900
+      }
+    ]
+  },
+  "movie-keywords": {
+    "id": 550,
+    "keywords": [
+      {
+        "id": 818,
+        "name": "based on novel or book"
+      },
+      {
+        "id": 825,
+        "name": "support group"
+      }
+    ]
+  },
+  "movie-latest-id": {
+    "adult": false,
+    "backdrop_path": null,
+    "belongs_to_collection": null,
+    "budget": 0,
+    "genres": [],
+    "homepage": "",
+    "id": 1119232,
+    "imdb_id": null,
+    "original_language": "fr",
+    "original_title": "König Charles III",
+    "overview": "",
+    "popularity": 0,
+    "poster_path": null,
+    "production_companies": [],
+    "production_countries": [],
+    "release_date": "",
+    "revenue": 0,
+    "runtime": 0,
+    "spoken_languages": [],
+    "status": "Released",
+    "tagline": "",
+    "title": "König Charles III",
+    "video": false,
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  "movie-release-dates": {
+    "id": 550,
+    "results": [
+      {
+        "iso_3166_1": "BG",
+        "release_dates": [
+          {
+            "certification": "c",
+            "descriptors": [],
+            "iso_639_1": "",
+            "note": "",
+            "release_date": "2012-08-28T00:00:00.000Z",
+            "type": 3
+          }
+        ]
+      },
+      {
+        "iso_3166_1": "CH",
+        "release_dates": [
+          {
+            "certification": "18",
+            "descriptors": [],
+            "iso_639_1": "de",
+            "note": "",
+            "release_date": "1999-11-04T00:00:00.000Z",
+            "type": 3
+          },
+          {
+            "certification": "18",
+            "descriptors": [],
+            "iso_639_1": "fr",
+            "note": "",
+            "release_date": "1999-11-10T00:00:00.000Z",
+            "type": 3
+          }
+        ]
+      }
+    ]
+  },
+  "movie-translations": {
+    "id": 550,
+    "translations": [
+      {
+        "iso_3166_1": "SA",
+        "iso_639_1": "ar",
+        "name": "العربية",
+        "english_name": "Arabic",
+        "data": {
+          "homepage": "",
+          "overview": "إدوارد يتعرض لضغوط حتى يصل به الحال إلى أنه لا يستطيع النوم لفتراتٍ طويلة، لكنه يجد بعض السلام في جلسات العلاج النفسي الجماعي، يتعرف إدوارد على أحد الأشخاص وهو (تايلر ديردن) الذي يحرره من تعلقه بالأشياء الذي تستعبده ،ثم يحرره من خوفه من الناس. يقومان معًا بإنشاء نادي القتال الذي يجذب الكثير من الأفراد المحبطين ،الذين يقومون بإخراج طاقة غضبهم وكرههم للعالم في القتال.",
+          "runtime": 0,
+          "tagline": "",
+          "title": ""
+        }
+      },
+      {
+        "iso_3166_1": "AZ",
+        "iso_639_1": "az",
+        "name": "Azərbaycan",
+        "english_name": "Azerbaijani",
+        "data": {
+          "homepage": "",
+          "overview": "Xəyalları olmayan bir gənc yuxusuzluğa qarşı mübarizə aparır, bəlkə də boz və gündəlik həyatı ilə cansıxıcılığının nəticəsidir. Təyyarə gəzintisində o, çox xüsusi bir fəlsəfəyə sahib olan xarizmatik sabun satıcısı Tyler Durden ilə tanış olur: mükəmməllik zəif insanların işidir; bunun əvəzinə özünü məhv etmək həyatı həqiqətən yaşamağa dəyər edən yeganə şeydir. Hər ikisi məyusluqlarını və qəzəblərini söndürə bildikləri gizli mübarizə klubu yaratmaq qərarına gəlirlər, bu da böyük bir müvəffəqiyyət olacaqdır.",
+          "runtime": 0,
+          "tagline": "",
+          "title": "Döyüshçü Klubu"
+        }
+      }
+    ]
+  },
+  "movie-videos": {
+    "id": 550,
+    "results": [
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Fight Club (1999) Trailer - Starring Brad Pitt, Edward Norton, Helena Bonham Carter",
+        "key": "O-b2VfmmbyA",
+        "site": "YouTube",
+        "size": 720,
+        "type": "Trailer",
+        "official": false,
+        "published_at": "2016-03-05T02:03:14.000Z",
+        "id": "639d5326be6d88007f170f44"
+      },
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "#TBT Trailer",
+        "key": "BdJKm16Co6M",
+        "site": "YouTube",
+        "size": 1080,
+        "type": "Trailer",
+        "official": true,
+        "published_at": "2014-10-02T19:20:22.000Z",
+        "id": "5c9294240e0a267cd516835f"
+      }
+    ]
+  },
+  "movie-watch-providers": {
+    "id": 550,
+    "results": {
+      "AE": {
+        "link": "https://www.themoviedb.org/movie/550-fight-club/watch?locale=AE",
+        "flatrate": [
+          {
+            "logo_path": "/emthp39XA2YScoYL1p0sdbAH2WA.jpg",
+            "provider_id": 119,
+            "provider_name": "Amazon Prime Video",
+            "display_priority": 12
+          }
+        ],
+        "rent": [
+          {
+            "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+            "provider_id": 2,
+            "provider_name": "Apple TV",
+            "display_priority": 1
+          },
+          {
+            "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+            "provider_id": 3,
+            "provider_name": "Google Play Movies",
+            "display_priority": 3
+          }
+        ],
+        "buy": [
+          {
+            "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+            "provider_id": 2,
+            "provider_name": "Apple TV",
+            "display_priority": 1
+          },
+          {
+            "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+            "provider_id": 3,
+            "provider_name": "Google Play Movies",
+            "display_priority": 3
+          }
+        ]
+      },
+      "AL": {
+        "link": "https://www.themoviedb.org/movie/550-fight-club/watch?locale=AL",
+        "buy": [
+          {
+            "logo_path": "/5GEbAhFW2S5T8zVc1MNvz00pIzM.jpg",
+            "provider_id": 35,
+            "provider_name": "Rakuten TV",
+            "display_priority": 9
+          },
+          {
+            "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+            "provider_id": 3,
+            "provider_name": "Google Play Movies",
+            "display_priority": 1000
+          }
+        ]
+      }
+    }
   },
   "person-details": {
     "adult": false,

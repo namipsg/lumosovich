@@ -15,6 +15,19 @@ test('the ledger maps all pinned OpenAPI operations and completes the first grou
   assert.ok(group.every((entry) => entry.publicMethod));
 });
 
+test('the second group covers 12 movie, three collection, and three company operations', () => {
+  const ids = [
+    'movie-details', 'movie-alternative-titles', 'movie-changes', 'movie-credits',
+    'movie-external-ids', 'movie-images', 'movie-keywords', 'movie-latest-id',
+    'movie-release-dates', 'movie-translations', 'movie-videos', 'movie-watch-providers',
+    'collection-details', 'collection-images', 'collection-translations',
+    'company-details', 'company-alternative-names', 'company-images',
+  ];
+  assert.equal(ids.length, 18);
+  assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
+  assert.ok(checkCoverage(baseline).implemented >= 40);
+});
+
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {
   for (const mutate of [
     (data) => data.ledger.operations.pop(),

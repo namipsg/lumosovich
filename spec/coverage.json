@@ -145,37 +145,37 @@
       "operationId": "collection-details",
       "httpMethod": "GET",
       "path": "/3/collection/{collection_id}",
-      "publicMethod": null
+      "publicMethod": "collections.get"
     },
     {
       "operationId": "collection-images",
       "httpMethod": "GET",
       "path": "/3/collection/{collection_id}/images",
-      "publicMethod": null
+      "publicMethod": "collections.images"
     },
     {
       "operationId": "collection-translations",
       "httpMethod": "GET",
       "path": "/3/collection/{collection_id}/translations",
-      "publicMethod": null
+      "publicMethod": "collections.translations"
     },
     {
       "operationId": "company-details",
       "httpMethod": "GET",
       "path": "/3/company/{company_id}",
-      "publicMethod": null
+      "publicMethod": "companies.get"
     },
     {
       "operationId": "company-alternative-names",
       "httpMethod": "GET",
       "path": "/3/company/{company_id}/alternative_names",
-      "publicMethod": null
+      "publicMethod": "companies.alternativeNames"
     },
     {
       "operationId": "company-images",
       "httpMethod": "GET",
       "path": "/3/company/{company_id}/images",
-      "publicMethod": null
+      "publicMethod": "companies.images"
     },
     {
       "operationId": "configuration-details",
@@ -361,43 +361,43 @@
       "operationId": "movie-alternative-titles",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/alternative_titles",
-      "publicMethod": null
+      "publicMethod": "movies.alternativeTitles"
     },
     {
       "operationId": "movie-changes",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/changes",
-      "publicMethod": null
+      "publicMethod": "movies.changes"
     },
     {
       "operationId": "movie-credits",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/credits",
-      "publicMethod": null
+      "publicMethod": "movies.credits"
     },
     {
       "operationId": "movie-external-ids",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/external_ids",
-      "publicMethod": null
+      "publicMethod": "movies.externalIds"
     },
     {
       "operationId": "movie-images",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/images",
-      "publicMethod": null
+      "publicMethod": "movies.images"
     },
     {
       "operationId": "movie-keywords",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/keywords",
-      "publicMethod": null
+      "publicMethod": "movies.keywords"
     },
     {
       "operationId": "movie-latest-id",
       "httpMethod": "GET",
       "path": "/3/movie/latest",
-      "publicMethod": null
+      "publicMethod": "movies.latest"
     },
     {
       "operationId": "movie-lists",
@@ -415,7 +415,7 @@
       "operationId": "movie-release-dates",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/release_dates",
-      "publicMethod": null
+      "publicMethod": "movies.releaseDates"
     },
     {
       "operationId": "movie-reviews",
@@ -433,19 +433,19 @@
       "operationId": "movie-translations",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/translations",
-      "publicMethod": null
+      "publicMethod": "movies.translations"
     },
     {
       "operationId": "movie-videos",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/videos",
-      "publicMethod": null
+      "publicMethod": "movies.videos"
     },
     {
       "operationId": "movie-watch-providers",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/watch/providers",
-      "publicMethod": null
+      "publicMethod": "movies.watchProviders"
     },
     {
       "operationId": "movie-add-rating",
