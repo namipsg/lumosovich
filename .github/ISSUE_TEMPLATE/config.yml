@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a security vulnerability
+    url: https://github.com/namipsg/lumosovich/security/advisories
+    about: Use GitHub's private reporting flow; do not open a public issue.

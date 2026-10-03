@@ -1,0 +1,28 @@
+name: Endpoint request
+description: Request coverage for a TMDB v3 operation or API improvement.
+body:
+  - type: input
+    id: operation
+    attributes:
+      label: TMDB OpenAPI operation ID or reference link
+      description: Check spec/coverage.json before requesting an endpoint.
+      placeholder: movie-recommendations
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Explain what you need to do with this operation.
+    validations:
+      required: true
+  - type: input
+    id: method
+    attributes:
+      label: Suggested public method
+      placeholder: movies.recommendations(id)
+  - type: textarea
+    id: notes
+    attributes:
+      label: Parameters or response details
+      description: Include any TMDB behavior the implementation should preserve.
