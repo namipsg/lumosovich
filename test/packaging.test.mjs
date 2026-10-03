@@ -55,7 +55,9 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
       const require = createRequire(import.meta.url);
       const { Lumosovich: CjsClient } = require('lumosovich');
       const root = join(dirname(require.resolve('lumosovich')), '..');
-      assert.equal(JSON.parse(readFileSync(join(root, 'package.json'))).license, 'MIT');
+      const manifest = JSON.parse(readFileSync(join(root, 'package.json')));
+      assert.equal(manifest.license, 'MIT');
+      assert.equal(manifest.engines.node, '>=22');
       assert.match(readFileSync(join(root, 'LICENSE'), 'utf8'), /^MIT License/);
       for (const Client of [EsmClient, CjsClient]) {
         const client = new Client({ accessToken: 'test-token', fetch: async (url) =>

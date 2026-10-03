@@ -2,6 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/lumosovich.svg)](https://www.npmjs.com/package/lumosovich)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namipsg/lumosovich/blob/main/LICENSE)
+[![CI](https://github.com/namipsg/lumosovich/actions/workflows/ci.yml/badge.svg)](https://github.com/namipsg/lumosovich/actions/workflows/ci.yml)
 
 A small, typed Node.js wrapper for the TMDB API.
 
@@ -13,7 +14,9 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.3.0` covers **40 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.4.0` covers **40 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+
+New in `0.4.0`: Lumosovich supports maintained Node.js versions starting with Node 22. Its public API is unchanged. The project now has CI, a trusted-publishing release workflow, and [contribution](https://github.com/namipsg/lumosovich/blob/main/CONTRIBUTING.md), [security](https://github.com/namipsg/lumosovich/blob/main/SECURITY.md), and [release history](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) documents.
 
 New in `0.3.0`:
 
@@ -29,7 +32,7 @@ The release passes 96 offline tests, TypeScript declaration checks, and a live s
 npm install lumosovich
 ```
 
-Requires Node.js 18+ and a TMDB v3 API key or API Read Access Token. Keep your credential in an environment variable; do not commit it to your project.
+Requires Node.js 22+ and a TMDB v3 API key or API Read Access Token. Keep your credential in an environment variable; do not commit it to your project.
 
 ## Quick Start
 
@@ -273,7 +276,7 @@ Failures throw `TmdbError` with `code` and, for HTTP failures, `status`. Codes a
 
 ## Requirements
 
-* Node.js 18+
+* Node.js 22+
 * A TMDB API key or API Read Access Token
 
 ## Development
@@ -291,6 +294,7 @@ The suite checks the pinned OpenAPI coverage ledger, generated response fixtures
 request contracts, ESM/CommonJS entry points, and exported TypeScript declarations.
 Print the operation coverage count with `npm run check:coverage`; regenerate
 response fixtures after a reviewed baseline change with `npm run fixtures:generate`.
+See [CONTRIBUTING.md](https://github.com/namipsg/lumosovich/blob/main/CONTRIBUTING.md) for the endpoint implementation and pull request workflow.
 
 Build the package:
 
