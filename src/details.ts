@@ -1,6 +1,7 @@
 import { TmdbHttpClient } from './http.js';
 import type { QueryParameters } from './http.js';
 import { createMovieMetadataMethods } from './metadata.js';
+import { createMovieCatalogMethods } from './movie-catalog.js';
 import { positiveId } from './ids.js';
 import type {
   DetailOptions,
@@ -101,6 +102,7 @@ function detailParameters<TAppend extends string>(
 export function createMovieMethods(http: TmdbHttpClient): MovieMethods {
   return {
     ...createMovieMetadataMethods(http),
+    ...createMovieCatalogMethods(http),
     async get(id: TmdbId, options = {}): Promise<MovieDetails> {
       const validId = positiveId(id);
       const payload = await http.get(

@@ -6,7 +6,7 @@
 
 A small, typed Node.js wrapper for the TMDB API.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, all search endpoints, configuration, certifications, genres, movie metadata, collections, companies, and movie, TV, and person details.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, and movie, TV, and person details.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -14,17 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.4.0` covers **40 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.5.0` covers **64 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-New in `0.4.0`: Lumosovich supports maintained Node.js versions starting with Node 22. Its public API is unchanged. The project now has CI, a trusted-publishing release workflow, and [contribution](https://github.com/namipsg/lumosovich/blob/main/CONTRIBUTING.md), [security](https://github.com/namipsg/lumosovich/blob/main/SECURITY.md), and [release history](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) documents.
+New in `0.5.0`: 24 more TMDB operations cover movie catalogs and changes, Discover, Trending, reviews, keywords, networks, and movie ratings. The read-only live smoke test now exercises 61 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
-New in `0.3.0`:
-
-* Fetch movie alternative titles, changes, credits, external IDs, images, keywords, release dates, translations, videos, watch providers, and the latest movie.
-* Fetch collection details, images, and translations.
-* Fetch company details, alternative names, and logos.
-
-The release passes 96 offline tests, TypeScript declaration checks, and a live smoke test of all 40 implemented operations.
+The release passes 125 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -206,6 +200,63 @@ const companyImages = await tmdb.companies.images(1);
 
 `collections.get().parts` contains the collection's movie records. `movies.images()` and `collections.images()` accept a language override and `imageLanguages`; company methods and the nonlocalized movie/collection methods send no language parameter. All methods return TMDB's raw `snake_case` fields and require numeric TMDB IDs, except `movies.latest()`.
 
+## Catalogs, discovery, and trending
+
+```js
+const playing = await tmdb.movies.nowPlaying({ region: 'US', page: 1 });
+const popular = await tmdb.movies.popular();
+const topRated = await tmdb.movies.topRated();
+const upcoming = await tmdb.movies.upcoming({ region: 'US' });
+const changedMovies = await tmdb.movies.changeList({
+  startDate: '2024-01-01', endDate: '2024-01-07', page: 1,
+});
+
+const recommendations = await tmdb.movies.recommendations(550);
+const similar = await tmdb.movies.similar(550);
+const lists = await tmdb.movies.lists(550);
+const movieReviews = await tmdb.movies.reviews(550);
+
+const actionMovies = await tmdb.discover.movies({
+  withGenres: '28', voteAverageGte: 7, sortBy: 'popularity.desc',
+});
+const dramaShows = await tmdb.discover.tv({
+  withGenres: '18', firstAirDateYear: 2024,
+});
+const trendingMovies = await tmdb.trending.movies('week');
+const trendingAcrossMedia = await tmdb.trending.all('day');
+```
+
+Catalog, discovery, and trending results retain TMDB's pagination fields. `nowPlaying()` and `upcoming()` also return TMDB's `dates` range. Trending supports `day` and `week` for `all`, `movies`, `people`, and `tv`. `changeList()` reports changed movie IDs; `movies.changes(id)` returns the changes for one movie.
+
+Discover accepts all query parameters in the pinned TMDB v3 specification through camel-case options. Common filters include `includeAdult`, `sortBy`, `voteAverageGte/Lte`, `voteCountGte/Lte`, `watchRegion`, `withGenres`, `withKeywords`, `withCompanies`, `withWatchProviders`, and their `without*` counterparts. Movie-only options include `certification*`, `primaryReleaseDateGte/Lte`, `releaseDateGte/Lte`, `region`, `withCast`, `withCrew`, `withPeople`, `withReleaseType`, and `year`. TV-only options include `airDateGte/Lte`, `firstAirDateGte/Lte`, `firstAirDateYear`, `withNetworks`, `withStatus`, and `withType`. The exported `MovieDiscoverOptions` and `TvDiscoverOptions` types list every supported filter; dates use `YYYY-MM-DD` and pages start at 1.
+
+## Reviews, keywords, networks, and ratings
+
+```js
+const review = await tmdb.reviews.get(movieReviews.results[0].id);
+const keyword = await tmdb.keywords.get(1701);
+const keywordMovies = await tmdb.keywords.movies(1701, { includeAdult: false });
+const network = await tmdb.networks.get(49);
+const networkNames = await tmdb.networks.alternativeNames(49);
+const networkImages = await tmdb.networks.images(49);
+```
+
+Review IDs are strings; movie, keyword, and network IDs are positive TMDB numbers. The review example assumes `movieReviews.results` is nonempty.
+
+Account states and ratings need an existing TMDB session, in addition to the API key or Read Access Token used to construct the client:
+
+```js
+const sessionId = process.env.TMDB_SESSION_ID;
+if (!sessionId) throw new Error('Set TMDB_SESSION_ID first');
+const session = { sessionId };
+const state = await tmdb.movies.accountStates(550, session);
+await tmdb.movies.rate(550, 8.5, session);
+await tmdb.movies.deleteRating(550, session);
+```
+
+Use `guestSessionId` instead of `sessionId` for a guest session; supply exactly one. Ratings range from 0.5 to 10 in half-point steps. `deleteRating()` removes the rating associated with that session. Session creation is planned for a later group, so obtain a session through TMDB's authentication flow before using these methods. The live smoke test does not mutate an account.
+TMDB may remove a newly rated movie from the account's watchlist by default; see [TMDB's rating behavior](https://developer.themoviedb.org/reference/movie-add-rating).
+
 ## Seasons and episodes
 
 ```js
@@ -310,12 +361,12 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 40 implemented operations, including the movie metadata, collection, and company
-methods. Live testing is separate from the offline suite and makes read-only requests.
+all 61 public read operations. Account-state and rating methods require a TMDB
+session and are covered by offline contracts; the live test makes read-only requests.
 
 ## Roadmap
 
-Movie catalogs, broader TV resources, discovery, trending, and other TMDB endpoints will
+Broader TV resources, people, lists, watch providers, and authentication will
 expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:

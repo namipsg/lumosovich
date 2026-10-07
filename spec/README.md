@@ -17,5 +17,7 @@ then run `npm run fixtures:generate`. Response fixtures preserve upstream fields
 but truncate arrays to two items and certifications to two regions. Request
 contracts are reviewed manually so a fixture generator cannot bless an incorrect
 public API or query mapping.
+The official `movie-recommendations` example is an empty object, so its response
+fixture uses the reviewed page shape in `test/fixtures/response-overrides.json`.
 
 This snapshot and the development fixtures are excluded from the npm package.
