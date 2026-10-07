@@ -14,9 +14,9 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.5.0` covers **64 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.5.1` covers **64 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-New in `0.5.0`: 24 more TMDB operations cover movie catalogs and changes, Discover, Trending, reviews, keywords, networks, and movie ratings. The read-only live smoke test now exercises 61 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+Version `0.5.1` updates development and GitHub Actions dependencies without changing the public API. Version `0.5.0` added 24 TMDB operations for movie catalogs and changes, Discover, Trending, reviews, keywords, networks, and movie ratings. The read-only live smoke test exercises 61 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
 The release passes 125 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 

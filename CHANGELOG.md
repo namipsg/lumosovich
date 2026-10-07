@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.5.1 — 2026-10-07
+
+- Update the development compiler to TypeScript 7.0.2 and refresh the pinned GitHub Actions versions for checkout and Node setup.
+- Keep the public API and TMDB operation coverage unchanged at 64 of 152 operations.
+
 ## 0.5.0 — 2026-10-07
 
 - Add 24 TMDB v3 operations for movie catalogs and changes, Discover, Trending, reviews, keywords, networks, and movie ratings, bringing coverage to 64 of 152.
