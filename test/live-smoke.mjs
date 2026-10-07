@@ -40,6 +40,42 @@ if (!apiKey && !accessToken) {
     step = 'latest movie';
     assert.ok((await tmdb.movies.latest()).id > 0);
 
+    step = 'movie change list';
+    assert.ok(Array.isArray((await tmdb.movies.changeList({ page: 1 })).results));
+    for (const method of ['nowPlaying', 'popular', 'topRated', 'upcoming']) {
+      step = `movie catalog ${method}`;
+      assert.ok(Array.isArray((await tmdb.movies[method]({ page: 1 })).results));
+    }
+    for (const method of ['lists', 'recommendations', 'similar']) {
+      step = `movie ${method}`;
+      assert.ok(Array.isArray((await tmdb.movies[method](metadataMovieId)).results));
+    }
+    step = 'movie reviews';
+    const movieReviews = await tmdb.movies.reviews(metadataMovieId);
+    assert.ok(Array.isArray(movieReviews.results));
+    if (movieReviews.results.length > 0) {
+      step = 'review details';
+      assert.equal((await tmdb.reviews.get(movieReviews.results[0].id)).id, movieReviews.results[0].id);
+    } else {
+      throw new Error('Expected a public review for the G3 smoke test');
+    }
+    for (const method of ['movies', 'tv']) {
+      step = `discover ${method}`;
+      assert.ok(Array.isArray((await tmdb.discover[method]({ page: 1 })).results));
+    }
+    for (const method of ['all', 'movies', 'people', 'tv']) {
+      step = `trending ${method}`;
+      assert.ok(Array.isArray((await tmdb.trending[method]('week')).results));
+    }
+    step = 'keyword details';
+    assert.equal((await tmdb.keywords.get(1701)).id, 1701);
+    step = 'keyword movies';
+    assert.equal((await tmdb.keywords.movies(1701)).id, 1701);
+    for (const method of ['get', 'alternativeNames', 'images']) {
+      step = `network ${method}`;
+      assert.equal((await tmdb.networks[method](49)).id, 49);
+    }
+
     const collectionId = 10;
     for (const method of ['get', 'images', 'translations']) {
       step = `collection ${method}`;
@@ -99,7 +135,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 40 implemented operations.');
+    console.log('TMDB live smoke passed: all 61 public read operations.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);
