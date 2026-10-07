@@ -1,5 +1,6 @@
 import type { TmdbId } from './types.js';
 import type { MovieMetadataMethods } from './metadata-types.js';
+import type { MovieCatalogMethods } from './catalog-types.js';
 
 export interface Genre {
   id: TmdbId;
@@ -245,7 +246,7 @@ export interface PersonDetails {
   [key: string]: unknown;
 }
 
-export interface MovieMethods extends MovieMetadataMethods {
+export interface MovieMethods extends MovieMetadataMethods, MovieCatalogMethods {
   get(id: TmdbId, options?: MovieDetailOptions): Promise<MovieDetails>;
 }
 

@@ -16,6 +16,12 @@ import {
   type MovieAlternativeTitlesResponse,
   type MovieChangesResponse,
   type MovieWatchProvidersResponse,
+  type MovieCatalogPage,
+  type MovieAccountStates,
+  type MovieDiscoverOptions,
+  type NetworkDetails,
+  type RatingResponse,
+  type ReviewDetails,
   type PersonSearchHit,
   type SearchPage,
 } from 'lumosovich';
@@ -52,6 +58,14 @@ const companyImages = tmdb.companies.images(1);
 const movieTitles: Promise<MovieAlternativeTitlesResponse> = tmdb.movies.alternativeTitles(550, { country: 'US' });
 const movieChanges: Promise<MovieChangesResponse> = tmdb.movies.changes(550, { startDate: '2024-01-01', page: 2 });
 const movieWatch: Promise<MovieWatchProvidersResponse> = tmdb.movies.watchProviders(550);
+const nowPlaying: Promise<MovieCatalogPage> = tmdb.movies.nowPlaying({ region: 'US', page: 1 });
+const accountState: Promise<MovieAccountStates> = tmdb.movies.accountStates(550, { sessionId: 'session' });
+const discovery: MovieDiscoverOptions = { withGenres: '28,12', voteAverageGte: 7.5 };
+const discovered = tmdb.discover.movies(discovery);
+const trending = tmdb.trending.all('week');
+const review: Promise<ReviewDetails> = tmdb.reviews.get('review-id');
+const network: Promise<NetworkDetails> = tmdb.networks.get(49);
+const rating: Promise<RatingResponse> = tmdb.movies.rate(550, 8.5, { guestSessionId: 'guest' });
 const movieCredits = tmdb.movies.credits(550, { language: 'fa-IR' });
 const movieExternalIds = tmdb.movies.externalIds(550);
 const movieImages = tmdb.movies.images(550, { imageLanguages: ['en', 'null'] });
@@ -84,10 +98,19 @@ tmdb.companies.get(1, { language: 'en-US' });
 tmdb.movies.alternativeTitles(550, { language: 'en-US' });
 // @ts-expect-error Per-movie changes use ISO dates, not a language option.
 tmdb.movies.changes(550, { language: 'en-US' });
+// @ts-expect-error Trending accepts only day or week.
+tmdb.trending.movies('month');
+// @ts-expect-error Ratings require an explicit session.
+tmdb.movies.rate(550, 8.5);
+// @ts-expect-error A mutation cannot use two session kinds.
+tmdb.movies.deleteRating(550, { sessionId: 'a', guestSessionId: 'b' });
+// @ts-expect-error Discover does not accept arbitrary query keys.
+tmdb.discover.movies({ unrecognized: true });
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
   collectionDetail, collectionImages, collectionTranslations, companyDetail,
   companyNames, companyImages, movieTitles, movieChanges, movieWatch, movieCredits,
   movieExternalIds, movieImages, movieKeywords, movieLatest, movieReleaseDates,
-  movieTranslations, movieVideos];
+  movieTranslations, movieVideos, nowPlaying, accountState, discovered,
+  trending, review, network, rating];

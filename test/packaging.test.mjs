@@ -40,6 +40,7 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
     ], { cwd: root, encoding: 'utf8' }));
     assert.ok(pack.files.some((file) => file.path === 'LICENSE'));
     assert.ok(pack.files.some((file) => file.path === 'dist/reference-types.d.ts'));
+    assert.ok(pack.files.some((file) => file.path === 'dist/catalog-types.d.ts'));
     assert.ok(pack.files.every((file) => file.path.startsWith('dist/') ||
       ['LICENSE', 'README.md', 'package.json'].includes(file.path)));
     execFileSync('npm', [
@@ -64,6 +65,8 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
           new Response(JSON.stringify(new URL(url).pathname.includes('/genre/')
             ? { genres: [] } : { page: 1, results: [], total_pages: 0, total_results: 0 })) });
         assert.deepEqual((await client.search.people('query')).results, []);
+        assert.deepEqual((await client.discover.movies()).results, []);
+        assert.deepEqual((await client.trending.movies('day')).results, []);
         assert.deepEqual((await client.genres.tv()).genres, []);
         assert.equal(typeof client.configuration.primaryTranslations, 'function');
       }

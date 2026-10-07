@@ -127,7 +127,7 @@
       "operationId": "changes-movie-list",
       "httpMethod": "GET",
       "path": "/3/movie/changes",
-      "publicMethod": null
+      "publicMethod": "movies.changeList"
     },
     {
       "operationId": "changes-people-list",
@@ -223,13 +223,13 @@
       "operationId": "discover-movie",
       "httpMethod": "GET",
       "path": "/3/discover/movie",
-      "publicMethod": null
+      "publicMethod": "discover.movies"
     },
     {
       "operationId": "discover-tv",
       "httpMethod": "GET",
       "path": "/3/discover/tv",
-      "publicMethod": null
+      "publicMethod": "discover.tv"
     },
     {
       "operationId": "find-by-id",
@@ -271,13 +271,13 @@
       "operationId": "keyword-details",
       "httpMethod": "GET",
       "path": "/3/keyword/{keyword_id}",
-      "publicMethod": null
+      "publicMethod": "keywords.get"
     },
     {
       "operationId": "keyword-movies",
       "httpMethod": "GET",
       "path": "/3/keyword/{keyword_id}/movies",
-      "publicMethod": null
+      "publicMethod": "keywords.movies"
     },
     {
       "operationId": "list-add-movie",
@@ -325,25 +325,25 @@
       "operationId": "movie-now-playing-list",
       "httpMethod": "GET",
       "path": "/3/movie/now_playing",
-      "publicMethod": null
+      "publicMethod": "movies.nowPlaying"
     },
     {
       "operationId": "movie-popular-list",
       "httpMethod": "GET",
       "path": "/3/movie/popular",
-      "publicMethod": null
+      "publicMethod": "movies.popular"
     },
     {
       "operationId": "movie-top-rated-list",
       "httpMethod": "GET",
       "path": "/3/movie/top_rated",
-      "publicMethod": null
+      "publicMethod": "movies.topRated"
     },
     {
       "operationId": "movie-upcoming-list",
       "httpMethod": "GET",
       "path": "/3/movie/upcoming",
-      "publicMethod": null
+      "publicMethod": "movies.upcoming"
     },
     {
       "operationId": "movie-details",
@@ -355,7 +355,7 @@
       "operationId": "movie-account-states",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/account_states",
-      "publicMethod": null
+      "publicMethod": "movies.accountStates"
     },
     {
       "operationId": "movie-alternative-titles",
@@ -403,13 +403,13 @@
       "operationId": "movie-lists",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/lists",
-      "publicMethod": null
+      "publicMethod": "movies.lists"
     },
     {
       "operationId": "movie-recommendations",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/recommendations",
-      "publicMethod": null
+      "publicMethod": "movies.recommendations"
     },
     {
       "operationId": "movie-release-dates",
@@ -421,13 +421,13 @@
       "operationId": "movie-reviews",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/reviews",
-      "publicMethod": null
+      "publicMethod": "movies.reviews"
     },
     {
       "operationId": "movie-similar",
       "httpMethod": "GET",
       "path": "/3/movie/{movie_id}/similar",
-      "publicMethod": null
+      "publicMethod": "movies.similar"
     },
     {
       "operationId": "movie-translations",
@@ -451,31 +451,31 @@
       "operationId": "movie-add-rating",
       "httpMethod": "POST",
       "path": "/3/movie/{movie_id}/rating",
-      "publicMethod": null
+      "publicMethod": "movies.rate"
     },
     {
       "operationId": "movie-delete-rating",
       "httpMethod": "DELETE",
       "path": "/3/movie/{movie_id}/rating",
-      "publicMethod": null
+      "publicMethod": "movies.deleteRating"
     },
     {
       "operationId": "network-details",
       "httpMethod": "GET",
       "path": "/3/network/{network_id}",
-      "publicMethod": null
+      "publicMethod": "networks.get"
     },
     {
       "operationId": "details-copy",
       "httpMethod": "GET",
       "path": "/3/network/{network_id}/alternative_names",
-      "publicMethod": null
+      "publicMethod": "networks.alternativeNames"
     },
     {
       "operationId": "alternative-names-copy",
       "httpMethod": "GET",
       "path": "/3/network/{network_id}/images",
-      "publicMethod": null
+      "publicMethod": "networks.images"
     },
     {
       "operationId": "person-popular-list",
@@ -547,7 +547,7 @@
       "operationId": "review-details",
       "httpMethod": "GET",
       "path": "/3/review/{review_id}",
-      "publicMethod": null
+      "publicMethod": "reviews.get"
     },
     {
       "operationId": "search-collection",
@@ -595,25 +595,25 @@
       "operationId": "trending-all",
       "httpMethod": "GET",
       "path": "/3/trending/all/{time_window}",
-      "publicMethod": null
+      "publicMethod": "trending.all"
     },
     {
       "operationId": "trending-movies",
       "httpMethod": "GET",
       "path": "/3/trending/movie/{time_window}",
-      "publicMethod": null
+      "publicMethod": "trending.movies"
     },
     {
       "operationId": "trending-people",
       "httpMethod": "GET",
       "path": "/3/trending/person/{time_window}",
-      "publicMethod": null
+      "publicMethod": "trending.people"
     },
     {
       "operationId": "trending-tv",
       "httpMethod": "GET",
       "path": "/3/trending/tv/{time_window}",
-      "publicMethod": null
+      "publicMethod": "trending.tv"
     },
     {
       "operationId": "tv-series-airing-today-list",

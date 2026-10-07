@@ -52,6 +52,24 @@ export class TmdbHttpClient {
     parameters: QueryParameters = {},
     options: GetOptions = {},
   ): Promise<unknown> {
+    return this.request('GET', path, parameters, options);
+  }
+
+  async post(path: string, parameters: QueryParameters, body: Record<string, unknown>): Promise<unknown> {
+    return this.request('POST', path, parameters, { includeLanguage: false }, body);
+  }
+
+  async delete(path: string, parameters: QueryParameters): Promise<unknown> {
+    return this.request('DELETE', path, parameters, { includeLanguage: false });
+  }
+
+  private async request(
+    method: 'GET' | 'POST' | 'DELETE',
+    path: string,
+    parameters: QueryParameters,
+    options: GetOptions,
+    body?: Record<string, unknown>,
+  ): Promise<unknown> {
     const url = new URL(path, API_BASE_URL);
     if (options.includeLanguage !== false) {
       const language = parameters.language ?? this.language;
@@ -73,12 +91,15 @@ export class TmdbHttpClient {
       let response: Response;
       try {
         response = await this.fetchRequest(url, {
+          ...(method === 'GET' ? {} : { method }),
           headers: {
             accept: 'application/json',
+            ...(method === 'GET' ? {} : { 'content-type': 'application/json' }),
             ...(this.accessToken
               ? { authorization: `Bearer ${this.accessToken}` }
               : {}),
           },
+          ...(body === undefined ? {} : { body: JSON.stringify(body) }),
           signal: controller.signal,
         });
       } catch {
