@@ -16,18 +16,29 @@ function compact(value) {
 }
 
 const { ledger, spec } = loadBaseline();
+const overrides = readJson('test/fixtures/response-overrides.json');
+const unusedOverrides = new Set(Object.keys(overrides));
 const fixtures = {};
 for (const entry of ledger.operations.filter((operation) => operation.publicMethod)) {
   const operation = spec.paths[entry.path][entry.httpMethod.toLowerCase()];
   const examples = operation.responses['200']?.content?.['application/json']?.examples;
   const example = Object.values(examples ?? {})[0]?.value;
   if (example === undefined) throw new Error(`No official example for ${entry.operationId}`);
-  const fixture = compact(typeof example === 'string' ? JSON.parse(example) : example);
+  const officialExample = typeof example === 'string' ? JSON.parse(example) : example;
+  if (Object.hasOwn(overrides, entry.operationId)) {
+    if (!officialExample || typeof officialExample !== 'object' ||
+      Object.keys(officialExample).length !== 0) {
+      throw new Error(`Response override requires an empty official example: ${entry.operationId}`);
+    }
+    unusedOverrides.delete(entry.operationId);
+  }
+  const fixture = compact(overrides[entry.operationId] ?? officialExample);
   if (entry.operationId === 'movie-watch-providers') {
     fixture.results = Object.fromEntries(Object.entries(fixture.results).slice(0, 2));
   }
   fixtures[entry.operationId] = fixture;
 }
+if (unusedOverrides.size) throw new Error(`Unused response overrides: ${[...unusedOverrides].join(', ')}`);
 if (process.argv.includes('--check')) {
   assert.deepEqual(readJson('test/fixtures/responses.json'), fixtures, 'Response fixtures differ from the pinned OpenAPI examples; run npm run fixtures:generate.');
   console.log(`Verified ${Object.keys(fixtures).length} pinned response fixtures.`);

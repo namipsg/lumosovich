@@ -2,6 +2,11 @@ import { createMovieMethods, createPersonMethods, createTvMethods } from './deta
 import { TmdbHttpClient } from './http.js';
 import { createImageMethods } from './images.js';
 import { createCollectionMethods, createCompanyMethods } from './metadata.js';
+import { createDiscoverMethods } from './discover.js';
+import {
+  createKeywordMethods, createNetworkMethods, createReviewMethods,
+  createTrendingMethods,
+} from './explore.js';
 import { createSearchMethods } from './search.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
@@ -16,10 +21,20 @@ import { validateFindResponse } from './validation.js';
 import type { MovieMethods, PersonMethods, TvMethods } from './detail-types.js';
 import type { ImageMethods } from './images.js';
 import type { CollectionMethods, CompanyMethods } from './metadata-types.js';
+import type { DiscoverMethods, KeywordMethods, NetworkMethods, ReviewMethods, TrendingMethods } from './catalog-types.js';
 
 export { TmdbError } from './errors.js';
 export type { TmdbErrorCode } from './errors.js';
 export type { ImageMethods, ImageSize } from './images.js';
+export type {
+  DiscoverMethods, DiscoverCommonOptions, KeywordDetails, KeywordMethods,
+  KeywordMoviesPage, MovieAccountStates, MovieCatalogMethods, MovieCatalogOptions,
+  MovieCatalogPage, MovieChangeListOptions, MovieChangeListPage,
+  MovieDiscoverOptions, MovieListHit, MovieListPage, NetworkAlternativeNamesResponse,
+  NetworkDetails, NetworkImagesResponse, NetworkMethods, RatingResponse, RatingSession,
+  ReviewDetails, ReviewMethods, ReviewPage, ReviewSummary, TrendingMethods,
+  TrendingWindow, TvDiscoverOptions,
+} from './catalog-types.js';
 export type {
   Certification,
   CertificationMethods,
@@ -132,6 +147,11 @@ export class Lumosovich {
   readonly movies: MovieMethods;
   readonly collections: CollectionMethods;
   readonly companies: CompanyMethods;
+  readonly discover: DiscoverMethods;
+  readonly trending: TrendingMethods;
+  readonly reviews: ReviewMethods;
+  readonly keywords: KeywordMethods;
+  readonly networks: NetworkMethods;
   readonly tv: TvMethods;
   readonly people: PersonMethods;
   readonly images: ImageMethods;
@@ -167,6 +187,11 @@ export class Lumosovich {
     this.movies = createMovieMethods(http);
     this.collections = createCollectionMethods(http);
     this.companies = createCompanyMethods(http);
+    this.discover = createDiscoverMethods(http);
+    this.trending = createTrendingMethods(http);
+    this.reviews = createReviewMethods(http);
+    this.keywords = createKeywordMethods(http);
+    this.networks = createNetworkMethods(http);
     this.tv = createTvMethods(http);
     this.people = createPersonMethods(http);
     this.images = createImageMethods();
