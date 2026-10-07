@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0 — 2026-10-07
+
+- Add 24 TMDB v3 operations for movie catalogs and changes, Discover, Trending, reviews, keywords, networks, and movie ratings, bringing coverage to 64 of 152.
+- Add typed Discover filters for every query parameter in the pinned spec, explicit session-scoped rating methods, and response validation for the new resources.
+- Extend the offline contract and type checks and run a read-only live smoke test across all 61 public read operations.
+
 ## 0.4.0 — 2026-10-03
 
 - Require Node.js 22 or newer, aligning the supported runtime with maintained Node releases. The public Lumosovich API is unchanged.

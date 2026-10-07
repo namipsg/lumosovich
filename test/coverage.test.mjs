@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import { Lumosovich } from '../dist/index.js';
 import { checkCoverage, loadCoverage } from '../scripts/check-coverage.mjs';
+import { discoverQueryNames } from '../dist/discover.js';
 
 const baseline = loadCoverage();
 const { ledger, spec, contracts, responses } = baseline;
@@ -26,6 +27,26 @@ test('the second group covers 12 movie, three collection, and three company oper
   assert.equal(ids.length, 18);
   assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
   assert.ok(checkCoverage(baseline).implemented >= 40);
+});
+
+test('the third group covers all 24 planned catalog, discovery, and exploration operations', () => {
+  const ids = [
+    'changes-movie-list', 'discover-movie', 'discover-tv', 'keyword-details',
+    'keyword-movies', 'movie-now-playing-list', 'movie-popular-list',
+    'movie-top-rated-list', 'movie-upcoming-list', 'movie-account-states',
+    'movie-lists', 'movie-recommendations', 'movie-reviews', 'movie-similar',
+    'movie-add-rating', 'movie-delete-rating', 'network-details', 'details-copy',
+    'alternative-names-copy', 'review-details', 'trending-all',
+    'trending-movies', 'trending-people', 'trending-tv',
+  ];
+  assert.equal(ids.length, 24);
+  assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
+  assert.equal(checkCoverage(baseline).implemented, 64);
+  for (const kind of ['movie', 'tv']) {
+    const expected = spec.paths[`/3/discover/${kind}`].get.parameters
+      .filter((parameter) => parameter.in === 'query').map((parameter) => parameter.name).sort();
+    assert.deepEqual(discoverQueryNames[kind].sort(), expected);
+  }
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {
@@ -69,6 +90,8 @@ for (const entry of ledger.operations.filter((operation) => operation.publicMeth
     assert.equal(url.origin, 'https://api.themoviedb.org');
     assert.equal(url.pathname, expectedPath);
     assert.equal(init.method ?? 'GET', entry.httpMethod);
+    assert.deepEqual(init.body === undefined ? undefined : JSON.parse(init.body), contract.body);
+    assert.equal(init.headers['content-type'], entry.httpMethod === 'GET' ? undefined : 'application/json');
     assert.deepEqual(Object.fromEntries(url.searchParams), contract.query);
     const operation = spec.paths[entry.path][entry.httpMethod.toLowerCase()];
     const allowed = operation.parameters?.filter((parameter) => parameter.in === 'query').map((parameter) => parameter.name) ?? [];

@@ -1,6 +1,6 @@
 {
   "name": "lumosovich",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "A small, typed Node.js client for the TMDB API",
   "keywords": [
     "tmdb",
@@ -40,7 +40,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.json && esbuild src/index.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/index.cjs",
     "test": "npm run build && node scripts/check-coverage.mjs && node scripts/generate-fixtures.mjs --check && npm run test:types && node --test test/*.test.mjs",
-    "test:types": "tsc --noEmit --strict --target ES2022 --module NodeNext --moduleResolution NodeNext test/types.ts",
+    "test:types": "tsc --project tsconfig.types.json",
     "check:coverage": "npm run build && node scripts/check-coverage.mjs",
     "fixtures:generate": "node scripts/generate-fixtures.mjs",
     "test:live": "npm run build && node test/live-smoke.mjs",
@@ -48,6 +48,6 @@
   },
   "devDependencies": {
     "esbuild": "^0.28.2",
-    "typescript": "^5.0.0"
+    "typescript": "^7.0.2"
   }
 }
