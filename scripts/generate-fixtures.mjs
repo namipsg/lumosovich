@@ -33,7 +33,7 @@ for (const entry of ledger.operations.filter((operation) => operation.publicMeth
     unusedOverrides.delete(entry.operationId);
   }
   const fixture = compact(overrides[entry.operationId] ?? officialExample);
-  if (entry.operationId === 'movie-watch-providers') {
+  if (entry.operationId === 'movie-watch-providers' || entry.operationId === 'tv-series-watch-providers') {
     fixture.results = Object.fromEntries(Object.entries(fixture.results).slice(0, 2));
   }
   fixtures[entry.operationId] = fixture;

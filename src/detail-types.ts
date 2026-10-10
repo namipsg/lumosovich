@@ -1,6 +1,7 @@
 import type { TmdbId } from './types.js';
 import type { MovieMetadataMethods } from './metadata-types.js';
 import type { MovieCatalogMethods } from './catalog-types.js';
+import type { TvCatalogMethods, TvMetadataMethods } from './tv-types.js';
 
 export interface Genre {
   id: TmdbId;
@@ -74,8 +75,8 @@ export interface MovieReleaseDatesResponse {
 }
 
 export interface TvContentRatingsResponse {
-  id?: TmdbId;
-  results: Array<{ iso_3166_1: string; rating: string }>;
+  id: TmdbId;
+  results: Array<{ iso_3166_1: string; rating: string; descriptors?: string[]; [key: string]: unknown }>;
   [key: string]: unknown;
 }
 
@@ -250,7 +251,7 @@ export interface MovieMethods extends MovieMetadataMethods, MovieCatalogMethods 
   get(id: TmdbId, options?: MovieDetailOptions): Promise<MovieDetails>;
 }
 
-export interface TvMethods {
+export interface TvMethods extends TvMetadataMethods, TvCatalogMethods {
   get(id: TmdbId, options?: TvDetailOptions): Promise<TvDetails>;
   seasons: {
     get(

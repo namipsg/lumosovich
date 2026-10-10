@@ -619,25 +619,25 @@
       "operationId": "tv-series-airing-today-list",
       "httpMethod": "GET",
       "path": "/3/tv/airing_today",
-      "publicMethod": null
+      "publicMethod": "tv.airingToday"
     },
     {
       "operationId": "tv-series-on-the-air-list",
       "httpMethod": "GET",
       "path": "/3/tv/on_the_air",
-      "publicMethod": null
+      "publicMethod": "tv.onTheAir"
     },
     {
       "operationId": "tv-series-popular-list",
       "httpMethod": "GET",
       "path": "/3/tv/popular",
-      "publicMethod": null
+      "publicMethod": "tv.popular"
     },
     {
       "operationId": "tv-series-top-rated-list",
       "httpMethod": "GET",
       "path": "/3/tv/top_rated",
-      "publicMethod": null
+      "publicMethod": "tv.topRated"
     },
     {
       "operationId": "tv-series-details",
@@ -649,19 +649,19 @@
       "operationId": "tv-series-account-states",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/account_states",
-      "publicMethod": null
+      "publicMethod": "tv.accountStates"
     },
     {
       "operationId": "tv-series-aggregate-credits",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/aggregate_credits",
-      "publicMethod": null
+      "publicMethod": "tv.aggregateCredits"
     },
     {
       "operationId": "tv-series-alternative-titles",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/alternative_titles",
-      "publicMethod": null
+      "publicMethod": "tv.alternativeTitles"
     },
     {
       "operationId": "tv-series-changes",
@@ -673,13 +673,13 @@
       "operationId": "tv-series-content-ratings",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/content_ratings",
-      "publicMethod": null
+      "publicMethod": "tv.contentRatings"
     },
     {
       "operationId": "tv-series-credits",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/credits",
-      "publicMethod": null
+      "publicMethod": "tv.credits"
     },
     {
       "operationId": "tv-series-episode-groups",
@@ -691,85 +691,85 @@
       "operationId": "tv-series-external-ids",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/external_ids",
-      "publicMethod": null
+      "publicMethod": "tv.externalIds"
     },
     {
       "operationId": "tv-series-images",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/images",
-      "publicMethod": null
+      "publicMethod": "tv.images"
     },
     {
       "operationId": "tv-series-keywords",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/keywords",
-      "publicMethod": null
+      "publicMethod": "tv.keywords"
     },
     {
       "operationId": "tv-series-latest-id",
       "httpMethod": "GET",
       "path": "/3/tv/latest",
-      "publicMethod": null
+      "publicMethod": "tv.latest"
     },
     {
       "operationId": "lists-copy",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/lists",
-      "publicMethod": null
+      "publicMethod": "tv.lists"
     },
     {
       "operationId": "tv-series-recommendations",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/recommendations",
-      "publicMethod": null
+      "publicMethod": "tv.recommendations"
     },
     {
       "operationId": "tv-series-reviews",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/reviews",
-      "publicMethod": null
+      "publicMethod": "tv.reviews"
     },
     {
       "operationId": "tv-series-screened-theatrically",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/screened_theatrically",
-      "publicMethod": null
+      "publicMethod": "tv.screenedTheatrically"
     },
     {
       "operationId": "tv-series-similar",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/similar",
-      "publicMethod": null
+      "publicMethod": "tv.similar"
     },
     {
       "operationId": "tv-series-translations",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/translations",
-      "publicMethod": null
+      "publicMethod": "tv.translations"
     },
     {
       "operationId": "tv-series-videos",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/videos",
-      "publicMethod": null
+      "publicMethod": "tv.videos"
     },
     {
       "operationId": "tv-series-watch-providers",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/watch/providers",
-      "publicMethod": null
+      "publicMethod": "tv.watchProviders"
     },
     {
       "operationId": "tv-series-add-rating",
       "httpMethod": "POST",
       "path": "/3/tv/{series_id}/rating",
-      "publicMethod": null
+      "publicMethod": "tv.rate"
     },
     {
       "operationId": "tv-series-delete-rating",
       "httpMethod": "DELETE",
       "path": "/3/tv/{series_id}/rating",
-      "publicMethod": null
+      "publicMethod": "tv.deleteRating"
     },
     {
       "operationId": "tv-season-details",

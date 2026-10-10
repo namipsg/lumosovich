@@ -51,11 +51,15 @@ export function validateIdShape<T>(
   return value as T;
 }
 
-export function validateLatestMovie<T>(value: unknown): T {
-  if (!hasId(value) || !isRecord(value) || typeof value.title !== 'string') {
+export function validateLatestDetail<T>(value: unknown, nameKey: 'title' | 'name'): T {
+  if (!hasId(value) || !isRecord(value) || typeof value[nameKey] !== 'string') {
     invalidResponse();
   }
   return value as T;
+}
+
+export function validateLatestMovie<T>(value: unknown): T {
+  return validateLatestDetail<T>(value, 'title');
 }
 
 export function validateMovieChanges<T>(value: unknown): T {
