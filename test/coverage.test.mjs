@@ -41,12 +41,31 @@ test('the third group covers all 24 planned catalog, discovery, and exploration 
   ];
   assert.equal(ids.length, 24);
   assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
-  assert.equal(checkCoverage(baseline).implemented, 64);
+  assert.ok(checkCoverage(baseline).implemented >= 64);
   for (const kind of ['movie', 'tv']) {
     const expected = spec.paths[`/3/discover/${kind}`].get.parameters
       .filter((parameter) => parameter.in === 'query').map((parameter) => parameter.name).sort();
     assert.deepEqual(discoverQueryNames[kind].sort(), expected);
   }
+});
+
+test('the fourth group adds 23 TV series catalog, detail, and rating operations', () => {
+  const ids = [
+    'tv-series-airing-today-list', 'tv-series-on-the-air-list',
+    'tv-series-popular-list', 'tv-series-top-rated-list',
+    'tv-series-account-states', 'tv-series-aggregate-credits',
+    'tv-series-alternative-titles', 'tv-series-content-ratings',
+    'tv-series-credits', 'tv-series-external-ids', 'tv-series-images',
+    'tv-series-keywords', 'tv-series-latest-id', 'lists-copy',
+    'tv-series-recommendations', 'tv-series-reviews',
+    'tv-series-screened-theatrically', 'tv-series-similar',
+    'tv-series-translations', 'tv-series-videos',
+    'tv-series-watch-providers', 'tv-series-add-rating',
+    'tv-series-delete-rating',
+  ];
+  assert.equal(ids.length, 23);
+  assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
+  assert.equal(checkCoverage(baseline).implemented, 87);
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {

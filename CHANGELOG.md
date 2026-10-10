@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.0 — 2026-10-10
+
+- Add 23 TV series operations for catalogs, credits, metadata, recommendations, reviews, watch providers, and ratings, bringing coverage to 87 of 152 TMDB v3 operations.
+- Add typed TV series responses and options, request contracts, response fixtures, and validation tests.
+- Exercise all 81 public read operations in the read-only live smoke test; session-scoped methods remain covered by offline contracts.
+
 ## 0.5.1 — 2026-10-07
 
 - Update the development compiler to TypeScript 7.0.2 and refresh the pinned GitHub Actions versions for checkout and Node setup.

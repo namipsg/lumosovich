@@ -24,6 +24,10 @@ import {
   type ReviewDetails,
   type PersonSearchHit,
   type SearchPage,
+  type TvCatalogPage,
+  type TvCreditsResponse,
+  type TvImagesResponse,
+  type TvScreenedTheatricallyResponse,
 } from 'lumosovich';
 
 const tmdb = new Lumosovich({ apiKey: 'type-check' });
@@ -74,6 +78,12 @@ const movieLatest = tmdb.movies.latest();
 const movieReleaseDates = tmdb.movies.releaseDates(550);
 const movieTranslations = tmdb.movies.translations(550);
 const movieVideos = tmdb.movies.videos(550, { language: 'fa-IR' });
+const tvAiring: Promise<TvCatalogPage> = tmdb.tv.airingToday({ timezone: 'Asia/Tehran', page: 2 });
+const tvCredits: Promise<TvCreditsResponse> = tmdb.tv.aggregateCredits(1399);
+const tvImages: Promise<TvImagesResponse> = tmdb.tv.images(1399, { imageLanguages: ['en', 'null'] });
+const tvScreened: Promise<TvScreenedTheatricallyResponse> = tmdb.tv.screenedTheatrically(1399);
+const tvVideos = tmdb.tv.videos(1399, { videoLanguages: ['en', 'null'] });
+const tvRating: Promise<RatingResponse> = tmdb.tv.rate(1399, 8.5, { sessionId: 'session' });
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -106,6 +116,12 @@ tmdb.movies.rate(550, 8.5);
 tmdb.movies.deleteRating(550, { sessionId: 'a', guestSessionId: 'b' });
 // @ts-expect-error Discover does not accept arbitrary query keys.
 tmdb.discover.movies({ unrecognized: true });
+// @ts-expect-error TV popularity does not accept a timezone filter.
+tmdb.tv.popular({ timezone: 'Asia/Tehran' });
+// @ts-expect-error TV ratings require an explicit session.
+tmdb.tv.rate(1399, 8.5);
+// @ts-expect-error Video language options are not image language options.
+tmdb.tv.videos(1399, { imageLanguages: ['en'] });
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -113,4 +129,5 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   companyNames, companyImages, movieTitles, movieChanges, movieWatch, movieCredits,
   movieExternalIds, movieImages, movieKeywords, movieLatest, movieReleaseDates,
   movieTranslations, movieVideos, nowPlaying, accountState, discovered,
-  trending, review, network, rating];
+  trending, review, network, rating, tvAiring, tvCredits, tvImages,
+  tvScreened, tvVideos, tvRating];

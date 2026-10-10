@@ -28,6 +28,9 @@ test('both ESM and CommonJS consumers can load the public API', () => {
     assert.equal(typeof client.certifications.tv, 'function');
     assert.equal(typeof client.genres.movies, 'function');
     assert.equal(typeof client.genres.tv, 'function');
+    assert.equal(typeof client.tv.airingToday, 'function');
+    assert.equal(typeof client.tv.aggregateCredits, 'function');
+    assert.equal(typeof client.tv.rate, 'function');
   }
 });
 
@@ -41,6 +44,7 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
     assert.ok(pack.files.some((file) => file.path === 'LICENSE'));
     assert.ok(pack.files.some((file) => file.path === 'dist/reference-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/catalog-types.d.ts'));
+    assert.ok(pack.files.some((file) => file.path === 'dist/tv-types.d.ts'));
     assert.ok(pack.files.every((file) => file.path.startsWith('dist/') ||
       ['LICENSE', 'README.md', 'package.json'].includes(file.path)));
     execFileSync('npm', [
@@ -67,6 +71,7 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
         assert.deepEqual((await client.search.people('query')).results, []);
         assert.deepEqual((await client.discover.movies()).results, []);
         assert.deepEqual((await client.trending.movies('day')).results, []);
+        assert.deepEqual((await client.tv.popular()).results, []);
         assert.deepEqual((await client.genres.tv()).genres, []);
         assert.equal(typeof client.configuration.primaryTranslations, 'function');
       }

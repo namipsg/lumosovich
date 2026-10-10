@@ -13,7 +13,7 @@ import {
   validateRatingResponse, validateReviewPage,
 } from './catalog-validation.js';
 
-function page(value: number | undefined): number | undefined {
+export function page(value: number | undefined): number | undefined {
   if (value !== undefined && (!Number.isSafeInteger(value) || value < 1)) {
     throw new TypeError('page must be a positive integer');
   }
@@ -30,7 +30,7 @@ function date(value: string | undefined, label: string): string | undefined {
   return value;
 }
 
-function pagedLanguage(options: PageOptions & LanguageOptions): QueryParameters {
+export function pagedLanguage(options: PageOptions & LanguageOptions): QueryParameters {
   return { language: options.language, page: page(options.page) };
 }
 
@@ -42,7 +42,7 @@ function catalogOptions(options: MovieCatalogOptions): QueryParameters {
   return { ...pagedLanguage(options), region: options.region?.trim() };
 }
 
-function sessionParameters(session: RatingSession): QueryParameters {
+export function sessionParameters(session: RatingSession): QueryParameters {
   if (!session || typeof session !== 'object') {
     throw new TypeError('Supply a sessionId or guestSessionId');
   }
@@ -53,6 +53,14 @@ function sessionParameters(session: RatingSession): QueryParameters {
     throw new TypeError('Supply exactly one nonempty sessionId or guestSessionId');
   }
   return { session_id: sessionId?.trim(), guest_session_id: guestSessionId?.trim() };
+}
+
+export function ratingValue(value: number): number {
+  if (typeof value !== 'number' || !Number.isFinite(value) ||
+    value < 0.5 || value > 10 || !Number.isInteger(value * 2)) {
+    throw new TypeError('rating must be from 0.5 to 10 in half-point increments');
+  }
+  return value;
 }
 
 export function createMovieCatalogMethods(http: TmdbHttpClient): MovieCatalogMethods {
@@ -107,11 +115,7 @@ export function createMovieCatalogMethods(http: TmdbHttpClient): MovieCatalogMet
     },
     async rate(id, value, session) {
       const validId = positiveId(id);
-      if (typeof value !== 'number' || !Number.isFinite(value) ||
-        value < 0.5 || value > 10 || !Number.isInteger(value * 2)) {
-        throw new TypeError('rating must be from 0.5 to 10 in half-point increments');
-      }
-      return validateRatingResponse(await http.post(`movie/${validId}/rating`, sessionParameters(session), { value }));
+      return validateRatingResponse(await http.post(`movie/${validId}/rating`, sessionParameters(session), { value: ratingValue(value) }));
     },
     async deleteRating(id, session) {
       const validId = positiveId(id);
