@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.6.1 — 2026-10-10
+
+- Update the pinned `actions/setup-node` GitHub Action to v7.1.0 in CI and the release workflow.
+- Keep the public API and TMDB v3 operation coverage unchanged at 87 of 152 operations.
+
 ## 0.6.0 — 2026-10-10
 
 - Add 23 TV series operations for catalogs, credits, metadata, recommendations, reviews, watch providers, and ratings, bringing coverage to 87 of 152 TMDB v3 operations.
