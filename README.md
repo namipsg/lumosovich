@@ -14,9 +14,9 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.6.0` covers **87 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.6.1` covers **87 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-Version `0.6.0` adds 23 TV series operations for catalogs, metadata, reviews, recommendations, and ratings. The read-only live smoke test exercises 81 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+Version `0.6.1` updates the pinned GitHub Actions Node setup to v7.1.0 without changing the public API. Version `0.6.0` added 23 TV series operations for catalogs, metadata, reviews, recommendations, and ratings. The read-only live smoke test exercises 81 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
 The release passes 153 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
