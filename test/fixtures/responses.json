@@ -1875,6 +1875,193 @@
     "total_pages": 1000,
     "total_results": 20000
   },
+  "tv-series-airing-today-list": {
+    "page": 1,
+    "results": [
+      {
+        "backdrop_path": "/mAJ84W6I8I272Da87qplS2Dp9ST.jpg",
+        "first_air_date": "2023-01-23",
+        "genre_ids": [
+          9648,
+          18
+        ],
+        "id": 202250,
+        "name": "Dirty Linen",
+        "origin_country": [
+          "PH"
+        ],
+        "original_language": "tl",
+        "original_name": "Dirty Linen",
+        "overview": "To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.",
+        "popularity": 2797.914,
+        "poster_path": "/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg",
+        "vote_average": 5,
+        "vote_count": 13
+      },
+      {
+        "backdrop_path": "/wJmcuxa0C4AERmA9mejxm9qRYDj.jpg",
+        "first_air_date": "2022-06-06",
+        "genre_ids": [
+          80,
+          9648
+        ],
+        "id": 203504,
+        "name": "Aashiqana",
+        "origin_country": [
+          "IN"
+        ],
+        "original_language": "hi",
+        "original_name": "आशिकाना",
+        "overview": "A serial killer sparks the story of uptight Yashvardhan and feisty Chikki. Plagued by misunderstandings, how far do they have to go to nab the murderer?",
+        "popularity": 2732.908,
+        "poster_path": "/a4Z6Uohb6Ln5vcPvMUzwyn3WBjP.jpg",
+        "vote_average": 6.1,
+        "vote_count": 10
+      }
+    ],
+    "total_pages": 14,
+    "total_results": 265
+  },
+  "tv-series-on-the-air-list": {
+    "page": 1,
+    "results": [
+      {
+        "backdrop_path": "/mAJ84W6I8I272Da87qplS2Dp9ST.jpg",
+        "first_air_date": "2023-01-23",
+        "genre_ids": [
+          9648,
+          18
+        ],
+        "id": 202250,
+        "name": "Dirty Linen",
+        "origin_country": [
+          "PH"
+        ],
+        "original_language": "tl",
+        "original_name": "Dirty Linen",
+        "overview": "To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.",
+        "popularity": 2797.914,
+        "poster_path": "/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg",
+        "vote_average": 5,
+        "vote_count": 13
+      },
+      {
+        "backdrop_path": "/wJmcuxa0C4AERmA9mejxm9qRYDj.jpg",
+        "first_air_date": "2022-06-06",
+        "genre_ids": [
+          80,
+          9648
+        ],
+        "id": 203504,
+        "name": "Aashiqana",
+        "origin_country": [
+          "IN"
+        ],
+        "original_language": "hi",
+        "original_name": "आशिकाना",
+        "overview": "A serial killer sparks the story of uptight Yashvardhan and feisty Chikki. Plagued by misunderstandings, how far do they have to go to nab the murderer?",
+        "popularity": 2732.908,
+        "poster_path": "/a4Z6Uohb6Ln5vcPvMUzwyn3WBjP.jpg",
+        "vote_average": 6.1,
+        "vote_count": 10
+      }
+    ],
+    "total_pages": 58,
+    "total_results": 1151
+  },
+  "tv-series-popular-list": {
+    "page": 1,
+    "results": [
+      {
+        "backdrop_path": "/mAJ84W6I8I272Da87qplS2Dp9ST.jpg",
+        "first_air_date": "2023-01-23",
+        "genre_ids": [
+          9648,
+          18
+        ],
+        "id": 202250,
+        "name": "Dirty Linen",
+        "origin_country": [
+          "PH"
+        ],
+        "original_language": "tl",
+        "original_name": "Dirty Linen",
+        "overview": "To exact vengeance, a young woman infiltrates the household of an influential family as a housemaid to expose their dirty secrets. However, love will get in the way of her revenge plot.",
+        "popularity": 2797.914,
+        "poster_path": "/aoAZgnmMzY9vVy9VWnO3U5PZENh.jpg",
+        "vote_average": 5,
+        "vote_count": 13
+      },
+      {
+        "backdrop_path": "/wJmcuxa0C4AERmA9mejxm9qRYDj.jpg",
+        "first_air_date": "2022-06-06",
+        "genre_ids": [
+          80,
+          9648
+        ],
+        "id": 203504,
+        "name": "Aashiqana",
+        "origin_country": [
+          "IN"
+        ],
+        "original_language": "hi",
+        "original_name": "आशिकाना",
+        "overview": "A serial killer sparks the story of uptight Yashvardhan and feisty Chikki. Plagued by misunderstandings, how far do they have to go to nab the murderer?",
+        "popularity": 2732.908,
+        "poster_path": "/a4Z6Uohb6Ln5vcPvMUzwyn3WBjP.jpg",
+        "vote_average": 6.1,
+        "vote_count": 10
+      }
+    ],
+    "total_pages": 7416,
+    "total_results": 148302
+  },
+  "tv-series-top-rated-list": {
+    "page": 1,
+    "results": [
+      {
+        "backdrop_path": "/99vBORZixICa32Pwdwj0lWcr8K.jpg",
+        "first_air_date": "2021-09-03",
+        "genre_ids": [
+          10764
+        ],
+        "id": 130392,
+        "name": "The D'Amelio Show",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The D'Amelio Show",
+        "overview": "From relative obscurity and a seemingly normal life, to overnight success and thrust into the Hollywood limelight overnight, the D’Amelios are faced with new challenges and opportunities they could not have imagined.",
+        "popularity": 12.459,
+        "poster_path": "/phv2Jc4H8cvRzvTKb9X1uKMboTu.jpg",
+        "vote_average": 8.9,
+        "vote_count": 3190
+      },
+      {
+        "backdrop_path": "/bsNm9z2TJfe0WO3RedPGWQ8mG1X.jpg",
+        "first_air_date": "2008-01-20",
+        "genre_ids": [
+          18,
+          80
+        ],
+        "id": 1396,
+        "name": "Breaking Bad",
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Breaking Bad",
+        "overview": "When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.",
+        "popularity": 292.904,
+        "poster_path": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+        "vote_average": 8.9,
+        "vote_count": 11543
+      }
+    ],
+    "total_pages": 142,
+    "total_results": 2833
+  },
   "tv-series-details": {
     "adult": false,
     "backdrop_path": "/6LWy0jvMpmjoS9fojNgHIKoWL05.jpg",
@@ -2007,6 +2194,610 @@
     "type": "Scripted",
     "vote_average": 8.438,
     "vote_count": 21390
+  },
+  "tv-series-account-states": {
+    "id": 550,
+    "favorite": true,
+    "rated": {
+      "value": 9
+    },
+    "watchlist": false
+  },
+  "tv-series-aggregate-credits": {
+    "cast": [
+      {
+        "adult": false,
+        "gender": 1,
+        "id": 1223786,
+        "known_for_department": "Acting",
+        "name": "Emilia Clarke",
+        "original_name": "Emilia Clarke",
+        "popularity": 42.737,
+        "profile_path": "/u59kTmNHXzaGZqokivxLPiBVIML.jpg",
+        "roles": [
+          {
+            "credit_id": "5256c8af19c2956ff60479f6",
+            "character": "Daenerys Targaryen",
+            "episode_count": 78
+          }
+        ],
+        "total_episode_count": 78,
+        "order": 6
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 239019,
+        "known_for_department": "Acting",
+        "name": "Kit Harington",
+        "original_name": "Kit Harington",
+        "popularity": 19.319,
+        "profile_path": "/htGBMno71BJAEGF3Y9f62MdA3Yt.jpg",
+        "roles": [
+          {
+            "credit_id": "5256c8af19c2956ff6047af6",
+            "character": "Jon Snow",
+            "episode_count": 78
+          }
+        ],
+        "total_episode_count": 78,
+        "order": 9
+      }
+    ],
+    "crew": [
+      {
+        "adult": false,
+        "gender": 1,
+        "id": 6411,
+        "known_for_department": "Art",
+        "name": "Deborah Riley",
+        "original_name": "Deborah Riley",
+        "popularity": 1.4,
+        "profile_path": "/cjhADpqdrnwB1PdDUKaBnWrIj2Q.jpg",
+        "jobs": [
+          {
+            "credit_id": "54eee9e5c3a3686d5800584e",
+            "job": "Production Design",
+            "episode_count": 43
+          }
+        ],
+        "department": "Art",
+        "total_episode_count": 43
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 80424,
+        "known_for_department": "Art",
+        "name": "Philip Elton",
+        "original_name": "Philip Elton",
+        "popularity": 0.84,
+        "profile_path": null,
+        "jobs": [
+          {
+            "credit_id": "56b8665b9251414c4500967c",
+            "job": "Art Direction",
+            "episode_count": 30
+          }
+        ],
+        "department": "Art",
+        "total_episode_count": 30
+      }
+    ],
+    "id": 1399
+  },
+  "tv-series-alternative-titles": {
+    "id": 1399,
+    "results": [
+      {
+        "iso_3166_1": "AL",
+        "title": "Froni i shpatave",
+        "type": ""
+      },
+      {
+        "iso_3166_1": "AR",
+        "title": "El Juego de Tronos",
+        "type": ""
+      }
+    ]
+  },
+  "tv-series-content-ratings": {
+    "results": [
+      {
+        "descriptors": [],
+        "iso_3166_1": "DE",
+        "rating": "16"
+      },
+      {
+        "descriptors": [],
+        "iso_3166_1": "AU",
+        "rating": "R18+"
+      }
+    ],
+    "id": 1399
+  },
+  "tv-series-credits": {
+    "cast": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 22970,
+        "known_for_department": "Acting",
+        "name": "Peter Dinklage",
+        "original_name": "Peter Dinklage",
+        "popularity": 30.6,
+        "profile_path": "/lRsRgnksAhBRXwAB68MFjmTtLrk.jpg",
+        "character": "Tyrion Lannister",
+        "credit_id": "5256c8b219c2956ff6047cd8",
+        "order": 0
+      },
+      {
+        "adult": false,
+        "gender": 1,
+        "id": 17286,
+        "known_for_department": "Acting",
+        "name": "Lena Headey",
+        "original_name": "Lena Headey",
+        "popularity": 24.88,
+        "profile_path": "/xR2IBnBlUdyBe5hecaVdtRuQqUE.jpg",
+        "character": "Cersei Lannister",
+        "credit_id": "5256c8ad19c2956ff60479ce",
+        "order": 3
+      }
+    ],
+    "crew": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 1406855,
+        "known_for_department": "Production",
+        "name": "Duncan Muggoch",
+        "original_name": "Duncan Muggoch",
+        "popularity": 1.592,
+        "profile_path": "/ukGjJ62Ejd4cFziald03G34Fsrp.jpg",
+        "credit_id": "5ceab029c3a3682e93217a85",
+        "department": "Production",
+        "job": "Producer"
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 114404,
+        "known_for_department": "Directing",
+        "name": "Miguel Sapochnik",
+        "original_name": "Miguel Sapochnik",
+        "popularity": 3.583,
+        "profile_path": "/jlZGTjiifvvFDoEtlwrKz7QxuJS.jpg",
+        "credit_id": "5ceab0820e0a261a50cb87a9",
+        "department": "Production",
+        "job": "Executive Producer"
+      }
+    ],
+    "id": 1399
+  },
+  "tv-series-external-ids": {
+    "id": 1399,
+    "imdb_id": "tt0944947",
+    "freebase_mid": "/m/0524b41",
+    "freebase_id": "/en/game_of_thrones",
+    "tvdb_id": 121361,
+    "tvrage_id": 24493,
+    "wikidata_id": "Q23572",
+    "facebook_id": "GameOfThrones",
+    "instagram_id": "gameofthrones",
+    "twitter_id": "GameOfThrones"
+  },
+  "tv-series-images": {
+    "backdrops": [
+      {
+        "aspect_ratio": 1.778,
+        "height": 800,
+        "iso_639_1": null,
+        "file_path": "/hZkgoQYus5vegHoetLkCJzb17zJ.jpg",
+        "vote_average": 5.622,
+        "vote_count": 20,
+        "width": 1422
+      },
+      {
+        "aspect_ratio": 1.778,
+        "height": 720,
+        "iso_639_1": "en",
+        "file_path": "/fygeMr16EcxJiYhdiO1LEr7iHtI.jpg",
+        "vote_average": 5.318,
+        "vote_count": 3,
+        "width": 1280
+      }
+    ],
+    "id": 550,
+    "logos": [
+      {
+        "aspect_ratio": 5.203,
+        "height": 79,
+        "iso_639_1": "he",
+        "file_path": "/c1KLulrIhUqY5fT42nmC5aERGCp.png",
+        "vote_average": 5.312,
+        "vote_count": 1,
+        "width": 411
+      },
+      {
+        "aspect_ratio": 8.502,
+        "height": 235,
+        "iso_639_1": "pt",
+        "file_path": "/qqAcl1YIT5Sa2nx8tKQcervQCco.png",
+        "vote_average": 5.312,
+        "vote_count": 1,
+        "width": 1998
+      }
+    ],
+    "posters": [
+      {
+        "aspect_ratio": 0.667,
+        "height": 900,
+        "iso_639_1": "pt",
+        "file_path": "/r3pPehX4ik8NLYPpbDRAh0YRtMb.jpg",
+        "vote_average": 5.258,
+        "vote_count": 6,
+        "width": 600
+      },
+      {
+        "aspect_ratio": 0.667,
+        "height": 1350,
+        "iso_639_1": "ru",
+        "file_path": "/66RvLrRJTm4J8l3uHXWF09AICol.jpg",
+        "vote_average": 5.522,
+        "vote_count": 4,
+        "width": 900
+      }
+    ]
+  },
+  "tv-series-keywords": {
+    "id": 1399,
+    "results": [
+      {
+        "name": "based on novel or book",
+        "id": 818
+      },
+      {
+        "name": "kingdom",
+        "id": 4152
+      }
+    ]
+  },
+  "tv-series-latest-id": {
+    "adult": false,
+    "backdrop_path": null,
+    "created_by": [],
+    "episode_run_time": [],
+    "first_air_date": "",
+    "genres": [],
+    "homepage": "",
+    "id": 225491,
+    "in_production": true,
+    "languages": [],
+    "last_air_date": "2023-04-21",
+    "last_episode_to_air": {
+      "id": 4398801,
+      "name": "Episode 8",
+      "overview": "",
+      "vote_average": 0,
+      "vote_count": 0,
+      "air_date": "2023-04-21",
+      "episode_number": 8,
+      "production_code": "",
+      "runtime": null,
+      "season_number": 1,
+      "show_id": 225491,
+      "still_path": null
+    },
+    "name": "妖怪传",
+    "next_episode_to_air": null,
+    "networks": [],
+    "number_of_episodes": 1,
+    "number_of_seasons": 1,
+    "origin_country": [
+      "CN"
+    ],
+    "original_language": "zh",
+    "original_name": "妖怪传",
+    "overview": "",
+    "popularity": 0,
+    "poster_path": null,
+    "production_companies": [],
+    "production_countries": [],
+    "seasons": [
+      {
+        "air_date": null,
+        "episode_count": 1,
+        "id": 338956,
+        "name": "Season 1",
+        "overview": "",
+        "poster_path": null,
+        "season_number": 1
+      }
+    ],
+    "spoken_languages": [],
+    "status": "Returning Series",
+    "tagline": "",
+    "type": "Scripted",
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  "lists-copy": {
+    "id": 1399,
+    "page": 1,
+    "results": [
+      {
+        "description": "",
+        "favorite_count": 0,
+        "id": 8257231,
+        "item_count": 182,
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Done",
+        "poster_path": null
+      },
+      {
+        "description": "",
+        "favorite_count": 0,
+        "id": 8258601,
+        "item_count": 220,
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "All",
+        "poster_path": null
+      }
+    ],
+    "total_pages": 96,
+    "total_results": 1906
+  },
+  "tv-series-recommendations": {
+    "page": 1,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/bsNm9z2TJfe0WO3RedPGWQ8mG1X.jpg",
+        "id": 1396,
+        "name": "Breaking Bad",
+        "original_language": "en",
+        "original_name": "Breaking Bad",
+        "overview": "When Walter White, a New Mexico chemistry teacher, is diagnosed with Stage III cancer and given a prognosis of only two years left to live. He becomes filled with a sense of fearlessness and an unrelenting desire to secure his family's financial future at any cost as he enters the dangerous world of drugs and crime.",
+        "poster_path": "/ggFHVNu6YYI5L9pCfOacjizRGt.jpg",
+        "media_type": "tv",
+        "genre_ids": [
+          18,
+          80
+        ],
+        "popularity": 292.904,
+        "first_air_date": "2008-01-20",
+        "vote_average": 8.878,
+        "vote_count": 11544,
+        "origin_country": [
+          "US"
+        ]
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/wvdWb5kTQipdMDqCclC6Y3zr4j3.jpg",
+        "id": 1402,
+        "name": "The Walking Dead",
+        "original_language": "en",
+        "original_name": "The Walking Dead",
+        "overview": "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+        "poster_path": "/xf9wuDcqlUPWABZNeDKPbZUjWx0.jpg",
+        "media_type": "tv",
+        "genre_ids": [
+          10759,
+          18
+        ],
+        "popularity": 306.145,
+        "first_air_date": "2010-10-31",
+        "vote_average": 8.117,
+        "vote_count": 14869,
+        "origin_country": [
+          "US"
+        ]
+      }
+    ],
+    "total_pages": 2,
+    "total_results": 40
+  },
+  "tv-series-reviews": {
+    "id": 1399,
+    "page": 1,
+    "results": [
+      {
+        "author": "lmao7",
+        "author_details": {
+          "name": "lmao7",
+          "username": "lmao7",
+          "avatar_path": "/ekmYOUU4tfx9zGGadjRdE7UPce.jpg",
+          "rating": 9
+        },
+        "content": "I started watching when it came out as I heard that fans of LOTR also liked this. I stopped watching after Season 1 as I was devastated lol kinda. Only 2015 I decided to continue watching and got addicted like it seemed complicated at first, too many stories and characters. I even used a guide from internet like family tree per house while watching or GOT wiki so I can have more background on the characters. For a TV series, this show can really take you to a different world and never knowing what will happen. It is very daring that any time anybody can just die (I learned not to be attached and have accepted that they will all die so I won't be devastated hehe). I have never read the books but the show is entertaining and you will really root for your faves and really hate on those you hate. \r\n\r\nFantasy, action, drama, comedy, love...and lots of surprises!",
+        "created_at": "2017-02-20T05:47:28.872Z",
+        "id": "58aa82f09251416f92006a3a",
+        "updated_at": "2021-06-23T15:57:54.649Z",
+        "url": "https://www.themoviedb.org/review/58aa82f09251416f92006a3a"
+      },
+      {
+        "author": "Vlad Ulbricht",
+        "author_details": {
+          "name": "Vlad Ulbricht",
+          "username": "PresidentPutin",
+          "avatar_path": "/srVsbbWgrmA4lmpqsrIYRYxJerc.jpg",
+          "rating": 9
+        },
+        "content": "Cruel, bloody, vulgar, Machiavellian, unrepentant. And that is just the writing. The camera angles, the score, the pacing mesh together for grand storytelling: a mix of horror, swords and sorcery, and endless treachery. \r\n\r\nAnd all of that would be somewhat squandered if it wasn't for the best casting I've ever seen. From Lena Headey as soft spoken Cersei to Peter Vaughan as ancient Maester Aemon, each character pulses with depth and believability. Peter Dinklage may have sacrificed a virgin princess to get this role; I've never seen a better fit, not in size (though there is that) but in the way his eyes convey shrewd arrogance coupled with unabashed debauchery.",
+        "created_at": "2017-05-11T03:53:19.211Z",
+        "id": "5913e02fc3a3683a93004984",
+        "updated_at": "2021-06-23T15:57:57.184Z",
+        "url": "https://www.themoviedb.org/review/5913e02fc3a3683a93004984"
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 11
+  },
+  "tv-series-screened-theatrically": {
+    "id": 1399,
+    "results": [
+      {
+        "id": 1159054,
+        "episode_number": 10,
+        "season_number": 5
+      },
+      {
+        "id": 63103,
+        "episode_number": 10,
+        "season_number": 4
+      }
+    ]
+  },
+  "tv-series-similar": {
+    "page": 1,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/zcFSvWa34nDn2NcqOPuthyOIBWT.jpg",
+        "genre_ids": [
+          18
+        ],
+        "id": 197063,
+        "origin_country": [
+          "KR"
+        ],
+        "original_language": "ko",
+        "original_name": "종이달",
+        "overview": "A thriller drama about Yoo I-hwa, a stay-at-home mom living her comfortable and contented life without desires, but to her husband's indifference. While working as a bank contract employee, she unexpectedly touches money from VIP clients and gradually falls into an irreversible collapse.",
+        "popularity": 12.299,
+        "poster_path": "/xXWynVdMGyJXBUDvIN27AXM3iJJ.jpg",
+        "first_air_date": "2023-04-10",
+        "name": "Pale Moon",
+        "vote_average": 7,
+        "vote_count": 2
+      },
+      {
+        "adult": false,
+        "backdrop_path": null,
+        "genre_ids": [
+          10759,
+          18
+        ],
+        "id": 197123,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "The White Darkness",
+        "overview": "A spellbinding story of courage, love, family and the extremes of human capacity inspired by the true life account of Henry Worsley; a devoted husband and father, a former soldier, a man of deep honor and sacrifice, but also a man deeply obsessed with adventure, manifesting in an epic journey crossing Antarctica on foot.",
+        "popularity": 0.61,
+        "poster_path": null,
+        "first_air_date": "",
+        "name": "The White Darkness",
+        "vote_average": 0,
+        "vote_count": 0
+      }
+    ],
+    "total_pages": 82,
+    "total_results": 1639
+  },
+  "tv-series-translations": {
+    "id": 1399,
+    "translations": [
+      {
+        "iso_3166_1": "SA",
+        "iso_639_1": "ar",
+        "name": "العربية",
+        "english_name": "Arabic",
+        "data": {
+          "name": "صراع العروش",
+          "overview": "تتقاتل سبع عائلات نبيلة من أجل السيطرة على أرض - ويستيروس - الأسطورية. الاحتكاك بين العوائل يؤدي إلى حرب واسعة النطاق.  في حين يستيقظ الشر القديم في أقصى الشمال. وفي خضم الحرب، نظام عسكري مهمَل - حرس الليل - هم كل ما يقف بين عالم الإنسان والأهوال الجليدية.",
+          "homepage": "",
+          "tagline": "الشتاء قادم"
+        }
+      },
+      {
+        "iso_3166_1": "BY",
+        "iso_639_1": "be",
+        "name": "беларуская мова",
+        "english_name": "Belarusian",
+        "data": {
+          "name": "Гульня тронаў",
+          "overview": "Сюжэт серыяла заснаваны на фэнтэзійнай сазе Джорджа Марціна «Песьня лёду і полымя»; кожнаму сезону адпавядае адна кніга гепталогіі, з якіх пакуль напісана пяць кніг.",
+          "homepage": "",
+          "tagline": "Зіма блізка"
+        }
+      }
+    ]
+  },
+  "tv-series-videos": {
+    "id": 1399,
+    "results": [
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Inside Game of Thrones: A Story in Camera Work – BTS (HBO)",
+        "key": "y2ZJ3lTaREY",
+        "site": "YouTube",
+        "size": 1080,
+        "type": "Behind the Scenes",
+        "official": true,
+        "published_at": "2019-03-25T14:00:06.000Z",
+        "id": "5c999b48c3a36863b73b9d42"
+      },
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Inside Game of Thrones: A Story in Prosthetics – BTS (HBO)",
+        "key": "f3MUpuRF6Ck",
+        "site": "YouTube",
+        "size": 1080,
+        "type": "Behind the Scenes",
+        "official": true,
+        "published_at": "2019-03-11T14:00:03.000Z",
+        "id": "5c92c2519251412b51773135"
+      }
+    ]
+  },
+  "tv-series-watch-providers": {
+    "id": 1399,
+    "results": {
+      "AE": {
+        "link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=AE",
+        "flatrate": [
+          {
+            "logo_path": "/xEPXbwbfABzPrUTWbgtDFH1NOa.jpg",
+            "provider_id": 629,
+            "provider_name": "OSN",
+            "display_priority": 11
+          }
+        ]
+      },
+      "AR": {
+        "link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=AR",
+        "flatrate": [
+          {
+            "logo_path": "/Ajqyt5aNxNGjmF9uOfxArGrdf3X.jpg",
+            "provider_id": 384,
+            "provider_name": "HBO Max",
+            "display_priority": 5
+          },
+          {
+            "logo_path": "/cDzkhgvozSr4GW2aRdV22uDuFpw.jpg",
+            "provider_id": 339,
+            "provider_name": "Movistar Play",
+            "display_priority": 9
+          }
+        ]
+      }
+    }
+  },
+  "tv-series-add-rating": {
+    "status_code": 1,
+    "status_message": "Success."
+  },
+  "tv-series-delete-rating": {
+    "status_code": 13,
+    "status_message": "The item/record was deleted successfully."
   },
   "tv-season-details": {
     "_id": "5256c89f19c2956ff6046d47",

@@ -94,6 +94,32 @@ if (!apiKey && !accessToken) {
     step = 'TV details';
     const series = await tmdb.tv.get(seriesId, { append: ['external_ids'] });
     assert.equal(series.external_ids?.imdb_id, 'tt0944947');
+    for (const method of ['airingToday', 'onTheAir', 'popular', 'topRated']) {
+      step = `TV catalog ${method}`;
+      assert.ok(Array.isArray((await tmdb.tv[method]({ page: 1 })).results));
+    }
+    for (const [method, options] of [
+      ['aggregateCredits', { language: 'en-US' }],
+      ['alternativeTitles'],
+      ['contentRatings'],
+      ['credits', { language: 'en-US' }],
+      ['externalIds'],
+      ['images', { imageLanguages: ['en', 'null'] }],
+      ['keywords'],
+      ['screenedTheatrically'],
+      ['translations'],
+      ['videos', { videoLanguages: ['en', 'null'] }],
+      ['watchProviders'],
+    ]) {
+      step = `TV ${method}`;
+      assert.equal((await tmdb.tv[method](seriesId, options)).id, seriesId);
+    }
+    step = 'latest TV series';
+    assert.ok((await tmdb.tv.latest()).id > 0);
+    for (const method of ['lists', 'recommendations', 'reviews', 'similar']) {
+      step = `TV ${method}`;
+      assert.ok(Array.isArray((await tmdb.tv[method](seriesId)).results));
+    }
     step = 'season details';
     const season = await tmdb.tv.seasons.get(seriesId, 1);
     assert.ok(season.episodes.some((episode) => episode.episode_number === 1));
@@ -135,7 +161,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 61 public read operations.');
+    console.log('TMDB live smoke passed: all 81 public read operations.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);

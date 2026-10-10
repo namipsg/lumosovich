@@ -133,6 +133,13 @@ export type {
   TvSearchHit,
   TvSearchOptions,
 } from './types.js';
+export type {
+  TvAccountStates, TvAggregateCredit, TvAlternativeTitlesResponse,
+  TvCatalogMethods, TvCatalogOptions, TvCatalogPage, TvCreditsResponse,
+  TvExternalIdsResponse, TvImagesResponse, TvKeywordsResponse, TvListPage,
+  TvMetadataMethods, TvScreenedTheatricallyResponse, TvTranslationsResponse,
+  TvVideoOptions, TvVideosResponse, TvWatchProvidersResponse,
+} from './tv-types.js';
 
 /** A small TMDB client with raw, typed responses. */
 export class Lumosovich {

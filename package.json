@@ -1,6 +1,6 @@
 {
   "name": "lumosovich",
-  "version": "0.5.1",
+  "version": "0.6.0",
   "description": "A small, typed Node.js client for the TMDB API",
   "keywords": [
     "tmdb",

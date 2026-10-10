@@ -26,7 +26,7 @@ import type {
 import { metadataChecks, validateIdShape, validateLatestMovie, validateMovieChanges } from './metadata-validation.js';
 import type { LanguageOptions } from './reference-types.js';
 
-function imageParameters(options: ImageOptions): QueryParameters {
+export function imageParameters(options: ImageOptions): QueryParameters {
   const languages = options.imageLanguages;
   if (languages !== undefined && (
     !Array.isArray(languages) || languages.length === 0 ||
