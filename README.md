@@ -1,10 +1,10 @@
 # Lumosovich ✨
 
-[![npm version](https://img.shields.io/npm/v/lumosovich.svg)](https://www.npmjs.com/package/lumosovich)
+[![npm version](https://img.shields.io/npm/v/tmdb-lumosovich.svg)](https://www.npmjs.com/package/tmdb-lumosovich)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/namipsg/lumosovich/blob/main/LICENSE)
 [![CI](https://github.com/namipsg/lumosovich/actions/workflows/ci.yml/badge.svg)](https://github.com/namipsg/lumosovich/actions/workflows/ci.yml)
 
-A small, typed Node.js wrapper for the TMDB API.
+A small, typed Node.js wrapper for the TMDB API, including IMDb ID lookup through TMDB.
 
 **Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, movie, TV, and person details, and TV seasons, episodes, and episode groups.
 
@@ -14,17 +14,19 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.7.0` covers **109 of 152 TMDB v3 operations**, including all 48 TV operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.7.1` covers **109 of 152 TMDB v3 operations**, including all 48 TV operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-Version `0.7.0` adds TV change feeds, episode groups, and season and episode resources. The read-only live smoke test exercises all 99 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+Version `0.7.1` moves the npm package from `lumosovich` to `tmdb-lumosovich`; the public `Lumosovich` class and TMDB API coverage are unchanged. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The read-only live smoke test exercises all 99 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
 The release passes 180 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
 ```bash
-npm install lumosovich
+npm install tmdb-lumosovich
 ```
+
+If you already installed `lumosovich`, replace the dependency with `npm uninstall lumosovich && npm install tmdb-lumosovich` and update imports to `tmdb-lumosovich`. The exported `Lumosovich` class keeps its name.
 
 Requires Node.js 22+ and a TMDB v3 API key or API Read Access Token. Keep your credential in an environment variable; do not commit it to your project.
 
@@ -33,7 +35,7 @@ Requires Node.js 22+ and a TMDB v3 API key or API Read Access Token. Keep your c
 Set `TMDB_API_KEY` in your environment before running this example:
 
 ```js
-import { Lumosovich } from 'lumosovich';
+import { Lumosovich } from 'tmdb-lumosovich';
 
 const tmdb = new Lumosovich({
   apiKey: process.env.TMDB_API_KEY,
@@ -51,7 +53,7 @@ if (movieId) {
 }
 ```
 
-CommonJS projects can use `const { Lumosovich } = require('lumosovich');` instead.
+CommonJS projects can use `const { Lumosovich } = require('tmdb-lumosovich');` instead.
 
 For an API Read Access Token, initialize the client with
 `accessToken: process.env.TMDB_ACCESS_TOKEN` in place of `apiKey`. Supply exactly
@@ -62,6 +64,10 @@ one credential.
 Working directly with an HTTP API shouldn't mean repeating URLs, query parameters, authentication, and TypeScript definitions throughout your application.
 
 Lumosovich puts a small, predictable API between your application and TMDB. It keeps TMDB's numeric IDs and `snake_case` response fields intact. IMDb IDs such as `tt1375666` and `nm0000138` are external IDs, not interchangeable with TMDB IDs.
+
+## Find TMDB records by IMDb ID
+
+Use `find.byExternalId(id, 'imdb_id')` to match an IMDb ID to movie, TV, or person records in TMDB. It returns TMDB data, not IMDb ratings or an IMDb API response.
 
 ```js
 const matches = await tmdb.find.byExternalId('nm0000138', 'imdb_id');
@@ -357,7 +363,7 @@ The size defaults to `original`. Missing paths return `undefined`; invalid paths
 The package ships ESM and CommonJS entry points plus TypeScript declarations. Responses retain upstream `snake_case` fields.
 
 ```ts
-import { Lumosovich, type FindResponse } from 'lumosovich';
+import { Lumosovich, type FindResponse } from 'tmdb-lumosovich';
 
 const tmdb = new Lumosovich({
   apiKey: process.env.TMDB_API_KEY!,
