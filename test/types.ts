@@ -33,7 +33,7 @@ import {
   type TvEpisodeGroupDetails,
   type TvEpisodeGroupsResponse,
   type TvSeasonAccountStates,
-} from 'lumosovich';
+} from 'tmdb-lumosovich';
 
 const tmdb = new Lumosovich({ apiKey: 'type-check' });
 const sources: ExternalIdSource[] = [

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.1 — 2026-10-18
+
+- Publish the library under `tmdb-lumosovich` on npm, replacing the `lumosovich` package name. Existing `lumosovich` versions remain installable; update package imports to the new name.
+- Add accurate IMDb ID lookup terms to npm metadata and README examples. The library still returns TMDB data and does not provide IMDb ratings or an IMDb API.
+- Keep the public `Lumosovich` class and TMDB v3 operation coverage unchanged at 109 of 152.
+
 ## 0.7.0 — 2026-10-18
 
 - Add 22 TV operations for series change feeds, episode groups, season and episode metadata, account states, and episode ratings. This completes all 48 TV operations in the pinned TMDB v3 specification and brings total coverage to 109 of 152.

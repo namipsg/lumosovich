@@ -6,12 +6,12 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import test from 'node:test';
-import { Lumosovich as EsmLumosovich } from 'lumosovich';
+import { Lumosovich as EsmLumosovich } from 'tmdb-lumosovich';
 
 const require = createRequire(import.meta.url);
 
 test('both ESM and CommonJS consumers can load the public API', () => {
-  const { Lumosovich: CjsLumosovich } = require('lumosovich');
+  const { Lumosovich: CjsLumosovich } = require('tmdb-lumosovich');
   const esmClient = new EsmLumosovich({ apiKey: 'test' });
   const cjsClient = new CjsLumosovich({ apiKey: 'test' });
 
@@ -39,12 +39,13 @@ test('both ESM and CommonJS consumers can load the public API', () => {
 });
 
 test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () => {
-  const directory = mkdtempSync(join(tmpdir(), 'lumosovich-package-'));
+  const directory = mkdtempSync(join(tmpdir(), 'tmdb-lumosovich-package-'));
   const root = fileURLToPath(new URL('../', import.meta.url));
   try {
     const [pack] = JSON.parse(execFileSync('npm', [
       'pack', '--ignore-scripts', '--json', '--pack-destination', directory,
     ], { cwd: root, encoding: 'utf8' }));
+    assert.equal(pack.name, 'tmdb-lumosovich');
     assert.ok(pack.files.some((file) => file.path === 'LICENSE'));
     assert.ok(pack.files.some((file) => file.path === 'dist/reference-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/catalog-types.d.ts'));
@@ -61,11 +62,12 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
       import { createRequire } from 'node:module';
       import { readFileSync } from 'node:fs';
       import { join, dirname } from 'node:path';
-      import { Lumosovich as EsmClient } from 'lumosovich';
+      import { Lumosovich as EsmClient } from 'tmdb-lumosovich';
       const require = createRequire(import.meta.url);
-      const { Lumosovich: CjsClient } = require('lumosovich');
-      const root = join(dirname(require.resolve('lumosovich')), '..');
+      const { Lumosovich: CjsClient } = require('tmdb-lumosovich');
+      const root = join(dirname(require.resolve('tmdb-lumosovich')), '..');
       const manifest = JSON.parse(readFileSync(join(root, 'package.json')));
+      assert.equal(manifest.name, 'tmdb-lumosovich');
       assert.equal(manifest.license, 'MIT');
       assert.equal(manifest.engines.node, '>=22');
       assert.match(readFileSync(join(root, 'LICENSE'), 'utf8'), /^MIT License/);
