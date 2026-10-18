@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0 — 2026-10-18
+
+- Add 22 TV operations for series change feeds, episode groups, season and episode metadata, account states, and episode ratings. This completes all 48 TV operations in the pinned TMDB v3 specification and brings total coverage to 109 of 152.
+- Add typed responses and options, request contracts, generated response fixtures, and focused validation tests for the new methods.
+- Exercise all 99 public read operations with the read-only live smoke test; session-scoped operations are checked with offline contracts.
+
 ## 0.6.1 — 2026-10-10
 
 - Update the pinned `actions/setup-node` GitHub Action to v7.1.0 in CI and the release workflow.

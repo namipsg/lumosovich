@@ -6,3 +6,17 @@ export function positiveId(id: TmdbId): TmdbId {
   }
   return id;
 }
+
+export function slotNumber(value: number, label: string): number {
+  if (!Number.isSafeInteger(value) || value < 0) {
+    throw new TypeError(`${label} must be a nonnegative integer`);
+  }
+  return value;
+}
+
+export function pathId(value: string, label: string): string {
+  if (typeof value !== 'string' || !value.trim() || ['.', '..'].includes(value.trim())) {
+    throw new TypeError(`${label} must be a nonempty path identifier`);
+  }
+  return value.trim();
+}

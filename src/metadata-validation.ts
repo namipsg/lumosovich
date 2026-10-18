@@ -51,6 +51,15 @@ export function validateIdShape<T>(
   return value as T;
 }
 
+/** For nested TMDB routes whose response ID is not one of the path parameters. */
+export function validatePositiveIdShape<T>(value: unknown, fields: Record<string, Check>): T {
+  if (!hasId(value) || !isRecord(value) ||
+    !Object.entries(fields).every(([key, check]) => check(value[key]))) {
+    invalidResponse();
+  }
+  return value as T;
+}
+
 export function validateLatestDetail<T>(value: unknown, nameKey: 'title' | 'name'): T {
   if (!hasId(value) || !isRecord(value) || typeof value[nameKey] !== 'string') {
     invalidResponse();

@@ -4,7 +4,10 @@ import { createMovieMetadataMethods } from './metadata.js';
 import { createMovieCatalogMethods } from './movie-catalog.js';
 import { createTvCatalogMethods } from './tv-catalog.js';
 import { createTvMetadataMethods } from './tv-metadata.js';
-import { positiveId } from './ids.js';
+import { createTvSeriesResourceMethods, createTvEpisodeGroupMethods } from './tv-series-resources.js';
+import { createTvSeasonResourceMethods } from './tv-season-resources.js';
+import { createTvEpisodeResourceMethods } from './tv-episode-resources.js';
+import { positiveId, slotNumber } from './ids.js';
 import type {
   DetailOptions,
   EpisodeAppend,
@@ -57,13 +60,6 @@ const EPISODE_APPEND: readonly EpisodeAppend[] = [
   'images',
   'videos',
 ];
-
-function slotNumber(value: number, label: string): number {
-  if (!Number.isSafeInteger(value) || value < 0) {
-    throw new TypeError(`${label} must be a nonnegative integer`);
-  }
-  return value;
-}
 
 function detailParameters<TAppend extends string>(
   options: DetailOptions<TAppend>,
@@ -120,6 +116,8 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
   return {
     ...createTvMetadataMethods(http),
     ...createTvCatalogMethods(http),
+    ...createTvSeriesResourceMethods(http),
+    episodeGroups: createTvEpisodeGroupMethods(http),
     async get(id: TmdbId, options = {}): Promise<TvDetails> {
       const validId = positiveId(id);
       const payload = await http.get(
@@ -129,6 +127,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
       return validateDetailResponse<TvDetails>(payload, validId, 'name');
     },
     seasons: {
+      ...createTvSeasonResourceMethods(http),
       async get(
         seriesId: TmdbId,
         seasonNumber: number,
@@ -144,6 +143,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
       },
     },
     episodes: {
+      ...createTvEpisodeResourceMethods(http),
       async get(
         seriesId: TmdbId,
         seasonNumber: number,

@@ -140,6 +140,14 @@ export type {
   TvMetadataMethods, TvScreenedTheatricallyResponse, TvTranslationsResponse,
   TvVideoOptions, TvVideosResponse, TvWatchProvidersResponse,
 } from './tv-types.js';
+export type {
+  TvChangeListOptions, TvChangeListPage, TvChangesOptions, TvChangesResponse,
+  TvEpisodeAccountStates, TvEpisodeCreditsResponse, TvEpisodeExternalIdsResponse,
+  TvEpisodeGroupDetails, TvEpisodeGroupMethods, TvEpisodeGroupSummary,
+  TvEpisodeGroupsResponse, TvEpisodeImagesResponse, TvEpisodeResourceMethods,
+  TvSeasonAccountStates, TvSeasonExternalIdsResponse, TvSeasonImagesResponse,
+  TvSeasonResourceMethods, TvSeasonWatchProvidersResponse, TvSeriesResourceMethods,
+} from './tv-resource-types.js';
 
 /** A small TMDB client with raw, typed responses. */
 export class Lumosovich {

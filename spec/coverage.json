@@ -139,7 +139,7 @@
       "operationId": "changes-tv-list",
       "httpMethod": "GET",
       "path": "/3/tv/changes",
-      "publicMethod": null
+      "publicMethod": "tv.changeList"
     },
     {
       "operationId": "collection-details",
@@ -667,7 +667,7 @@
       "operationId": "tv-series-changes",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/changes",
-      "publicMethod": null
+      "publicMethod": "tv.changes"
     },
     {
       "operationId": "tv-series-content-ratings",
@@ -685,7 +685,7 @@
       "operationId": "tv-series-episode-groups",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/episode_groups",
-      "publicMethod": null
+      "publicMethod": "tv.episodeGroups.list"
     },
     {
       "operationId": "tv-series-external-ids",
@@ -781,55 +781,55 @@
       "operationId": "tv-season-account-states",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/account_states",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.accountStates"
     },
     {
       "operationId": "tv-season-aggregate-credits",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/aggregate_credits",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.aggregateCredits"
     },
     {
       "operationId": "tv-season-changes-by-id",
       "httpMethod": "GET",
       "path": "/3/tv/season/{season_id}/changes",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.changes"
     },
     {
       "operationId": "tv-season-credits",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/credits",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.credits"
     },
     {
       "operationId": "tv-season-external-ids",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/external_ids",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.externalIds"
     },
     {
       "operationId": "tv-season-images",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/images",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.images"
     },
     {
       "operationId": "tv-season-translations",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/translations",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.translations"
     },
     {
       "operationId": "tv-season-videos",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/videos",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.videos"
     },
     {
       "operationId": "tv-season-watch-providers",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/watch/providers",
-      "publicMethod": null
+      "publicMethod": "tv.seasons.watchProviders"
     },
     {
       "operationId": "tv-episode-details",
@@ -841,61 +841,61 @@
       "operationId": "tv-episode-account-states",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/account_states",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.accountStates"
     },
     {
       "operationId": "tv-episode-changes-by-id",
       "httpMethod": "GET",
       "path": "/3/tv/episode/{episode_id}/changes",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.changes"
     },
     {
       "operationId": "tv-episode-credits",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/credits",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.credits"
     },
     {
       "operationId": "tv-episode-external-ids",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/external_ids",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.externalIds"
     },
     {
       "operationId": "tv-episode-images",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/images",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.images"
     },
     {
       "operationId": "tv-episode-translations",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/translations",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.translations"
     },
     {
       "operationId": "tv-episode-videos",
       "httpMethod": "GET",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/videos",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.videos"
     },
     {
       "operationId": "tv-episode-add-rating",
       "httpMethod": "POST",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/rating",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.rate"
     },
     {
       "operationId": "tv-episode-delete-rating",
       "httpMethod": "DELETE",
       "path": "/3/tv/{series_id}/season/{season_number}/episode/{episode_number}/rating",
-      "publicMethod": null
+      "publicMethod": "tv.episodes.deleteRating"
     },
     {
       "operationId": "tv-episode-group-details",
       "httpMethod": "GET",
       "path": "/3/tv/episode_group/{tv_episode_group_id}",
-      "publicMethod": null
+      "publicMethod": "tv.episodeGroups.get"
     },
     {
       "operationId": "watch-providers-available-regions",

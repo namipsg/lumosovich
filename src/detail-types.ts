@@ -2,6 +2,10 @@ import type { TmdbId } from './types.js';
 import type { MovieMetadataMethods } from './metadata-types.js';
 import type { MovieCatalogMethods } from './catalog-types.js';
 import type { TvCatalogMethods, TvMetadataMethods } from './tv-types.js';
+import type {
+  TvEpisodeGroupMethods, TvEpisodeResourceMethods, TvSeasonResourceMethods,
+  TvSeriesResourceMethods,
+} from './tv-resource-types.js';
 
 export interface Genre {
   id: TmdbId;
@@ -251,16 +255,17 @@ export interface MovieMethods extends MovieMetadataMethods, MovieCatalogMethods 
   get(id: TmdbId, options?: MovieDetailOptions): Promise<MovieDetails>;
 }
 
-export interface TvMethods extends TvMetadataMethods, TvCatalogMethods {
+export interface TvMethods extends TvMetadataMethods, TvCatalogMethods, TvSeriesResourceMethods {
   get(id: TmdbId, options?: TvDetailOptions): Promise<TvDetails>;
-  seasons: {
+  episodeGroups: TvEpisodeGroupMethods;
+  seasons: TvSeasonResourceMethods & {
     get(
       seriesId: TmdbId,
       seasonNumber: number,
       options?: SeasonDetailOptions,
     ): Promise<TvSeasonDetails>;
   };
-  episodes: {
+  episodes: TvEpisodeResourceMethods & {
     get(
       seriesId: TmdbId,
       seasonNumber: number,
