@@ -70,6 +70,21 @@
     "total_pages": 57,
     "total_results": 5700
   },
+  "changes-tv-list": {
+    "results": [
+      {
+        "id": 225591,
+        "adult": false
+      },
+      {
+        "id": 220819,
+        "adult": false
+      }
+    ],
+    "page": 1,
+    "total_pages": 18,
+    "total_results": 1763
+  },
   "collection-details": {
     "id": 10,
     "name": "Star Wars Collection",
@@ -2301,6 +2316,53 @@
       }
     ]
   },
+  "tv-series-changes": {
+    "changes": [
+      {
+        "key": "images",
+        "items": [
+          {
+            "id": "640435cf021cee0084710972",
+            "action": "updated",
+            "time": "2023-03-05 06:25:19 UTC",
+            "iso_639_1": "en",
+            "iso_3166_1": "",
+            "value": {
+              "poster": {
+                "file_path": "/ouudK6RCNnsbT1CSXrlATXQIQTG.jpg",
+                "iso_639_1": "en"
+              }
+            },
+            "original_value": {
+              "poster": {
+                "file_path": "/ouudK6RCNnsbT1CSXrlATXQIQTG.jpg",
+                "iso_639_1": "fr"
+              }
+            }
+          },
+          {
+            "id": "640435df383df200d90638fa",
+            "action": "updated",
+            "time": "2023-03-05 06:25:35 UTC",
+            "iso_639_1": "en",
+            "iso_3166_1": "",
+            "value": {
+              "backdrop": {
+                "file_path": "/xQgcyrg7QFyeNXVTpK3hPkPrH5z.jpg",
+                "iso_639_1": "en"
+              }
+            },
+            "original_value": {
+              "backdrop": {
+                "file_path": "/xQgcyrg7QFyeNXVTpK3hPkPrH5z.jpg",
+                "iso_639_1": "fr"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  },
   "tv-series-content-ratings": {
     "results": [
       {
@@ -2371,6 +2433,25 @@
         "credit_id": "5ceab0820e0a261a50cb87a9",
         "department": "Production",
         "job": "Executive Producer"
+      }
+    ],
+    "id": 1399
+  },
+  "tv-series-episode-groups": {
+    "results": [
+      {
+        "description": "",
+        "episode_count": 102,
+        "group_count": 9,
+        "id": "5e9077d2e640d600151f32bd",
+        "name": "Aired Order",
+        "network": {
+          "id": 49,
+          "logo_path": "/tuomPhY2UtuPTqqFnKMVHvSb724.png",
+          "name": "HBO",
+          "origin_country": "US"
+        },
+        "type": 1
       }
     ],
     "id": 1399
@@ -2961,6 +3042,323 @@
     "season_number": 1,
     "vote_average": 8.4
   },
+  "tv-season-account-states": {
+    "id": 3624,
+    "results": [
+      {
+        "id": 63056,
+        "episode_number": 1,
+        "rated": {
+          "value": 9
+        }
+      },
+      {
+        "id": 63057,
+        "episode_number": 2,
+        "rated": false
+      }
+    ]
+  },
+  "tv-season-aggregate-credits": {
+    "cast": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 22970,
+        "known_for_department": "Acting",
+        "name": "Peter Dinklage",
+        "original_name": "Peter Dinklage",
+        "popularity": 30.6,
+        "profile_path": "/lRsRgnksAhBRXwAB68MFjmTtLrk.jpg",
+        "roles": [
+          {
+            "credit_id": "5256c8b219c2956ff6047cd8",
+            "character": "Tyrion Lannister",
+            "episode_count": 10
+          }
+        ],
+        "total_episode_count": 10,
+        "order": 0
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 48,
+        "known_for_department": "Acting",
+        "name": "Sean Bean",
+        "original_name": "Sean Bean",
+        "popularity": 34.931,
+        "profile_path": "/kTjiABk3TJ3yI0Cto5RsvyT6V3o.jpg",
+        "roles": [
+          {
+            "credit_id": "58c7134792514179d20011a9",
+            "character": "Ned Stark",
+            "episode_count": 10
+          }
+        ],
+        "total_episode_count": 10,
+        "order": 1
+      }
+    ],
+    "crew": [
+      {
+        "adult": false,
+        "gender": 1,
+        "id": 9153,
+        "known_for_department": "Art",
+        "name": "Gemma Jackson",
+        "original_name": "Gemma Jackson",
+        "popularity": 0.995,
+        "profile_path": null,
+        "jobs": [
+          {
+            "credit_id": "54eee8b8c3a3686d5e005430",
+            "job": "Production Design",
+            "episode_count": 10
+          }
+        ],
+        "department": "Art",
+        "total_episode_count": 10
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 8410,
+        "known_for_department": "Art",
+        "name": "Richard Roberts",
+        "original_name": "Richard Roberts",
+        "popularity": 1.4,
+        "profile_path": null,
+        "jobs": [
+          {
+            "credit_id": "5c6d16640e0a262c999fc3c9",
+            "job": "Set Decoration",
+            "episode_count": 10
+          }
+        ],
+        "department": "Art",
+        "total_episode_count": 10
+      }
+    ],
+    "id": 3624
+  },
+  "tv-season-changes-by-id": {
+    "changes": [
+      {
+        "key": "episode",
+        "items": [
+          {
+            "id": "5717c8c69251414cfd00250f",
+            "action": "updated",
+            "time": "2016-04-20 18:21:58 UTC",
+            "value": {
+              "episode_id": 63056,
+              "episode_number": 1
+            }
+          },
+          {
+            "id": "5717c90dc3a3686cb7001dd5",
+            "action": "updated",
+            "time": "2016-04-20 18:23:09 UTC",
+            "value": {
+              "episode_id": 63057,
+              "episode_number": 2
+            }
+          }
+        ]
+      },
+      {
+        "key": "air_date",
+        "items": [
+          {
+            "id": "5717cfefc3a3686c83001cb1",
+            "action": "updated",
+            "time": "2016-04-20 18:52:31 UTC",
+            "value": "2011-04-16",
+            "original_value": "2011-04-17"
+          },
+          {
+            "id": "5717cffa9251413d3000345d",
+            "action": "updated",
+            "time": "2016-04-20 18:52:42 UTC",
+            "value": "2011-04-16",
+            "original_value": "2011-04-17"
+          }
+        ]
+      }
+    ]
+  },
+  "tv-season-credits": {
+    "cast": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 22970,
+        "known_for_department": "Acting",
+        "name": "Peter Dinklage",
+        "original_name": "Peter Dinklage",
+        "popularity": 30.6,
+        "profile_path": "/lRsRgnksAhBRXwAB68MFjmTtLrk.jpg",
+        "character": "Tyrion Lannister",
+        "credit_id": "5256c8b219c2956ff6047cd8",
+        "order": 0
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 48,
+        "known_for_department": "Acting",
+        "name": "Sean Bean",
+        "original_name": "Sean Bean",
+        "popularity": 34.931,
+        "profile_path": "/kTjiABk3TJ3yI0Cto5RsvyT6V3o.jpg",
+        "character": "Ned Stark",
+        "credit_id": "58c7134792514179d20011a9",
+        "order": 1
+      }
+    ],
+    "crew": [
+      {
+        "adult": false,
+        "gender": 0,
+        "id": 1223796,
+        "known_for_department": "Production",
+        "name": "Frank Doelger",
+        "original_name": "Frank Doelger",
+        "popularity": 0.694,
+        "profile_path": null,
+        "credit_id": "5256c8c419c2956ff604867c",
+        "department": "Production",
+        "job": "Producer"
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 8410,
+        "known_for_department": "Art",
+        "name": "Richard Roberts",
+        "original_name": "Richard Roberts",
+        "popularity": 1.4,
+        "profile_path": null,
+        "credit_id": "5c6d16640e0a262c999fc3c9",
+        "department": "Art",
+        "job": "Set Decoration"
+      }
+    ],
+    "id": 3624
+  },
+  "tv-season-external-ids": {
+    "id": 3624,
+    "freebase_mid": "/m/0gmd1gd",
+    "freebase_id": "/m/0gmd1gd",
+    "tvdb_id": 364731,
+    "tvrage_id": null,
+    "wikidata_id": "Q1658029"
+  },
+  "tv-season-images": {
+    "id": 3624,
+    "posters": [
+      {
+        "aspect_ratio": 0.667,
+        "height": 1500,
+        "iso_639_1": "en",
+        "file_path": "/wgfKiqzuMrFIkU1M68DDDY8kGC1.jpg",
+        "vote_average": 5.514,
+        "vote_count": 18,
+        "width": 1000
+      },
+      {
+        "aspect_ratio": 0.667,
+        "height": 1500,
+        "iso_639_1": "pt",
+        "file_path": "/wNOdNgqoySuWbQk3F0QZjPKp8X7.jpg",
+        "vote_average": 5.384,
+        "vote_count": 2,
+        "width": 1000
+      }
+    ]
+  },
+  "tv-season-translations": {
+    "id": 3624,
+    "translations": [
+      {
+        "iso_3166_1": "SA",
+        "iso_639_1": "ar",
+        "name": "العربية",
+        "english_name": "Arabic",
+        "data": {
+          "name": "",
+          "overview": "سلسلة درامية مبنية على سلسلة روايات لـ جورج آر آر مارتن بعنوان \"إيه سونغ أوف آيس أن فاير\" والتي حققت مبيعات كبيرة وتتمحور حول الصراعات التي كانت تحدث في العصور الوسطى بين العائلات النبيلة للسيطرة على عرش وستيروس."
+        }
+      },
+      {
+        "iso_3166_1": "BY",
+        "iso_639_1": "be",
+        "name": "беларуская мова",
+        "english_name": "Belarusian",
+        "data": {
+          "name": "",
+          "overview": ""
+        }
+      }
+    ]
+  },
+  "tv-season-videos": {
+    "id": 3624,
+    "results": [
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Game Of Thrones - Season 1 Recap - Official HBO UK",
+        "key": "e0Y8KpQpW8c",
+        "site": "YouTube",
+        "size": 1080,
+        "type": "Recap",
+        "official": true,
+        "published_at": "2015-05-19T16:31:23.000Z",
+        "id": "5ce71a920e0a265ac0cfe497"
+      },
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Game of Thrones: Pledge Your Allegiance - House Stark (HBO)",
+        "key": "9cqABojhqr4",
+        "published_at": "2012-03-19T20:01:10.000Z",
+        "site": "YouTube",
+        "size": 720,
+        "type": "Featurette",
+        "official": true,
+        "id": "534921db0e0a266b3f0013bb"
+      }
+    ]
+  },
+  "tv-season-watch-providers": {
+    "id": 3624,
+    "results": {
+      "AD": {
+        "link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=AD",
+        "flatrate": [
+          {
+            "logo_path": "/jbe4gVSfRlbPTdESXhEKpornsfu.jpg",
+            "provider_id": 1899,
+            "provider_name": "HBO Max",
+            "display_priority": 24
+          }
+        ]
+      },
+      "AE": {
+        "link": "https://www.themoviedb.org/tv/1399-game-of-thrones/watch?locale=AE",
+        "flatrate": [
+          {
+            "logo_path": "/kC6JTo59Gj6I4vJPyBAYGh0sKAE.jpg",
+            "provider_id": 629,
+            "provider_name": "OSN+",
+            "display_priority": 7
+          }
+        ]
+      }
+    }
+  },
   "tv-episode-details": {
     "air_date": "2011-04-17",
     "crew": [
@@ -3029,5 +3427,321 @@
     "still_path": "/9hGF3WUkBf7cSjMg0cdMDHJkByd.jpg",
     "vote_average": 7.8,
     "vote_count": 286
+  },
+  "tv-episode-account-states": {
+    "id": 550,
+    "favorite": true,
+    "rated": {
+      "value": 9
+    },
+    "watchlist": false
+  },
+  "tv-episode-changes-by-id": {
+    "changes": [
+      {
+        "key": "production_code",
+        "items": [
+          {
+            "id": "54bd9ed7c3a3686c6b00da66",
+            "action": "added",
+            "time": "2015-01-20 00:18:31 UTC",
+            "value": "101"
+          }
+        ]
+      },
+      {
+        "key": "overview",
+        "items": [
+          {
+            "id": "54bd9ed7c3a3686c6b00da67",
+            "action": "updated",
+            "time": "2015-01-20 00:18:31 UTC",
+            "iso_639_1": "fr",
+            "value": "Sur le continent de Westeros, un jeune patrouilleur de la Garde de Nuit, chargée de veiller sur le Mur, est condamné à mort pour désertion par Eddard Stark, seigneur de Winterfell et Gardien du Nord. Mais de sombres nouvelles arrivent de Port-Réal, la capitale des Sept Couronnes : Jon Arryn, ami intime d'Eddard et Main du roi Robert Baratheon, vient de mourir. Le roi Robert et sa cour entreprennent alors un voyage vers Winterfell, pour gratifier son ami Eddard de la charge de Main du roi. Pendant ce temps, les descendants des rois Targaryen en exil, renversés par Robert, fomentent leur retour en Westeros par un jeu d'alliance avec les Dothrakis, une tribu de guerriers nomades.\nAlors qu'à Winterfell les festivités vont bon train durant le séjour du roi, Brandon, l'un des fils d'Eddard Stark, fait une découverte qui lui attire les foudres de la famille royale…",
+            "original_value": "Sur le continent de Westeros, un jeune patrouilleur de la Garde de Nuit, chargée de veiller sur le Mur, est condamné à mort pour désertion par Eddard Stark, seigneur de Winterfell et Gardien du Nord. Mais de sombres nouvelles arrivent de Port-Réal, la capitale des Sept Couronnes : Jon Arryn, ami intime d'Eddard et Main du roi Robert Baratheon, vient de mourir. Le roi Robert et sa cour entreprennent alors un voyage vers Winterfell, pour gratifier son ami Eddard de la charge de Main du roi. Pendant ce temps, les descendants des rois Targaryen en exil, renversés par Robert, fomentent leur retour en Westeros par un jeu d'alliance avec les Dothrakis, une tribu de guerriers nomades.\n\nAlors qu'à Winterfell les festivités vont bon train durant le séjour du roi, Brandon, l'un des fils d'Eddard Stark, fait une découverte qui lui attire les foudres de la famille royale..."
+          },
+          {
+            "id": "54c53255c3a36814210141d0",
+            "action": "added",
+            "time": "2015-01-25 18:13:41 UTC",
+            "iso_639_1": "es",
+            "value": "Ned Stark, Señor de Invernalia se entera de que su mentor, Jon Arryn, ha muerto y por esto el Rey Robert se dirige hacia el norte para ofrecerle ser la Mano del Rey. Al otro lado del Mar en Pentos, Viserys Targaryen planea casar a su hermana Daenerys con el lider de los guerreros de la tribu Dothraki, Khal Drogo con el objetivo de forjar una alianza que le permita reclamar el trono."
+          }
+        ]
+      }
+    ]
+  },
+  "tv-episode-credits": {
+    "cast": [
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 22970,
+        "known_for_department": "Acting",
+        "name": "Peter Dinklage",
+        "original_name": "Peter Dinklage",
+        "popularity": 30.6,
+        "profile_path": "/lRsRgnksAhBRXwAB68MFjmTtLrk.jpg",
+        "character": "Tyrion Lannister",
+        "credit_id": "5256c8b219c2956ff6047cd8",
+        "order": 0
+      },
+      {
+        "adult": false,
+        "gender": 2,
+        "id": 48,
+        "known_for_department": "Acting",
+        "name": "Sean Bean",
+        "original_name": "Sean Bean",
+        "popularity": 34.931,
+        "profile_path": "/kTjiABk3TJ3yI0Cto5RsvyT6V3o.jpg",
+        "character": "Ned Stark",
+        "credit_id": "58c7134792514179d20011a9",
+        "order": 1
+      }
+    ],
+    "crew": [
+      {
+        "department": "Directing",
+        "job": "Director",
+        "credit_id": "5256c8a219c2956ff6046e77",
+        "adult": false,
+        "gender": 2,
+        "id": 44797,
+        "known_for_department": "Directing",
+        "name": "Timothy Van Patten",
+        "original_name": "Timothy Van Patten",
+        "popularity": 8.292,
+        "profile_path": "/MzSOFrd99HRdr6pkSRSctk3kBR.jpg"
+      },
+      {
+        "job": "Director of Photography",
+        "department": "Camera",
+        "credit_id": "54eef2429251417974005cb6",
+        "adult": false,
+        "gender": 2,
+        "id": 1318704,
+        "known_for_department": "Directing",
+        "name": "Alik Sakharov",
+        "original_name": "Alik Sakharov",
+        "popularity": 1.579,
+        "profile_path": null
+      }
+    ],
+    "guest_stars": [
+      {
+        "character": "Benjen Stark",
+        "credit_id": "5256c8b919c2956ff604836a",
+        "order": 62,
+        "adult": false,
+        "gender": 2,
+        "id": 119783,
+        "known_for_department": "Acting",
+        "name": "Joseph Mawle",
+        "original_name": "Joseph Mawle",
+        "popularity": 8.559,
+        "profile_path": "/1Ocb9v3h54beGVoJMm4w50UQhLf.jpg"
+      },
+      {
+        "character": "Khal Drogo",
+        "credit_id": "5256c8a219c2956ff6046f40",
+        "order": 63,
+        "adult": false,
+        "gender": 2,
+        "id": 117642,
+        "known_for_department": "Acting",
+        "name": "Jason Momoa",
+        "original_name": "Jason Momoa",
+        "popularity": 39.109,
+        "profile_path": "/tsfL6u1WW6zHYS1lhWGPHuk6JON.jpg"
+      }
+    ],
+    "id": 63056
+  },
+  "tv-episode-external-ids": {
+    "id": 63056,
+    "imdb_id": "tt1480055",
+    "freebase_mid": "/m/0gmc6ph",
+    "freebase_id": "/en/winter_is_coming",
+    "tvdb_id": 3254641,
+    "tvrage_id": 1065008299,
+    "wikidata_id": "Q2614622"
+  },
+  "tv-episode-images": {
+    "id": 63056,
+    "stills": [
+      {
+        "aspect_ratio": 1.778,
+        "height": 1080,
+        "iso_639_1": null,
+        "file_path": "/9hGF3WUkBf7cSjMg0cdMDHJkByd.jpg",
+        "vote_average": 5.454,
+        "vote_count": 3,
+        "width": 1920
+      },
+      {
+        "aspect_ratio": 1.778,
+        "height": 1080,
+        "iso_639_1": null,
+        "file_path": "/xIfvIM7YgkADTrqp23rm3CLaOVQ.jpg",
+        "vote_average": 5.322,
+        "vote_count": 5,
+        "width": 1920
+      }
+    ]
+  },
+  "tv-episode-translations": {
+    "id": 63056,
+    "translations": [
+      {
+        "iso_3166_1": "SA",
+        "iso_639_1": "ar",
+        "name": "العربية",
+        "english_name": "Arabic",
+        "data": {
+          "name": "",
+          "overview": "خلف باب واسع من الجليد في شمالي وستيروس هناك شيء يحدث. تتلقى عائلة ستارك التي من وينترفيل زيارة من العائلة المالكة، بينما يشكل أمير عائلة تارغارين المنفي تحالفاً جديداً للسيطرة على العرش من جديد."
+        }
+      },
+      {
+        "iso_3166_1": "BY",
+        "iso_639_1": "be",
+        "name": "беларуская мова",
+        "english_name": "Belarusian",
+        "data": {
+          "name": "",
+          "overview": ""
+        }
+      }
+    ]
+  },
+  "tv-episode-videos": {
+    "id": 3624,
+    "results": [
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Game Of Thrones - Season 1 Recap - Official HBO UK",
+        "key": "e0Y8KpQpW8c",
+        "site": "YouTube",
+        "size": 1080,
+        "type": "Recap",
+        "official": true,
+        "published_at": "2015-05-19T16:31:23.000Z",
+        "id": "5ce71a920e0a265ac0cfe497"
+      },
+      {
+        "iso_639_1": "en",
+        "iso_3166_1": "US",
+        "name": "Game of Thrones: Pledge Your Allegiance - House Stark (HBO)",
+        "key": "9cqABojhqr4",
+        "published_at": "2012-03-19T20:01:10.000Z",
+        "site": "YouTube",
+        "size": 720,
+        "type": "Featurette",
+        "official": true,
+        "id": "534921db0e0a266b3f0013bb"
+      }
+    ]
+  },
+  "tv-episode-add-rating": {
+    "status_code": 1,
+    "status_message": "Success."
+  },
+  "tv-episode-delete-rating": {
+    "status_code": 13,
+    "status_message": "The item/record was deleted successfully."
+  },
+  "tv-episode-group-details": {
+    "description": "Comedians in Cars organized in Netflix's collections.",
+    "episode_count": 83,
+    "group_count": 6,
+    "groups": [
+      {
+        "id": "5acf93efc3a368739a0000a9",
+        "name": "First Cup",
+        "order": 1,
+        "episodes": [
+          {
+            "air_date": "2015-06-17",
+            "episode_number": 3,
+            "id": 1078262,
+            "name": "Jim Carrey: We Love Breathing What You're Burning, Baby",
+            "overview": "Jerry’s full of testosterone as he steps into a ‘76 Lamborghini Countach with Jim Carrey, who’s between a three-week cleanse and a five-day silent retreat. After coffee, it’s off to Carrey’s studio to study a portrait of a gorilla with a machine gun. Wow.",
+            "production_code": "",
+            "runtime": null,
+            "season_number": 6,
+            "show_id": 59717,
+            "still_path": "/aOyE420zuFq9zWtEWjIccAiTrzU.jpg",
+            "vote_average": 7.4,
+            "vote_count": 5,
+            "order": 0
+          },
+          {
+            "air_date": "2014-12-18",
+            "episode_number": 7,
+            "id": 1033379,
+            "name": "Jimmy Fallon: The Unsinkable Legend: Part 1",
+            "overview": "Jerry and his special guest Jimmy Fallon cruise over to Jerry's actual car in a 1956 Chevy Corvette convertible to hop aboard yet another vehicle to enjoy some comedic sailing out at sea.",
+            "production_code": "",
+            "runtime": null,
+            "season_number": 5,
+            "show_id": 59717,
+            "still_path": "/m9wwqDv6mPMcIpGrh7nkR4zQp3s.jpg",
+            "vote_average": 8,
+            "vote_count": 4,
+            "order": 1
+          }
+        ],
+        "locked": true
+      },
+      {
+        "id": "5acf93f69251413b390000dd",
+        "name": "Light & Sweet",
+        "order": 2,
+        "episodes": [
+          {
+            "air_date": "2015-12-30",
+            "episode_number": 1,
+            "id": 1149915,
+            "name": "President Barack Obama: Just Tell Him You're the President",
+            "overview": "For the premiere episode of Season 7, Jerry takes President Barack Obama for a spin in a 1963 Corvette Stingray Split Window Coupe but finds it hard to spirit the leader of the free world off the White House grounds.",
+            "production_code": "",
+            "runtime": null,
+            "season_number": 7,
+            "show_id": 59717,
+            "still_path": "/iKh6jYN7Dk3C7NYZ44VJmdEsrk6.jpg",
+            "vote_average": 0,
+            "vote_count": 0,
+            "order": 0
+          },
+          {
+            "air_date": "2014-11-06",
+            "episode_number": 1,
+            "id": 1021931,
+            "name": "Kevin Hart: You Look Amazing in the Wind",
+            "overview": "Jerry Seinfeld and his special guest Kevin Hart stylishly cruise around town in a 1959 Porsche RSK Spyder for their \"weird male date.\" Plus special extra feature: \"Dick Corcoran\"",
+            "production_code": "",
+            "runtime": null,
+            "season_number": 5,
+            "show_id": 59717,
+            "still_path": "/4VwK7ceYcVtYqqivXR0DhNEhYXJ.jpg",
+            "vote_average": 8.2,
+            "vote_count": 4,
+            "order": 1
+          }
+        ],
+        "locked": true
+      }
+    ],
+    "id": "5acf93e60e0a26346d0000ce",
+    "name": "Netflix Collections",
+    "network": {
+      "id": 213,
+      "logo_path": "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+      "name": "Netflix",
+      "origin_country": ""
+    },
+    "type": 4
   }
 }

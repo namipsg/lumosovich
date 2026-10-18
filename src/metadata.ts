@@ -41,7 +41,7 @@ export function imageParameters(options: ImageOptions): QueryParameters {
   };
 }
 
-function changeParameters(options: MovieChangesOptions): QueryParameters {
+export function changeParameters(options: MovieChangesOptions): QueryParameters {
   const dates = [options.startDate, options.endDate];
   for (const date of dates) {
     if (date === undefined) continue;

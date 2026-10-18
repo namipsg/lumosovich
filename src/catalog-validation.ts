@@ -47,15 +47,25 @@ export function validateReviewDetails(value: unknown, expectedId: string): Revie
 }
 
 export function validateAccountStates(value: unknown, expectedId: number): MovieAccountStates {
-  if (!isRecord(value) || value.id !== expectedId ||
+  const account = validateAccountStateShape(value);
+  if (account.id !== expectedId) invalidResponse();
+  return account;
+}
+
+export function validateAccountStateShape(value: unknown): MovieAccountStates {
+  if (!isRecord(value) || !Number.isSafeInteger(value.id) || Number(value.id) < 1 ||
     typeof value.favorite !== 'boolean' || typeof value.watchlist !== 'boolean' ||
-    !(value.rated === false || (isRecord(value.rated) &&
-      typeof value.rated.value === 'number' && Number.isFinite(value.rated.value) &&
-      value.rated.value >= 0.5 && value.rated.value <= 10 &&
-      Number.isInteger(value.rated.value * 2)))) {
+    !validRated(value.rated)) {
     invalidResponse();
   }
   return value as unknown as MovieAccountStates;
+}
+
+export function validRated(value: unknown): boolean {
+  return value === false || (isRecord(value) &&
+    typeof value.value === 'number' && Number.isFinite(value.value) &&
+    value.value >= 0.5 && value.value <= 10 &&
+    Number.isInteger(value.value * 2));
 }
 
 export function validateRatingResponse(value: unknown): RatingResponse {

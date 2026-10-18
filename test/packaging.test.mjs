@@ -31,6 +31,10 @@ test('both ESM and CommonJS consumers can load the public API', () => {
     assert.equal(typeof client.tv.airingToday, 'function');
     assert.equal(typeof client.tv.aggregateCredits, 'function');
     assert.equal(typeof client.tv.rate, 'function');
+    assert.equal(typeof client.tv.changeList, 'function');
+    assert.equal(typeof client.tv.episodeGroups.get, 'function');
+    assert.equal(typeof client.tv.seasons.watchProviders, 'function');
+    assert.equal(typeof client.tv.episodes.rate, 'function');
   }
 });
 
@@ -45,6 +49,7 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
     assert.ok(pack.files.some((file) => file.path === 'dist/reference-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/catalog-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/tv-types.d.ts'));
+    assert.ok(pack.files.some((file) => file.path === 'dist/tv-resource-types.d.ts'));
     assert.ok(pack.files.every((file) => file.path.startsWith('dist/') ||
       ['LICENSE', 'README.md', 'package.json'].includes(file.path)));
     execFileSync('npm', [

@@ -65,7 +65,14 @@ test('the fourth group adds 23 TV series catalog, detail, and rating operations'
   ];
   assert.equal(ids.length, 23);
   assert.ok(ids.every((id) => ledger.operations.find((entry) => entry.operationId === id)?.publicMethod));
-  assert.equal(checkCoverage(baseline).implemented, 87);
+  assert.ok(checkCoverage(baseline).implemented >= 87);
+});
+
+test('the fifth group completes every TV operation in the pinned specification', () => {
+  const tvOperations = ledger.operations.filter((entry) => entry.path.startsWith('/3/tv'));
+  assert.equal(tvOperations.length, 48);
+  assert.ok(tvOperations.every((entry) => entry.publicMethod));
+  assert.equal(checkCoverage(baseline).implemented, 109);
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {

@@ -6,7 +6,7 @@
 
 A small, typed Node.js wrapper for the TMDB API.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, and movie, TV, and person details.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, movie, TV, and person details, and TV seasons, episodes, and episode groups.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -14,11 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.6.1` covers **87 of 152 TMDB v3 operations**, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Lumosovich is available on [npm](https://www.npmjs.com/package/lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.7.0` covers **109 of 152 TMDB v3 operations**, including all 48 TV operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-Version `0.6.1` updates the pinned GitHub Actions Node setup to v7.1.0 without changing the public API. Version `0.6.0` added 23 TV series operations for catalogs, metadata, reviews, recommendations, and ratings. The read-only live smoke test exercises 81 operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+Version `0.7.0` adds TV change feeds, episode groups, and season and episode resources. The read-only live smoke test exercises all 99 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
-The release passes 153 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
+The release passes 180 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -286,9 +286,14 @@ await tmdb.movies.deleteRating(550, session);
 const showState = await tmdb.tv.accountStates(1399, session);
 await tmdb.tv.rate(1399, 8.5, session);
 await tmdb.tv.deleteRating(1399, session);
+
+const seasonState = await tmdb.tv.seasons.accountStates(1399, 1, session);
+const episodeState = await tmdb.tv.episodes.accountStates(1399, 1, 1, session);
+await tmdb.tv.episodes.rate(1399, 1, 1, 8.5, session);
+await tmdb.tv.episodes.deleteRating(1399, 1, 1, session);
 ```
 
-Use `guestSessionId` instead of `sessionId` for a guest session; supply exactly one. Movie and TV ratings range from 0.5 to 10 in half-point steps. `deleteRating()` removes the rating associated with that session. Session creation is planned for a later group, so obtain a session through TMDB's authentication flow before using these methods. The live smoke test does not mutate an account.
+Use `guestSessionId` instead of `sessionId` for a guest session; supply exactly one. Movie, series, and episode ratings range from 0.5 to 10 in half-point steps. `deleteRating()` removes the rating associated with that session. Session creation is planned for a later group, so obtain a session through TMDB's authentication flow before using these methods. The live smoke test does not mutate an account.
 TMDB may remove a newly rated movie from the account's watchlist by default; see [TMDB's rating behavior](https://developer.themoviedb.org/reference/movie-add-rating).
 
 ## Seasons and episodes
@@ -297,16 +302,45 @@ TMDB may remove a newly rated movie from the account's watchlist by default; see
 const season = await tmdb.tv.seasons.get(1399, 1);
 const firstEpisode = season.episodes.find((episode) => episode.episode_number === 1);
 
+const seasonCast = await tmdb.tv.seasons.aggregateCredits(1399, 1);
+const seasonCredits = await tmdb.tv.seasons.credits(1399, 1);
+const seasonIds = await tmdb.tv.seasons.externalIds(1399, 1);
+const seasonImages = await tmdb.tv.seasons.images(1399, 1);
+const seasonTranslations = await tmdb.tv.seasons.translations(1399, 1);
+const seasonVideos = await tmdb.tv.seasons.videos(1399, 1);
+const seasonProviders = await tmdb.tv.seasons.watchProviders(1399, 1);
+const seasonChanges = await tmdb.tv.seasons.changes(season.id);
+
 if (firstEpisode) {
   const detail = await tmdb.tv.episodes.get(1399, 1, 1, {
     append: ['external_ids', 'images'],
     imageLanguages: ['en', 'null'],
   });
   console.log(detail.id, detail.external_ids?.imdb_id);
+
+  const credits = await tmdb.tv.episodes.credits(1399, 1, 1);
+  const ids = await tmdb.tv.episodes.externalIds(1399, 1, 1);
+  const images = await tmdb.tv.episodes.images(1399, 1, 1);
+  const translations = await tmdb.tv.episodes.translations(1399, 1, 1);
+  const videos = await tmdb.tv.episodes.videos(1399, 1, 1);
+  const changes = await tmdb.tv.episodes.changes(detail.id);
 }
 ```
 
-Season and episode coordinates are numeric TMDB identifiers and slots. Season `0` is supported for specials. The wrapper checks returned series and episode identity before passing details to callers; missing IMDb IDs remain missing rather than being fabricated.
+Season and episode coordinates use a numeric series ID and season/episode slots. Season `0` is supported for specials. `seasons.changes()` and `episodes.changes()` use the IDs returned by season and episode details, respectively; they do not take slot numbers. The wrapper checks returned series and episode identity for detail requests; missing IMDb IDs remain missing rather than being fabricated.
+
+TV change feeds and episode groups are also available:
+
+```js
+const changedSeries = await tmdb.tv.changeList({ startDate: '2024-01-01' });
+const seriesChanges = await tmdb.tv.changes(1399);
+const groups = await tmdb.tv.episodeGroups.list(1399);
+const group = groups.results[0]
+  ? await tmdb.tv.episodeGroups.get(groups.results[0].id)
+  : undefined;
+```
+
+`changeList()` reports changed series IDs. Episode-group IDs are strings supplied by TMDB. The methods return TMDB's original response fields and preserve empty collections.
 
 ## Image URLs
 
@@ -395,13 +429,12 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 81 public read operations. Account-state and rating methods require a TMDB
+all 99 public read operations. Account-state and rating methods require a TMDB
 session and are covered by offline contracts; the live test makes read-only requests.
 
 ## Roadmap
 
-TV seasons, episodes, change feeds, episode groups, people, lists, and authentication will
-expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
+People, lists, authentication, and the remaining TMDB resources will expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:
 

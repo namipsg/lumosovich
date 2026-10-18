@@ -28,6 +28,11 @@ import {
   type TvCreditsResponse,
   type TvImagesResponse,
   type TvScreenedTheatricallyResponse,
+  type TvChangeListPage,
+  type TvEpisodeCreditsResponse,
+  type TvEpisodeGroupDetails,
+  type TvEpisodeGroupsResponse,
+  type TvSeasonAccountStates,
 } from 'lumosovich';
 
 const tmdb = new Lumosovich({ apiKey: 'type-check' });
@@ -84,6 +89,13 @@ const tvImages: Promise<TvImagesResponse> = tmdb.tv.images(1399, { imageLanguage
 const tvScreened: Promise<TvScreenedTheatricallyResponse> = tmdb.tv.screenedTheatrically(1399);
 const tvVideos = tmdb.tv.videos(1399, { videoLanguages: ['en', 'null'] });
 const tvRating: Promise<RatingResponse> = tmdb.tv.rate(1399, 8.5, { sessionId: 'session' });
+const tvChanges: Promise<TvChangeListPage> = tmdb.tv.changeList({ startDate: '2024-01-01', page: 2 });
+const tvGroups: Promise<TvEpisodeGroupsResponse> = tmdb.tv.episodeGroups.list(1399);
+const tvGroup: Promise<TvEpisodeGroupDetails> = tmdb.tv.episodeGroups.get('group-id');
+const seasonStates: Promise<TvSeasonAccountStates> = tmdb.tv.seasons.accountStates(1399, 1, { sessionId: 'session' });
+const seasonChanges = tmdb.tv.seasons.changes(3624, { page: 2 });
+const episodeCredits: Promise<TvEpisodeCreditsResponse> = tmdb.tv.episodes.credits(1399, 1, 1);
+const episodeRating: Promise<RatingResponse> = tmdb.tv.episodes.rate(1399, 1, 1, 8.5, { guestSessionId: 'guest' });
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -122,6 +134,14 @@ tmdb.tv.popular({ timezone: 'Asia/Tehran' });
 tmdb.tv.rate(1399, 8.5);
 // @ts-expect-error Video language options are not image language options.
 tmdb.tv.videos(1399, { imageLanguages: ['en'] });
+// @ts-expect-error Episode group IDs are strings.
+tmdb.tv.episodeGroups.get(123);
+// @ts-expect-error Season account states require an explicit session.
+tmdb.tv.seasons.accountStates(1399, 1);
+// @ts-expect-error Episode change feeds take an episode ID, not date options.
+tmdb.tv.episodes.changes(63056, { page: 2 });
+// @ts-expect-error Episode ratings require an explicit session.
+tmdb.tv.episodes.rate(1399, 1, 1, 8.5);
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -130,4 +150,5 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   movieExternalIds, movieImages, movieKeywords, movieLatest, movieReleaseDates,
   movieTranslations, movieVideos, nowPlaying, accountState, discovered,
   trending, review, network, rating, tvAiring, tvCredits, tvImages,
-  tvScreened, tvVideos, tvRating];
+  tvScreened, tvVideos, tvRating, tvChanges, tvGroups, tvGroup,
+  seasonStates, seasonChanges, episodeCredits, episodeRating];

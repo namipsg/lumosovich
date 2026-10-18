@@ -12,7 +12,7 @@ import type {
   TvVideoOptions, TvWatchProvidersResponse,
 } from './tv-types.js';
 
-function videoParameters(options: TvVideoOptions): { language?: string; include_video_language?: string } {
+export function videoParameters(options: TvVideoOptions): { language?: string; include_video_language?: string } {
   const languages = options.videoLanguages;
   if (languages !== undefined && (!Array.isArray(languages) || languages.length === 0 ||
     languages.some((language) => typeof language !== 'string' ||

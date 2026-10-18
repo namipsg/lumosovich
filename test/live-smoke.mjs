@@ -120,14 +120,50 @@ if (!apiKey && !accessToken) {
       step = `TV ${method}`;
       assert.ok(Array.isArray((await tmdb.tv[method](seriesId)).results));
     }
+    step = 'TV change list';
+    assert.ok(Array.isArray((await tmdb.tv.changeList({ page: 1 })).results));
+    step = 'TV series changes';
+    assert.ok(Array.isArray((await tmdb.tv.changes(seriesId)).changes));
+    step = 'TV episode groups';
+    const episodeGroups = await tmdb.tv.episodeGroups.list(seriesId);
+    assert.ok(episodeGroups.results.length > 0);
+    step = 'TV episode group details';
+    assert.equal((await tmdb.tv.episodeGroups.get(episodeGroups.results[0].id)).id,
+      episodeGroups.results[0].id);
     step = 'season details';
     const season = await tmdb.tv.seasons.get(seriesId, 1);
     assert.ok(season.episodes.some((episode) => episode.episode_number === 1));
+    for (const [method, options] of [
+      ['aggregateCredits', { language: 'en-US' }],
+      ['credits', { language: 'en-US' }],
+      ['externalIds'],
+      ['images', { imageLanguages: ['en', 'null'] }],
+      ['translations'],
+      ['videos', { videoLanguages: ['en', 'null'] }],
+      ['watchProviders'],
+    ]) {
+      step = `TV season ${method}`;
+      assert.equal((await tmdb.tv.seasons[method](seriesId, 1, options)).id, season.id);
+    }
+    step = 'TV season changes';
+    assert.ok(Array.isArray((await tmdb.tv.seasons.changes(season.id)).changes));
     step = 'episode details';
     const episode = await tmdb.tv.episodes.get(seriesId, 1, 1, {
       append: ['external_ids'],
     });
     assert.equal(episode.external_ids?.imdb_id, 'tt1480055');
+    for (const [method, options] of [
+      ['credits', { language: 'en-US' }],
+      ['externalIds'],
+      ['images', { imageLanguages: ['en', 'null'] }],
+      ['translations'],
+      ['videos', { videoLanguages: ['en', 'null'] }],
+    ]) {
+      step = `TV episode ${method}`;
+      assert.equal((await tmdb.tv.episodes[method](seriesId, 1, 1, options)).id, episode.id);
+    }
+    step = 'TV episode changes';
+    assert.ok(Array.isArray((await tmdb.tv.episodes.changes(episode.id)).changes));
 
     step = 'find person';
     const personMatches = await tmdb.find.byExternalId('nm0000138', 'imdb_id');
@@ -161,7 +197,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 81 public read operations.');
+    console.log('TMDB live smoke passed: all 99 public read operations.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);
