@@ -6,7 +6,7 @@
 
 A small, typed Node.js wrapper for the TMDB API, including IMDb ID lookup through TMDB.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, movie, TV, and person details, and TV seasons, episodes, and episode groups.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, people and credit resources, and TV seasons, episodes, and episode groups.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -14,11 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.7.1` covers **109 of 152 TMDB v3 operations**, including all 48 TV operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.8.0` covers **121 of 152 TMDB v3 operations**, including all TV, person, and credit operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-Version `0.7.1` moves the npm package from `lumosovich` to `tmdb-lumosovich`; the public `Lumosovich` class and TMDB API coverage are unchanged. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The read-only live smoke test exercises all 99 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The read-only live smoke test exercises all 111 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
 
-The release passes 180 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
+The release passes 196 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -348,6 +348,30 @@ const group = groups.results[0]
 
 `changeList()` reports changed series IDs. Episode-group IDs are strings supplied by TMDB. The methods return TMDB's original response fields and preserve empty collections.
 
+## People and credits
+
+Use numeric TMDB person IDs for people resources. Credit details use the string `credit_id` returned in a person's cast or crew record.
+
+```js
+const personId = 31;
+const popularPeople = await tmdb.people.popular({ page: 1 });
+const movieCredits = await tmdb.people.movieCredits(personId);
+const tvCredits = await tmdb.people.tvCredits(personId);
+const combinedCredits = await tmdb.people.combinedCredits(personId);
+const creditId = movieCredits.cast[0]?.credit_id;
+const credit = creditId ? await tmdb.credits.get(creditId) : undefined;
+
+const externalIds = await tmdb.people.externalIds(personId);
+const portraits = await tmdb.people.images(personId);
+const tagged = await tmdb.people.taggedImages(personId, { page: 1 });
+const translations = await tmdb.people.translations(personId);
+const latestPerson = await tmdb.people.latest();
+const changedPeople = await tmdb.people.changeList({ page: 1 });
+const changes = await tmdb.people.changes(personId);
+```
+
+The three credit collections return `cast` and `crew` arrays with TMDB's original fields; `combinedCredits()` includes both movie and TV roles. `taggedImages()` has paginated image records, including episode stills, while `images()` has portrait profiles. TMDB can report `page: 0` for tagged images even when page 1 is requested. `changeList()` and `changes()` accept optional `startDate`, `endDate`, and `page`; dates use `YYYY-MM-DD`. `popular()` and `taggedImages()` accept a positive page. Credit details, popular people, and the three credit collections support a `language` override. `latest()` can be incomplete while a new person record is being edited on TMDB.
+
 ## Image URLs
 
 TMDB detail responses contain image paths. Build a safe public image URL with:
@@ -435,12 +459,12 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 99 public read operations. Account-state and rating methods require a TMDB
+all 111 public read operations. Account-state and rating methods require a TMDB
 session and are covered by offline contracts; the live test makes read-only requests.
 
 ## Roadmap
 
-People, lists, authentication, and the remaining TMDB resources will expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
+Lists, authentication, and the remaining TMDB resources will expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:
 

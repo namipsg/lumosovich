@@ -133,7 +133,7 @@
       "operationId": "changes-people-list",
       "httpMethod": "GET",
       "path": "/3/person/changes",
-      "publicMethod": null
+      "publicMethod": "people.changeList"
     },
     {
       "operationId": "changes-tv-list",
@@ -217,7 +217,7 @@
       "operationId": "credit-details",
       "httpMethod": "GET",
       "path": "/3/credit/{credit_id}",
-      "publicMethod": null
+      "publicMethod": "credits.get"
     },
     {
       "operationId": "discover-movie",
@@ -481,7 +481,7 @@
       "operationId": "person-popular-list",
       "httpMethod": "GET",
       "path": "/3/person/popular",
-      "publicMethod": null
+      "publicMethod": "people.popular"
     },
     {
       "operationId": "person-details",
@@ -493,55 +493,55 @@
       "operationId": "person-changes",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/changes",
-      "publicMethod": null
+      "publicMethod": "people.changes"
     },
     {
       "operationId": "person-combined-credits",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/combined_credits",
-      "publicMethod": null
+      "publicMethod": "people.combinedCredits"
     },
     {
       "operationId": "person-external-ids",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/external_ids",
-      "publicMethod": null
+      "publicMethod": "people.externalIds"
     },
     {
       "operationId": "person-images",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/images",
-      "publicMethod": null
+      "publicMethod": "people.images"
     },
     {
       "operationId": "person-latest-id",
       "httpMethod": "GET",
       "path": "/3/person/latest",
-      "publicMethod": null
+      "publicMethod": "people.latest"
     },
     {
       "operationId": "person-movie-credits",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/movie_credits",
-      "publicMethod": null
+      "publicMethod": "people.movieCredits"
     },
     {
       "operationId": "person-tv-credits",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/tv_credits",
-      "publicMethod": null
+      "publicMethod": "people.tvCredits"
     },
     {
       "operationId": "person-tagged-images",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/tagged_images",
-      "publicMethod": null
+      "publicMethod": "people.taggedImages"
     },
     {
       "operationId": "translations",
       "httpMethod": "GET",
       "path": "/3/person/{person_id}/translations",
-      "publicMethod": null
+      "publicMethod": "people.translations"
     },
     {
       "operationId": "review-details",

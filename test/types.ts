@@ -23,6 +23,9 @@ import {
   type RatingResponse,
   type ReviewDetails,
   type PersonSearchHit,
+  type PersonCreditsResponse,
+  type PersonTaggedImagesPage,
+  type CreditDetails,
   type SearchPage,
   type TvCatalogPage,
   type TvCreditsResponse,
@@ -96,6 +99,9 @@ const seasonStates: Promise<TvSeasonAccountStates> = tmdb.tv.seasons.accountStat
 const seasonChanges = tmdb.tv.seasons.changes(3624, { page: 2 });
 const episodeCredits: Promise<TvEpisodeCreditsResponse> = tmdb.tv.episodes.credits(1399, 1, 1);
 const episodeRating: Promise<RatingResponse> = tmdb.tv.episodes.rate(1399, 1, 1, 8.5, { guestSessionId: 'guest' });
+const personCredits: Promise<PersonCreditsResponse> = tmdb.people.combinedCredits(31, { language: 'fa-IR' });
+const taggedImages: Promise<PersonTaggedImagesPage> = tmdb.people.taggedImages(31, { page: 2 });
+const credit: Promise<CreditDetails> = tmdb.credits.get('6024a814c0ae36003d59cc3c');
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -142,6 +148,12 @@ tmdb.tv.seasons.accountStates(1399, 1);
 tmdb.tv.episodes.changes(63056, { page: 2 });
 // @ts-expect-error Episode ratings require an explicit session.
 tmdb.tv.episodes.rate(1399, 1, 1, 8.5);
+// @ts-expect-error Person IDs must be numeric.
+tmdb.people.movieCredits('31');
+// @ts-expect-error Credit IDs must be strings.
+tmdb.credits.get(31);
+// @ts-expect-error Tagged images do not accept a language option.
+tmdb.people.taggedImages(31, { language: 'en-US' });
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -151,4 +163,5 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   movieTranslations, movieVideos, nowPlaying, accountState, discovered,
   trending, review, network, rating, tvAiring, tvCredits, tvImages,
   tvScreened, tvVideos, tvRating, tvChanges, tvGroups, tvGroup,
-  seasonStates, seasonChanges, episodeCredits, episodeRating];
+  seasonStates, seasonChanges, episodeCredits, episodeRating,
+  personCredits, taggedImages, credit];

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.0 — 2026-10-24
+
+- Complete all 13 People and Credit operations in the pinned TMDB v3 specification by adding 12 public reads alongside the existing person details method. Coverage rises to 121 of 152 operations.
+- Add typed person catalogs, changes, credits, images, external IDs, translations, tagged images, latest details, and string credit details, with request contracts and response fixtures.
+- Exercise all 111 public read operations in the opt-in live smoke test; session-scoped methods remain covered by offline contracts.
+
 ## 0.7.1 — 2026-10-18
 
 - Publish the library under `tmdb-lumosovich` on npm, replacing the `lumosovich` package name. Existing `lumosovich` versions remain installable; update package imports to the new name.

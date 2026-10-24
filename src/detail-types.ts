@@ -1,4 +1,5 @@
 import type { TmdbId } from './types.js';
+import type { PersonResourceMethods } from './person-types.js';
 import type { MovieMetadataMethods } from './metadata-types.js';
 import type { MovieCatalogMethods } from './catalog-types.js';
 import type { TvCatalogMethods, TvMetadataMethods } from './tv-types.js';
@@ -86,6 +87,7 @@ export interface TvContentRatingsResponse {
 
 export interface PersonCredit {
   id: TmdbId;
+  credit_id?: string;
   media_type?: 'movie' | 'tv';
   title?: string;
   name?: string;
@@ -275,6 +277,6 @@ export interface TvMethods extends TvMetadataMethods, TvCatalogMethods, TvSeries
   };
 }
 
-export interface PersonMethods {
+export interface PersonMethods extends PersonResourceMethods {
   get(id: TmdbId, options?: PersonDetailOptions): Promise<PersonDetails>;
 }

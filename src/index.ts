@@ -8,6 +8,8 @@ import {
   createTrendingMethods,
 } from './explore.js';
 import { createSearchMethods } from './search.js';
+import { createCreditMethods } from './person-resources.js';
+import type { CreditMethods } from './person-types.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
 import type {
@@ -25,6 +27,13 @@ import type { DiscoverMethods, KeywordMethods, NetworkMethods, ReviewMethods, Tr
 
 export { TmdbError } from './errors.js';
 export type { TmdbErrorCode } from './errors.js';
+export type {
+  CreditDetails, CreditMethods, PersonChangeListOptions, PersonChangeListPage,
+  PersonChangesOptions, PersonChangesResponse, PersonCreditsResponse,
+  PersonExternalIdsResponse, PersonImagesResponse, PersonPopularHit,
+  PersonPopularPage, PersonResourceMethods, PersonTaggedImage,
+  PersonTaggedImagesPage, PersonTranslationsResponse,
+} from './person-types.js';
 export type { ImageMethods, ImageSize } from './images.js';
 export type {
   DiscoverMethods, DiscoverCommonOptions, KeywordDetails, KeywordMethods,
@@ -169,6 +178,7 @@ export class Lumosovich {
   readonly networks: NetworkMethods;
   readonly tv: TvMethods;
   readonly people: PersonMethods;
+  readonly credits: CreditMethods;
   readonly images: ImageMethods;
   readonly configuration: ConfigurationMethods;
   readonly certifications: CertificationMethods;
@@ -209,6 +219,7 @@ export class Lumosovich {
     this.networks = createNetworkMethods(http);
     this.tv = createTvMethods(http);
     this.people = createPersonMethods(http);
+    this.credits = createCreditMethods(http);
     this.images = createImageMethods();
     this.configuration = createConfigurationMethods(http);
     this.certifications = createCertificationMethods(http);
