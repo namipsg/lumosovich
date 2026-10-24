@@ -72,7 +72,15 @@ test('the fifth group completes every TV operation in the pinned specification',
   const tvOperations = ledger.operations.filter((entry) => entry.path.startsWith('/3/tv'));
   assert.equal(tvOperations.length, 48);
   assert.ok(tvOperations.every((entry) => entry.publicMethod));
-  assert.equal(checkCoverage(baseline).implemented, 109);
+  assert.ok(checkCoverage(baseline).implemented >= 109);
+});
+
+test('the sixth group completes all person and credit operations in the pinned specification', () => {
+  const operations = ledger.operations.filter((entry) =>
+    /^\/3\/(person|credit)(\/|$)/.test(entry.path));
+  assert.equal(operations.length, 13);
+  assert.ok(operations.every((entry) => entry.publicMethod));
+  assert.equal(checkCoverage(baseline).implemented, 121);
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {

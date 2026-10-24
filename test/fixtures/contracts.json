@@ -132,5 +132,17 @@
   "tv-episode-videos": {"args":[1399,1,1,{"language":"fa-IR","videoLanguages":["fa","en","null"]}],"pathParameters":{"series_id":1399,"season_number":1,"episode_number":1},"query":{"language":"fa-IR","include_video_language":"fa,en,null"}},
   "tv-episode-add-rating": {"args":[1399,1,1,8.5,{"sessionId":"contract-session"}],"pathParameters":{"series_id":1399,"season_number":1,"episode_number":1},"query":{"session_id":"contract-session"},"body":{"value":8.5}},
   "tv-episode-delete-rating": {"args":[1399,1,1,{"guestSessionId":"contract-guest"}],"pathParameters":{"series_id":1399,"season_number":1,"episode_number":1},"query":{"guest_session_id":"contract-guest"}},
-  "tv-episode-group-details": {"args":["5acf93e60e0a26346d0000ce"],"pathParameters":{"tv_episode_group_id":"5acf93e60e0a26346d0000ce"},"query":{}}
+  "tv-episode-group-details": {"args":["5acf93e60e0a26346d0000ce"],"pathParameters":{"tv_episode_group_id":"5acf93e60e0a26346d0000ce"},"query":{}},
+  "changes-people-list": {"args":[{"startDate":"2024-01-01","endDate":"2024-01-05","page":2}],"query":{"start_date":"2024-01-01","end_date":"2024-01-05","page":"2"}},
+  "credit-details": {"args":[" 6024a814c0ae36003d59cc3c ",{"language":"fa-IR"}],"pathParameters":{"credit_id":"6024a814c0ae36003d59cc3c"},"query":{"language":"fa-IR"}},
+  "person-popular-list": {"args":[{"language":"fa-IR","page":2}],"query":{"language":"fa-IR","page":"2"}},
+  "person-changes": {"args":[31,{"startDate":"2024-01-01","endDate":"2024-01-05","page":2}],"pathParameters":{"person_id":31},"query":{"start_date":"2024-01-01","end_date":"2024-01-05","page":"2"}},
+  "person-combined-credits": {"args":[31,{"language":"fa-IR"}],"pathParameters":{"person_id":31},"query":{"language":"fa-IR"}},
+  "person-external-ids": {"args":[31],"pathParameters":{"person_id":31},"query":{}},
+  "person-images": {"args":[287],"pathParameters":{"person_id":287},"query":{}},
+  "person-latest-id": {"args":[],"query":{}},
+  "person-movie-credits": {"args":[31,{"language":"fa-IR"}],"pathParameters":{"person_id":31},"query":{"language":"fa-IR"}},
+  "person-tv-credits": {"args":[31,{"language":"fa-IR"}],"pathParameters":{"person_id":31},"query":{"language":"fa-IR"}},
+  "person-tagged-images": {"args":[31,{"page":2}],"pathParameters":{"person_id":31},"query":{"page":"2"}},
+  "translations": {"args":[31],"pathParameters":{"person_id":31},"query":{}}
 }

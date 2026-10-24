@@ -174,6 +174,34 @@ if (!apiKey && !accessToken) {
     });
     assert.equal(person.external_ids?.imdb_id, 'nm0000138');
 
+    const personId = 31;
+    step = 'person change list';
+    assert.ok(Array.isArray((await tmdb.people.changeList({ page: 1 })).results));
+    step = 'person changes';
+    assert.ok(Array.isArray((await tmdb.people.changes(personId)).changes));
+    step = 'popular people';
+    assert.ok(Array.isArray((await tmdb.people.popular({ page: 1 })).results));
+    for (const method of ['combinedCredits', 'movieCredits', 'tvCredits']) {
+      step = `person ${method}`;
+      const credits = await tmdb.people[method](personId);
+      assert.equal(credits.id, personId);
+      assert.ok(Array.isArray(credits.cast));
+      assert.ok(Array.isArray(credits.crew));
+    }
+    for (const method of ['externalIds', 'images', 'translations']) {
+      step = `person ${method}`;
+      assert.equal((await tmdb.people[method](personId)).id, personId);
+    }
+    step = 'latest person';
+    assert.ok((await tmdb.people.latest()).id > 0);
+    step = 'person tagged images';
+    assert.equal((await tmdb.people.taggedImages(personId)).id, personId);
+    step = 'credit details';
+    const movieCredits = await tmdb.people.movieCredits(personId);
+    const creditId = movieCredits.cast.find((item) => typeof item.credit_id === 'string')?.credit_id;
+    assert.ok(creditId);
+    assert.equal((await tmdb.credits.get(creditId)).id, creditId);
+
     for (const [method, query] of [
       ['tv', 'Game of Thrones'], ['multi', 'Inception'],
       ['people', 'Leonardo DiCaprio'], ['collections', 'Star Wars'],
@@ -197,7 +225,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 99 public read operations.');
+    console.log('TMDB live smoke passed: all 111 public read operations.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);

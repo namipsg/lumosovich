@@ -7,6 +7,7 @@ import { createTvMetadataMethods } from './tv-metadata.js';
 import { createTvSeriesResourceMethods, createTvEpisodeGroupMethods } from './tv-series-resources.js';
 import { createTvSeasonResourceMethods } from './tv-season-resources.js';
 import { createTvEpisodeResourceMethods } from './tv-episode-resources.js';
+import { createPersonResourceMethods } from './person-resources.js';
 import { positiveId, slotNumber } from './ids.js';
 import type {
   DetailOptions,
@@ -170,6 +171,7 @@ export function createTvMethods(http: TmdbHttpClient): TvMethods {
 
 export function createPersonMethods(http: TmdbHttpClient): PersonMethods {
   return {
+    ...createPersonResourceMethods(http),
     async get(id: TmdbId, options = {}): Promise<PersonDetails> {
       const validId = positiveId(id);
       const payload = await http.get(
