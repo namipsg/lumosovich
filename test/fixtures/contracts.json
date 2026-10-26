@@ -157,5 +157,16 @@
   "list-remove-movie": {"args":[1,550,{"sessionId":"contract-session"}],"pathParameters":{"list_id":1},"query":{"session_id":"contract-session"},"body":{"media_id":550}},
   "watch-providers-available-regions": {"args":[{"language":"fa-IR"}],"query":{"language":"fa-IR"}},
   "watch-providers-movie-list": {"args":[{"language":"fa-IR","watchRegion":"IR"}],"query":{"language":"fa-IR","watch_region":"IR"}},
-  "watch-provider-tv-list": {"args":[{"language":"fa-IR","watchRegion":"IR"}],"query":{"language":"fa-IR","watch_region":"IR"}}
+  "watch-provider-tv-list": {"args":[{"language":"fa-IR","watchRegion":"IR"}],"query":{"language":"fa-IR","watch_region":"IR"}},
+  "account-details": {"args":[548,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"}},
+  "account-get-favorites": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-favorite-tv": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-rated-movies": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-rated-tv": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-rated-tv-episodes": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-watchlist-movies": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-watchlist-tv": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
+  "account-lists": {"args":[548,{"sessionId":"contract-session","page":2}],"pathParameters":{"account_id":548},"query":{"page":"2","session_id":"contract-session"}},
+  "account-add-favorite": {"args":[548,"movie",550,true,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"},"body":{"media_type":"movie","media_id":550,"favorite":true}},
+  "account-add-to-watchlist": {"args":[548,"tv",1399,false,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"},"body":{"media_type":"tv","media_id":1399,"watchlist":false}}
 }

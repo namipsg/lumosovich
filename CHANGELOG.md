@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.0 — 2026-10-26
+
+- Add all 11 pinned TMDB v3 Account operations: details, favorites, lists, ratings, watchlists, and favorite/watchlist mutations. Coverage reaches 145 of 152.
+- Require an explicit user session for account methods, validate route options and response shapes, and preserve TMDB's raw fields. Add request contracts, response fixtures, and focused negative tests.
+- Keep account reads and writes in offline tests because no disposable user session is available. The opt-in live smoke test still exercises all 119 public read routes without changing account data.
+
 ## 0.9.0 — 2026-10-26
 
 - Add all 13 pinned TMDB v3 List, Guest Session rated-content, and Watch Provider catalog operations, bringing coverage to 134 of 152.
