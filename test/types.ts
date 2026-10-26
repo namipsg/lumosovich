@@ -30,6 +30,9 @@ import {
   type CreateListResponse,
   type GuestRatedMovie,
   type WatchProviderListResponse,
+  type AccountDetails,
+  type AccountRatedMovie,
+  type AccountMutationResponse,
   type SearchPage,
   type TvCatalogPage,
   type TvCreditsResponse,
@@ -110,6 +113,13 @@ const listDetails: Promise<ListDetails> = tmdb.lists.get(1, { page: 2 });
 const createdList: Promise<CreateListResponse> = tmdb.lists.create({ name: 'Example', sessionId: 'session' });
 const guestMovies: Promise<SearchPage<GuestRatedMovie>> = tmdb.guestSessions.ratedMovies('guest', { sortBy: 'created_at.desc' });
 const providers: Promise<WatchProviderListResponse> = tmdb.watchProviders.movies({ watchRegion: 'US' });
+const accountDetails: Promise<AccountDetails> = tmdb.accounts.get(548, { sessionId: 'session' });
+const accountRatings: Promise<SearchPage<AccountRatedMovie>> = tmdb.accounts.ratedMovies(548, {
+  sessionId: 'session', page: 2, sortBy: 'created_at.desc',
+});
+const accountFavorite: Promise<AccountMutationResponse> = tmdb.accounts.setFavorite(
+  548, 'movie', 550, true, { sessionId: 'session' },
+);
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -170,6 +180,14 @@ tmdb.lists.clear(1, { sessionId: 'session' });
 tmdb.guestSessions.ratedMovies('guest', { sortBy: 'rating.desc' });
 // @ts-expect-error Provider regions do not accept watch-region filtering.
 tmdb.watchProviders.regions({ watchRegion: 'US' });
+// @ts-expect-error Account reads require an explicit user session.
+tmdb.accounts.get(548);
+// @ts-expect-error Account lists do not accept a language parameter.
+tmdb.accounts.lists(548, { sessionId: 'session', language: 'en-US' });
+// @ts-expect-error Account favorites accept only movie or TV media.
+tmdb.accounts.setFavorite(548, 'person', 31, true, { sessionId: 'session' });
+// @ts-expect-error Account mutations require an explicit user session.
+tmdb.accounts.setWatchlist(548, 'tv', 1399, true);
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -180,4 +198,5 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   trending, review, network, rating, tvAiring, tvCredits, tvImages,
   tvScreened, tvVideos, tvRating, tvChanges, tvGroups, tvGroup,
   seasonStates, seasonChanges, episodeCredits, episodeRating,
-  personCredits, taggedImages, credit, listDetails, createdList, guestMovies, providers];
+  personCredits, taggedImages, credit, listDetails, createdList, guestMovies, providers,
+  accountDetails, accountRatings, accountFavorite];

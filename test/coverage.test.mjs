@@ -88,7 +88,15 @@ test('the seventh group covers lists, guest session ratings, and watch provider 
     /^\/3\/(list|guest_session|watch\/providers)(\/|$)/.test(entry.path));
   assert.equal(operations.length, 13);
   assert.ok(operations.every((entry) => entry.publicMethod));
-  assert.equal(checkCoverage(baseline).implemented, 134);
+  assert.ok(checkCoverage(baseline).implemented >= 134);
+});
+
+test('the eighth group covers every account read and mutation', () => {
+  const operations = ledger.operations.filter((entry) =>
+    entry.path.startsWith('/3/account/'));
+  assert.equal(operations.length, 11);
+  assert.ok(operations.every((entry) => entry.publicMethod?.startsWith('accounts.')));
+  assert.ok(checkCoverage(baseline).implemented >= 145);
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {

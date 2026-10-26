@@ -16,6 +16,10 @@ import { createGuestSessionMethods } from './guest-sessions.js';
 import type { GuestSessionMethods } from './guest-session-types.js';
 import { createWatchProviderMethods } from './watch-providers.js';
 import type { WatchProviderMethods } from './watch-provider-types.js';
+import { createAccountReadMethods } from './account-reads.js';
+import type { AccountReadMethods } from './account-read-types.js';
+import { createAccountMutationMethods } from './account-mutations.js';
+import type { AccountMutationMethods } from './account-mutation-types.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
 import type {
@@ -46,6 +50,16 @@ export type {
   WatchProviderEntry, WatchProviderListResponse, WatchProviderMethods,
   WatchProviderOptions, WatchProviderRegionsResponse,
 } from './watch-provider-types.js';
+export type {
+  AccountDetails, AccountList, AccountListsOptions, AccountMediaOptions,
+  AccountMovie, AccountRatedEpisode, AccountRatedMovie, AccountRatedTv,
+  AccountReadMethods, AccountSessionOptions, AccountTv,
+} from './account-read-types.js';
+export type {
+  AccountMutationMediaType, AccountMutationMethods, AccountMutationResponse,
+  AccountMutationSessionOptions,
+} from './account-mutation-types.js';
+export type AccountMethods = AccountReadMethods & AccountMutationMethods;
 export type {
   CreditDetails, CreditMethods, PersonChangeListOptions, PersonChangeListPage,
   PersonChangesOptions, PersonChangesResponse, PersonCreditsResponse,
@@ -201,6 +215,7 @@ export class Lumosovich {
   readonly lists: ListMethods;
   readonly guestSessions: GuestSessionMethods;
   readonly watchProviders: WatchProviderMethods;
+  readonly accounts: AccountReadMethods & AccountMutationMethods;
   readonly images: ImageMethods;
   readonly configuration: ConfigurationMethods;
   readonly certifications: CertificationMethods;
@@ -245,6 +260,7 @@ export class Lumosovich {
     this.lists = createListMethods(http);
     this.guestSessions = createGuestSessionMethods(http);
     this.watchProviders = createWatchProviderMethods(http);
+    this.accounts = { ...createAccountReadMethods(http), ...createAccountMutationMethods(http) };
     this.images = createImageMethods();
     this.configuration = createConfigurationMethods(http);
     this.certifications = createCertificationMethods(http);
