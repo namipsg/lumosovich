@@ -14,11 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.11.0` covers **all 152 TMDB v3 operations** measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; the final parity audit and stable release are planned for `1.0.0`. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `1.0.0` covers **all 152 TMDB v3 operations** measured against the official specification pinned on September 27, 2026. The [parity audit](https://github.com/namipsg/lumosovich/blob/main/docs/parity-audit.md) explains the independent checks and their limits; the [migration guide](https://github.com/namipsg/lumosovich/blob/main/MIGRATION.md) covers upgrading from 0.x.
 
-The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The live smoke test exercises all 122 public and temporary-session GET routes without changing account data. A new, unrated guest session currently receives HTTP 404 from TMDB on its rated-content routes. Account operations, list mutations, account-state methods, ratings, and user-session lifecycle writes are verified by offline request contracts.
+The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The live smoke test exercises all 122 public and temporary-session GET routes without changing account data. A new, unrated guest session currently receives HTTP 404 from TMDB on its rated-content routes. Account operations, list mutations, account-state methods, ratings, and user-session lifecycle writes are verified by offline request contracts and a [write cleanup test](https://github.com/namipsg/lumosovich/blob/main/docs/write-testing.md).
 
-The release passes 324 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
+The release passes 329 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -527,9 +527,9 @@ npm ci
 npm test
 ```
 
-The suite checks the pinned OpenAPI coverage ledger, generated response fixtures,
+The suite checks the pinned OpenAPI coverage ledger, the independent parity audit, generated response fixtures,
 request contracts, ESM/CommonJS entry points, and exported TypeScript declarations.
-Print the operation coverage count with `npm run check:coverage`; regenerate
+Print the operation coverage count with `npm run check:coverage` or run the full independent audit with `npm run audit:parity`; regenerate
 response fixtures after a reviewed baseline change with `npm run fixtures:generate`.
 See [CONTRIBUTING.md](https://github.com/namipsg/lumosovich/blob/main/CONTRIBUTING.md) for the endpoint implementation and pull request workflow.
 
@@ -552,9 +552,9 @@ three rated-content routes and accepts TMDB's HTTP 404 for an unrated session.
 List and account mutations and user-session lifecycle writes are covered by offline
 contracts; the live test does not change account data.
 
-## Roadmap
+## Coverage and maintenance
 
-All operations in the pinned TMDB v3 specification now have public typed methods. The final parity audit and stable `1.0.0` release remain. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks every operation.
+All operations in the pinned TMDB v3 specification have public typed methods. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks each one. TMDB can change its live API, so a future snapshot update requires a reviewed specification diff, updated contracts and fixtures, and a rerun of the independent audit and live checks.
 
 The goal is to cover the TMDB API while keeping the library:
 

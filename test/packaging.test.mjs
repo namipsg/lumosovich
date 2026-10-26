@@ -52,6 +52,7 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
     ], { cwd: root, encoding: 'utf8' }));
     assert.equal(pack.name, 'tmdb-lumosovich');
     assert.ok(pack.files.some((file) => file.path === 'LICENSE'));
+    assert.ok(pack.files.some((file) => file.path === 'MIGRATION.md'));
     assert.ok(pack.files.some((file) => file.path === 'dist/reference-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/catalog-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/tv-types.d.ts'));
@@ -60,8 +61,10 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
     assert.ok(pack.files.some((file) => file.path === 'dist/list-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/guest-session-types.d.ts'));
     assert.ok(pack.files.some((file) => file.path === 'dist/watch-provider-types.d.ts'));
+    assert.ok(pack.files.some((file) => file.path === 'dist/account-read-types.d.ts'));
+    assert.ok(pack.files.some((file) => file.path === 'dist/authentication-types.d.ts'));
     assert.ok(pack.files.every((file) => file.path.startsWith('dist/') ||
-      ['LICENSE', 'README.md', 'package.json'].includes(file.path)));
+      ['LICENSE', 'MIGRATION.md', 'README.md', 'package.json'].includes(file.path)));
     execFileSync('npm', [
       'install', '--prefix', directory, join(directory, pack.filename),
       '--ignore-scripts', '--offline', '--no-audit', '--no-fund', '--package-lock=false',
@@ -90,6 +93,8 @@ test('the packed artifact ships MIT metadata and usable ESM/CommonJS APIs', () =
         assert.deepEqual((await client.tv.popular()).results, []);
         assert.deepEqual((await client.genres.tv()).genres, []);
         assert.equal(typeof client.configuration.primaryTranslations, 'function');
+        assert.equal(typeof client.accounts.favoriteMovies, 'function');
+        assert.equal(typeof client.authentication.createSession, 'function');
       }
     `;
     execFileSync(process.execPath, ['--input-type=module', '-e', consumer], {

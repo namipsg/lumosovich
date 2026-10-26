@@ -1,6 +1,6 @@
 # Contributing to Lumosovich
 
-Thanks for helping expand TMDB v3 coverage. Before starting a large change, open an issue so the public method and endpoint scope can be discussed.
+Thanks for helping maintain Lumosovich. Before starting a large change, open an issue so the public method and endpoint scope can be discussed.
 
 ## Local setup
 
@@ -11,7 +11,7 @@ npm ci
 npm test
 ```
 
-The offline suite builds the ESM and CommonJS packages, checks TypeScript declarations, validates the pinned TMDB OpenAPI coverage ledger, and tests request/response contracts. It needs no TMDB credential.
+The offline suite builds the ESM and CommonJS packages, checks TypeScript declarations, independently audits the pinned TMDB OpenAPI coverage ledger, and tests request/response contracts and write cleanup. It needs no TMDB credential.
 
 ## Adding an API operation
 
@@ -20,7 +20,7 @@ The offline suite builds the ESM and CommonJS packages, checks TypeScript declar
 3. Export typed inputs and results, validate caller inputs before fetching, and reject malformed upstream responses with safe errors.
 4. Set the matching `publicMethod` in `spec/coverage.json` and add a reviewed request entry to `test/fixtures/contracts.json`.
 5. Run `npm run fixtures:generate` to create the compact response fixture from the pinned OpenAPI example. Add focused tests for behavior the contract fixture cannot establish.
-6. Update the README and `test/live-smoke.mjs` where appropriate, then run `npm test` and `npm run check:coverage`.
+6. For a write operation, add its restoration path to `spec/write-cleanup.json` and a focused offline test. Update the README and `test/live-smoke.mjs` where appropriate, then run `npm test` and `npm run audit:parity`.
 
 If you deliberately update the OpenAPI snapshot, follow [the coverage baseline](spec/README.md) to review its checksum, operation changes, and fixture impact.
 

@@ -1,6 +1,6 @@
 {
   "name": "tmdb-lumosovich",
-  "version": "0.11.0",
+  "version": "1.0.0",
   "description": "Typed Node.js client for the TMDB API with IMDb ID lookup for movies, TV shows, and people",
   "keywords": [
     "tmdb",
@@ -29,6 +29,7 @@
   "files": [
     "dist",
     "README.md",
+    "MIGRATION.md",
     "LICENSE"
   ],
   "main": "./dist/index.js",
@@ -42,7 +43,8 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && esbuild src/index.ts --bundle --platform=node --format=cjs --target=node22 --outfile=dist/index.cjs",
-    "test": "npm run build && node scripts/check-coverage.mjs && node scripts/generate-fixtures.mjs --check && npm run test:types && node --test test/*.test.mjs",
+    "test": "npm run build && node scripts/check-coverage.mjs && node scripts/audit-parity.mjs && node scripts/generate-fixtures.mjs --check && npm run test:types && node --test test/*.test.mjs",
+    "audit:parity": "npm run build && node scripts/audit-parity.mjs",
     "test:types": "tsc --project tsconfig.types.json",
     "check:coverage": "npm run build && node scripts/check-coverage.mjs",
     "fixtures:generate": "node scripts/generate-fixtures.mjs",
