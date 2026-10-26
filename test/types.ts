@@ -33,6 +33,8 @@ import {
   type AccountDetails,
   type AccountRatedMovie,
   type AccountMutationResponse,
+  type AuthenticationRequestTokenResponse,
+  type AuthenticationSessionResponse,
   type SearchPage,
   type TvCatalogPage,
   type TvCreditsResponse,
@@ -120,6 +122,11 @@ const accountRatings: Promise<SearchPage<AccountRatedMovie>> = tmdb.accounts.rat
 const accountFavorite: Promise<AccountMutationResponse> = tmdb.accounts.setFavorite(
   548, 'movie', 550, true, { sessionId: 'session' },
 );
+const authToken: Promise<AuthenticationRequestTokenResponse> = tmdb.authentication.createRequestToken();
+const authSession: Promise<AuthenticationSessionResponse> = tmdb.authentication.createSession('request-token');
+const authLogin: Promise<AuthenticationRequestTokenResponse> = tmdb.authentication.validateRequestTokenWithLogin({
+  username: 'user', password: 'password', requestToken: 'request-token',
+});
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -188,6 +195,12 @@ tmdb.accounts.lists(548, { sessionId: 'session', language: 'en-US' });
 tmdb.accounts.setFavorite(548, 'person', 31, true, { sessionId: 'session' });
 // @ts-expect-error Account mutations require an explicit user session.
 tmdb.accounts.setWatchlist(548, 'tv', 1399, true);
+// @ts-expect-error Session creation requires a request token.
+tmdb.authentication.createSession();
+// @ts-expect-error Login validation needs a request token.
+tmdb.authentication.validateRequestTokenWithLogin({ username: 'user', password: 'password' });
+// @ts-expect-error Session deletion requires a session ID.
+tmdb.authentication.deleteSession();
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -199,4 +212,4 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   tvScreened, tvVideos, tvRating, tvChanges, tvGroups, tvGroup,
   seasonStates, seasonChanges, episodeCredits, episodeRating,
   personCredits, taggedImages, credit, listDetails, createdList, guestMovies, providers,
-  accountDetails, accountRatings, accountFavorite];
+  accountDetails, accountRatings, accountFavorite, authToken, authSession, authLogin];

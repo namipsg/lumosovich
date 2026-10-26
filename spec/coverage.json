@@ -7,7 +7,7 @@
       "operationId": "authentication-validate-key",
       "httpMethod": "GET",
       "path": "/3/authentication",
-      "publicMethod": null
+      "publicMethod": "authentication.validateKey"
     },
     {
       "operationId": "account-details",
@@ -79,37 +79,37 @@
       "operationId": "authentication-create-guest-session",
       "httpMethod": "GET",
       "path": "/3/authentication/guest_session/new",
-      "publicMethod": null
+      "publicMethod": "authentication.createGuestSession"
     },
     {
       "operationId": "authentication-create-request-token",
       "httpMethod": "GET",
       "path": "/3/authentication/token/new",
-      "publicMethod": null
+      "publicMethod": "authentication.createRequestToken"
     },
     {
       "operationId": "authentication-create-session",
       "httpMethod": "POST",
       "path": "/3/authentication/session/new",
-      "publicMethod": null
+      "publicMethod": "authentication.createSession"
     },
     {
       "operationId": "authentication-create-session-from-v4-token",
       "httpMethod": "POST",
       "path": "/3/authentication/session/convert/4",
-      "publicMethod": null
+      "publicMethod": "authentication.createSessionFromV4Token"
     },
     {
       "operationId": "authentication-create-session-from-login",
       "httpMethod": "POST",
       "path": "/3/authentication/token/validate_with_login",
-      "publicMethod": null
+      "publicMethod": "authentication.validateRequestTokenWithLogin"
     },
     {
       "operationId": "authentication-delete-session",
       "httpMethod": "DELETE",
       "path": "/3/authentication/session",
-      "publicMethod": null
+      "publicMethod": "authentication.deleteSession"
     },
     {
       "operationId": "certification-movie-list",

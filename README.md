@@ -6,7 +6,7 @@
 
 A small, typed Node.js wrapper for the TMDB API, including IMDb ID lookup through TMDB.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, people and credit resources, lists, guest-session ratings, watch-provider catalogs, account reads and mutations, and TV seasons, episodes, and episode groups.
+**Lumosovich** supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, people and credit resources, lists, guest-session ratings, watch-provider catalogs, account operations, authentication and session lifecycle, and TV seasons, episodes, and episode groups.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -14,11 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.10.0` covers **145 of 152 TMDB v3 operations**, including all TV, person, credit, list, guest-session rating, watch-provider catalog, and account operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.11.0` covers **all 152 TMDB v3 operations** measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; the final parity audit and stable release are planned for `1.0.0`. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The live smoke test exercises all 119 public read routes without changing account data. A new, unrated guest session currently receives HTTP 404 from TMDB on its rated-content routes. Account operations, list mutations, account-state methods, and ratings require a TMDB user session and are verified by offline request contracts.
+The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The live smoke test exercises all 122 public and temporary-session GET routes without changing account data. A new, unrated guest session currently receives HTTP 404 from TMDB on its rated-content routes. Account operations, list mutations, account-state methods, ratings, and user-session lifecycle writes are verified by offline request contracts.
 
-The release passes 302 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
+The release passes 324 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -299,7 +299,7 @@ await tmdb.tv.episodes.rate(1399, 1, 1, 8.5, session);
 await tmdb.tv.episodes.deleteRating(1399, 1, 1, session);
 ```
 
-Use `guestSessionId` instead of `sessionId` for a guest session; supply exactly one. Movie, series, and episode ratings range from 0.5 to 10 in half-point steps. `deleteRating()` removes the rating associated with that session. Session creation is planned for a later group, so obtain a session through TMDB's authentication flow before using these methods. The live smoke test does not mutate an account.
+Use `guestSessionId` instead of `sessionId` for a guest session; supply exactly one. Movie, series, and episode ratings range from 0.5 to 10 in half-point steps. `deleteRating()` removes the rating associated with that session. Create a guest session or request a user session with `tmdb.authentication` as shown below. The live smoke test does not mutate an account.
 TMDB may remove a newly rated movie from the account's watchlist by default; see [TMDB's rating behavior](https://developer.themoviedb.org/reference/movie-add-rating).
 
 ## Seasons and episodes
@@ -411,7 +411,26 @@ const movieProviders = await tmdb.watchProviders.movies({ watchRegion: 'US' });
 const tvProviders = await tmdb.watchProviders.tv({ watchRegion: 'US' });
 ```
 
-Guest rating lists accept `language`, positive `page`, and `sortBy: 'created_at.asc' | 'created_at.desc'`. A new unrated guest session may receive HTTP 404. Provider catalogs return a `results` array; movie and TV catalogs accept `watchRegion`, while the regions catalog accepts only `language`. Guest-session creation is part of the upcoming authentication group.
+Guest rating lists accept `language`, positive `page`, and `sortBy: 'created_at.asc' | 'created_at.desc'`. A new unrated guest session may receive HTTP 404. Provider catalogs return a `results` array; movie and TV catalogs accept `watchRegion`, while the regions catalog accepts only `language`. Create a guest session with `tmdb.authentication.createGuestSession()`.
+
+## Authentication and sessions
+
+Use the same API key or Read Access Token supplied to the client to validate access and create temporary tokens. TMDB currently returns only `success` for key validation; `status_code` and `status_message` are optional:
+
+```js
+const keyStatus = await tmdb.authentication.validateKey();
+const guest = await tmdb.authentication.createGuestSession();
+const request = await tmdb.authentication.createRequestToken();
+const approvalUrl = `https://www.themoviedb.org/authenticate/${encodeURIComponent(request.request_token)}`;
+console.log(approvalUrl); // Open this URL and approve access in your browser.
+
+// After the user approves the request token:
+const userSession = await tmdb.authentication.createSession(request.request_token);
+```
+
+The guest session ID works with guest ratings; a user `session_id` is required for account and list operations. Request tokens expire, and user approval is required before `createSession()` succeeds. Keep both kinds of session ID private. To end a user session, call `tmdb.authentication.deleteSession(userSession.session_id)`. See [TMDB's v3 session guide](https://developer.themoviedb.org/reference/authentication-how-do-i-generate-a-session-id) for the approval flow.
+
+For an existing TMDB v4 access token, `createSessionFromV4Token(accessToken)` converts it to a v3 user session. `validateRequestTokenWithLogin({ username, password, requestToken })` is also available for the v3 username/password flow; supply credentials from private runtime settings and never log them. These user-session writes have offline request and response tests. The live smoke test only validates the key and creates temporary guest/request tokens.
 
 ## Account
 
@@ -528,14 +547,14 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 119 public read routes. The test creates a temporary guest session for the
+all 122 public and temporary-session GET routes. The test creates a temporary guest session for the
 three rated-content routes and accepts TMDB's HTTP 404 for an unrated session.
-List and account mutations require a user session and are covered by offline
+List and account mutations and user-session lifecycle writes are covered by offline
 contracts; the live test does not change account data.
 
 ## Roadmap
 
-Account resources, authentication, and the final parity audit will complete coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
+All operations in the pinned TMDB v3 specification now have public typed methods. The final parity audit and stable `1.0.0` release remain. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks every operation.
 
 The goal is to cover the TMDB API while keeping the library:
 

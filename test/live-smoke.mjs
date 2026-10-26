@@ -10,6 +10,10 @@ if (!apiKey && !accessToken) {
   let step = 'find movie';
   try {
     const tmdb = new Lumosovich({ apiKey, accessToken });
+    step = 'authentication key validation';
+    assert.equal((await tmdb.authentication.validateKey()).success, true);
+    step = 'temporary authentication request token';
+    assert.ok((await tmdb.authentication.createRequestToken()).request_token);
     const movieMatches = await tmdb.find.byExternalId('tt1375666', 'imdb_id');
     assert.equal(movieMatches.movie_results.length, 1);
     const movieId = movieMatches.movie_results[0].id;
@@ -211,13 +215,7 @@ if (!apiKey && !accessToken) {
       assert.ok(Array.isArray((await tmdb.watchProviders[method]()).results));
     }
     step = 'temporary guest session';
-    const guestUrl = new URL('https://api.themoviedb.org/3/authentication/guest_session/new');
-    if (apiKey) guestUrl.searchParams.set('api_key', apiKey);
-    const guestResponse = await fetch(guestUrl, {
-      headers: accessToken ? { authorization: `Bearer ${accessToken}` } : {},
-    });
-    assert.equal(guestResponse.ok, true);
-    const guestSession = await guestResponse.json();
+    const guestSession = await tmdb.authentication.createGuestSession();
     assert.equal(guestSession.success, true);
     assert.ok(guestSession.guest_session_id);
     for (const method of ['ratedMovies', 'ratedTv', 'ratedTvEpisodes']) {
@@ -253,7 +251,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 119 public read routes exercised.');
+    console.log('TMDB live smoke passed: all 122 public and temporary-session GET routes exercised.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);

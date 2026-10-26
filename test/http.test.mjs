@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { Lumosovich, TmdbError } from '../dist/index.js';
+import { TmdbHttpClient } from '../dist/http.js';
 
 const emptyFindResponse = () => ({
   movie_results: [],
@@ -112,4 +113,17 @@ test('supports per-request language and validates configuration', async () => {
   assert.throws(() => new Lumosovich({ apiKey: 'key', timeoutMs: 0 }), TypeError);
   assert.throws(() => new Lumosovich({ apiKey: 'key', timeoutMs: -1 }), TypeError);
   assert.throws(() => new Lumosovich({ apiKey: 'key', fetch: null }), TypeError);
+});
+
+test('DELETE can carry the authentication session JSON body without a language query', async () => {
+  const requests = [];
+  const http = new TmdbHttpClient({ apiKey: 'key', fetch: async (url, init) => {
+    requests.push({ url: new URL(url), init });
+    return new Response(JSON.stringify({ success: true }));
+  } });
+  assert.deepEqual(await http.delete('authentication/session', {}, { session_id: 'session' }), { success: true });
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].init.method, 'DELETE');
+  assert.equal(requests[0].url.searchParams.has('language'), false);
+  assert.deepEqual(JSON.parse(requests[0].init.body), { session_id: 'session' });
 });

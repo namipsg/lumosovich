@@ -168,5 +168,12 @@
   "account-watchlist-tv": {"args":[548,{"sessionId":"contract-session","language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"account_id":548},"query":{"language":"fa-IR","page":"2","session_id":"contract-session","sort_by":"created_at.desc"}},
   "account-lists": {"args":[548,{"sessionId":"contract-session","page":2}],"pathParameters":{"account_id":548},"query":{"page":"2","session_id":"contract-session"}},
   "account-add-favorite": {"args":[548,"movie",550,true,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"},"body":{"media_type":"movie","media_id":550,"favorite":true}},
-  "account-add-to-watchlist": {"args":[548,"tv",1399,false,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"},"body":{"media_type":"tv","media_id":1399,"watchlist":false}}
+  "account-add-to-watchlist": {"args":[548,"tv",1399,false,{"sessionId":"contract-session"}],"pathParameters":{"account_id":548},"query":{"session_id":"contract-session"},"body":{"media_type":"tv","media_id":1399,"watchlist":false}},
+  "authentication-validate-key": {"args":[],"query":{}},
+  "authentication-create-guest-session": {"args":[],"query":{}},
+  "authentication-create-request-token": {"args":[],"query":{}},
+  "authentication-create-session": {"args":["contract-request-token"],"query":{},"body":{"request_token":"contract-request-token"}},
+  "authentication-create-session-from-v4-token": {"args":["contract-v4-token"],"query":{},"body":{"access_token":"contract-v4-token"}},
+  "authentication-create-session-from-login": {"args":[{"username":"contract-user","password":"contract-password","requestToken":"contract-request-token"}],"query":{},"body":{"username":"contract-user","password":"contract-password","request_token":"contract-request-token"}},
+  "authentication-delete-session": {"args":["contract-session"],"query":{},"body":{"session_id":"contract-session"}}
 }
