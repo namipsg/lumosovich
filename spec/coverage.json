@@ -253,19 +253,19 @@
       "operationId": "guest-session-rated-movies",
       "httpMethod": "GET",
       "path": "/3/guest_session/{guest_session_id}/rated/movies",
-      "publicMethod": null
+      "publicMethod": "guestSessions.ratedMovies"
     },
     {
       "operationId": "guest-session-rated-tv",
       "httpMethod": "GET",
       "path": "/3/guest_session/{guest_session_id}/rated/tv",
-      "publicMethod": null
+      "publicMethod": "guestSessions.ratedTv"
     },
     {
       "operationId": "guest-session-rated-tv-episodes",
       "httpMethod": "GET",
       "path": "/3/guest_session/{guest_session_id}/rated/tv/episodes",
-      "publicMethod": null
+      "publicMethod": "guestSessions.ratedTvEpisodes"
     },
     {
       "operationId": "keyword-details",
@@ -283,43 +283,43 @@
       "operationId": "list-add-movie",
       "httpMethod": "POST",
       "path": "/3/list/{list_id}/add_item",
-      "publicMethod": null
+      "publicMethod": "lists.addMovie"
     },
     {
       "operationId": "list-check-item-status",
       "httpMethod": "GET",
       "path": "/3/list/{list_id}/item_status",
-      "publicMethod": null
+      "publicMethod": "lists.itemStatus"
     },
     {
       "operationId": "list-clear",
       "httpMethod": "POST",
       "path": "/3/list/{list_id}/clear",
-      "publicMethod": null
+      "publicMethod": "lists.clear"
     },
     {
       "operationId": "list-create",
       "httpMethod": "POST",
       "path": "/3/list",
-      "publicMethod": null
+      "publicMethod": "lists.create"
     },
     {
       "operationId": "list-delete",
       "httpMethod": "DELETE",
       "path": "/3/list/{list_id}",
-      "publicMethod": null
+      "publicMethod": "lists.delete"
     },
     {
       "operationId": "list-details",
       "httpMethod": "GET",
       "path": "/3/list/{list_id}",
-      "publicMethod": null
+      "publicMethod": "lists.get"
     },
     {
       "operationId": "list-remove-movie",
       "httpMethod": "POST",
       "path": "/3/list/{list_id}/remove_item",
-      "publicMethod": null
+      "publicMethod": "lists.removeMovie"
     },
     {
       "operationId": "movie-now-playing-list",
@@ -901,19 +901,19 @@
       "operationId": "watch-providers-available-regions",
       "httpMethod": "GET",
       "path": "/3/watch/providers/regions",
-      "publicMethod": null
+      "publicMethod": "watchProviders.regions"
     },
     {
       "operationId": "watch-providers-movie-list",
       "httpMethod": "GET",
       "path": "/3/watch/providers/movie",
-      "publicMethod": null
+      "publicMethod": "watchProviders.movies"
     },
     {
       "operationId": "watch-provider-tv-list",
       "httpMethod": "GET",
       "path": "/3/watch/providers/tv",
-      "publicMethod": null
+      "publicMethod": "watchProviders.tv"
     }
   ]
 }

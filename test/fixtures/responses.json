@@ -554,6 +554,84 @@
       }
     ]
   },
+  "guest-session-rated-movies": {
+    "page": 1,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/ikR2qy9xJCHX7M8i5rcvuNfdYXs.jpg",
+        "genre_ids": [
+          18,
+          80
+        ],
+        "id": 16,
+        "original_language": "en",
+        "original_title": "Dancer in the Dark",
+        "overview": "Selma, a Czech immigrant on the verge of blindness, struggles to make ends meet for herself and her son, who has inherited the same genetic disorder and will suffer the same fate without an expensive operation. When life gets too difficult, Selma learns to cope through her love of musicals, escaping life's troubles - even if just for a moment - by dreaming up little numbers to the rhythmic beats of her surroundings.",
+        "popularity": 14.684,
+        "poster_path": "/8Wdd3fQfbbQeoSfWpHrDfaFNhBU.jpg",
+        "release_date": "2000-06-30",
+        "title": "Dancer in the Dark",
+        "video": false,
+        "vote_average": 7.885,
+        "vote_count": 1549,
+        "rating": 8.5
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 1
+  },
+  "guest-session-rated-tv": {
+    "page": 1,
+    "results": [
+      {
+        "adult": false,
+        "backdrop_path": "/2OMB0ynKlyIenMJWI2Dy9IWT4c.jpg",
+        "genre_ids": [
+          10765,
+          18
+        ],
+        "id": 1399,
+        "origin_country": [
+          "US"
+        ],
+        "original_language": "en",
+        "original_name": "Game of Thrones",
+        "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+        "popularity": 404.299,
+        "poster_path": "/7WUHnWGx5OO145IRxPDUkQSh4C7.jpg",
+        "first_air_date": "2011-04-17",
+        "name": "Game of Thrones",
+        "vote_average": 8.436,
+        "vote_count": 21025,
+        "rating": 8.5
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 1
+  },
+  "guest-session-rated-tv-episodes": {
+    "page": 1,
+    "results": [
+      {
+        "air_date": "2011-04-17",
+        "episode_number": 1,
+        "id": 63056,
+        "name": "Winter Is Coming",
+        "overview": "Jon Arryn, the Hand of the King, is dead. King Robert Baratheon plans to ask his oldest friend, Eddard Stark, to take Jon's place. Across the sea, Viserys Targaryen plans to wed his sister to a nomadic warlord in exchange for an army.",
+        "production_code": "101",
+        "runtime": 62,
+        "season_number": 1,
+        "show_id": 1399,
+        "still_path": "/9hGF3WUkBf7cSjMg0cdMDHJkByd.jpg",
+        "vote_average": 7.843,
+        "vote_count": 286,
+        "rating": 8.5
+      }
+    ],
+    "total_pages": 1,
+    "total_results": 1
+  },
   "keyword-details": {
     "id": 1701,
     "name": "hero"
@@ -603,6 +681,84 @@
     ],
     "total_pages": 11,
     "total_results": 211
+  },
+  "list-add-movie": {
+    "status_code": 12,
+    "status_message": "The item/record was updated successfully."
+  },
+  "list-check-item-status": {
+    "id": 1,
+    "item_present": true
+  },
+  "list-clear": {
+    "status_code": 12,
+    "status_message": "The item/record was updated successfully."
+  },
+  "list-create": {
+    "status_message": "The item/record was created successfully.",
+    "success": true,
+    "status_code": 1,
+    "list_id": 5861
+  },
+  "list-delete": {
+    "status_code": 12,
+    "status_message": "The item/record was updated successfully."
+  },
+  "list-details": {
+    "created_by": "travisbell",
+    "description": "The idea behind this list is to collect the live action comic book movies from within the Marvel franchise.",
+    "favorite_count": 0,
+    "id": "1",
+    "items": [
+      {
+        "adult": false,
+        "backdrop_path": "/14QbnygCuTO0vl7CAFmPf1fgZfV.jpg",
+        "genre_ids": [
+          28,
+          12
+        ],
+        "id": 634649,
+        "media_type": "movie",
+        "original_language": "en",
+        "original_title": "Spider-Man: No Way Home",
+        "overview": "Peter Parker ist demaskiert und kann sein normales Leben nicht mehr von den hohen Einsätzen als Superheld trennen. Als er Doctor Strange um Hilfe bittet, wird die Lage noch gefährlicher und er muss entdecken, was es wirklich bedeutet, Spider-Man zu sein.",
+        "popularity": 398.217,
+        "poster_path": "/iNKf4D0AzOj9GLq8ZyG3WZaqibL.jpg",
+        "release_date": "2021-12-15",
+        "title": "Spider-Man: No Way Home",
+        "video": false,
+        "vote_average": 8,
+        "vote_count": 17267
+      },
+      {
+        "adult": false,
+        "backdrop_path": "/c6H7Z4u73ir3cIoCteuhJh7UCAR.jpg",
+        "genre_ids": [
+          878,
+          28
+        ],
+        "id": 524434,
+        "media_type": "movie",
+        "original_language": "en",
+        "original_title": "Eternals",
+        "overview": "Die Eternals sind ein Team aus uralten Außerirdischen, die seit Tausenden von Jahren im Verborgenen auf der Erde gelebt haben. Als eine unerwartete Tragödie sie dazu zwingt, aus dem Schatten zu treten, sind sie gezwungen, sich gegen den ältesten Feind der Menschheit, die Deviants, zu vereinen.",
+        "popularity": 152.187,
+        "poster_path": "/lFByFSLV5WDJEv3KabbdAF959F2.jpg",
+        "release_date": "2021-11-03",
+        "title": "Eternals",
+        "video": false,
+        "vote_average": 7,
+        "vote_count": 7085
+      }
+    ],
+    "item_count": 59,
+    "iso_639_1": "en",
+    "name": "The Marvel Universe",
+    "poster_path": "/coJVIUEOToAEGViuhclM7pXC75R.jpg"
+  },
+  "list-remove-movie": {
+    "status_code": 13,
+    "status_message": "The item/record was deleted successfully."
   },
   "movie-now-playing-list": {
     "dates": {
@@ -4390,5 +4546,303 @@
       "origin_country": ""
     },
     "type": 4
+  },
+  "watch-providers-available-regions": {
+    "results": [
+      {
+        "iso_3166_1": "AD",
+        "english_name": "Andorra",
+        "native_name": "Andorra"
+      },
+      {
+        "iso_3166_1": "AE",
+        "english_name": "United Arab Emirates",
+        "native_name": "United Arab Emirates"
+      }
+    ]
+  },
+  "watch-providers-movie-list": {
+    "results": [
+      {
+        "display_priorities": {
+          "CA": 6,
+          "AE": 1,
+          "AR": 3,
+          "AT": 4,
+          "AU": 10,
+          "BE": 6,
+          "BO": 6,
+          "BR": 8,
+          "BG": 2,
+          "CH": 4,
+          "CL": 3,
+          "CO": 4,
+          "CR": 5,
+          "CZ": 3,
+          "DE": 4,
+          "DK": 7,
+          "EC": 7,
+          "EE": 3,
+          "EG": 2,
+          "ES": 4,
+          "FI": 10,
+          "FR": 5,
+          "GB": 5,
+          "GR": 2,
+          "GT": 7,
+          "HK": 5,
+          "HN": 7,
+          "HU": 3,
+          "ID": 4,
+          "IE": 4,
+          "IN": 8,
+          "IT": 4,
+          "JP": 7,
+          "LT": 3,
+          "LV": 3,
+          "MX": 4,
+          "MY": 4,
+          "NL": 8,
+          "NO": 6,
+          "NZ": 4,
+          "PE": 3,
+          "PH": 4,
+          "PL": 1,
+          "PT": 4,
+          "PY": 7,
+          "RU": 2,
+          "SA": 1,
+          "SE": 8,
+          "SG": 5,
+          "SK": 3,
+          "TH": 4,
+          "TR": 6,
+          "TW": 7,
+          "US": 4,
+          "VE": 4,
+          "ZA": 2,
+          "SI": 31,
+          "CV": 13,
+          "GH": 17,
+          "MU": 15,
+          "MZ": 16,
+          "UG": 16,
+          "IL": 28
+        },
+        "display_priority": 2,
+        "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+        "provider_name": "Apple TV",
+        "provider_id": 2
+      },
+      {
+        "display_priorities": {
+          "CA": 8,
+          "AE": 3,
+          "AR": 6,
+          "AT": 8,
+          "AU": 14,
+          "BE": 7,
+          "BO": 22,
+          "BR": 16,
+          "CH": 5,
+          "CL": 4,
+          "CO": 3,
+          "CR": 22,
+          "CZ": 4,
+          "DE": 8,
+          "DK": 8,
+          "EC": 11,
+          "EE": 4,
+          "EG": 4,
+          "ES": 13,
+          "FI": 11,
+          "FR": 7,
+          "GB": 12,
+          "GR": 3,
+          "GT": 22,
+          "HK": 13,
+          "HN": 22,
+          "HR": 3,
+          "HU": 4,
+          "ID": 6,
+          "IE": 7,
+          "IN": 10,
+          "IS": 4,
+          "IT": 7,
+          "JP": 9,
+          "KR": 7,
+          "LT": 4,
+          "LV": 4,
+          "MX": 15,
+          "MY": 5,
+          "NL": 11,
+          "NO": 8,
+          "NZ": 7,
+          "PE": 5,
+          "PH": 5,
+          "PL": 3,
+          "PT": 5,
+          "PY": 22,
+          "RU": 4,
+          "SA": 3,
+          "SE": 9,
+          "SG": 6,
+          "SK": 5,
+          "TH": 5,
+          "TR": 5,
+          "TW": 3,
+          "US": 14,
+          "VE": 3,
+          "ZA": 3,
+          "TZ": 20
+        },
+        "display_priority": 3,
+        "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+        "provider_name": "Google Play Movies",
+        "provider_id": 3
+      }
+    ]
+  },
+  "watch-provider-tv-list": {
+    "results": [
+      {
+        "display_priorities": {
+          "CA": 6,
+          "AE": 1,
+          "AR": 3,
+          "AT": 4,
+          "AU": 10,
+          "BE": 6,
+          "BO": 6,
+          "BR": 8,
+          "BG": 2,
+          "CH": 4,
+          "CL": 3,
+          "CO": 4,
+          "CR": 5,
+          "CZ": 3,
+          "DE": 4,
+          "DK": 7,
+          "EC": 7,
+          "EE": 3,
+          "EG": 2,
+          "ES": 4,
+          "FI": 10,
+          "FR": 5,
+          "GB": 5,
+          "GR": 2,
+          "GT": 7,
+          "HK": 5,
+          "HN": 7,
+          "HU": 3,
+          "ID": 4,
+          "IE": 4,
+          "IN": 8,
+          "IT": 4,
+          "JP": 7,
+          "LT": 3,
+          "LV": 3,
+          "MX": 4,
+          "MY": 4,
+          "NL": 8,
+          "NO": 6,
+          "NZ": 4,
+          "PE": 3,
+          "PH": 4,
+          "PL": 1,
+          "PT": 4,
+          "PY": 7,
+          "RU": 2,
+          "SA": 1,
+          "SE": 8,
+          "SG": 5,
+          "SK": 3,
+          "TH": 4,
+          "TR": 6,
+          "TW": 7,
+          "US": 4,
+          "VE": 4,
+          "ZA": 2,
+          "SI": 31,
+          "CV": 13,
+          "GH": 17,
+          "MU": 15,
+          "MZ": 16,
+          "UG": 16,
+          "IL": 28
+        },
+        "display_priority": 2,
+        "logo_path": "/peURlLlr8jggOwK53fJ5wdQl05y.jpg",
+        "provider_name": "Apple TV",
+        "provider_id": 2
+      },
+      {
+        "display_priorities": {
+          "CA": 8,
+          "AE": 3,
+          "AR": 6,
+          "AT": 8,
+          "AU": 14,
+          "BE": 7,
+          "BO": 22,
+          "BR": 16,
+          "CH": 5,
+          "CL": 4,
+          "CO": 3,
+          "CR": 22,
+          "CZ": 4,
+          "DE": 8,
+          "DK": 8,
+          "EC": 11,
+          "EE": 4,
+          "EG": 4,
+          "ES": 13,
+          "FI": 11,
+          "FR": 7,
+          "GB": 12,
+          "GR": 3,
+          "GT": 22,
+          "HK": 13,
+          "HN": 22,
+          "HR": 3,
+          "HU": 4,
+          "ID": 6,
+          "IE": 7,
+          "IN": 10,
+          "IS": 4,
+          "IT": 7,
+          "JP": 9,
+          "KR": 7,
+          "LT": 4,
+          "LV": 4,
+          "MX": 15,
+          "MY": 5,
+          "NL": 11,
+          "NO": 8,
+          "NZ": 7,
+          "PE": 5,
+          "PH": 5,
+          "PL": 3,
+          "PT": 5,
+          "PY": 22,
+          "RU": 4,
+          "SA": 3,
+          "SE": 9,
+          "SG": 6,
+          "SK": 5,
+          "TH": 5,
+          "TR": 5,
+          "TW": 3,
+          "US": 14,
+          "VE": 3,
+          "ZA": 3,
+          "TZ": 20
+        },
+        "display_priority": 3,
+        "logo_path": "/tbEdFQDwx5LEVr8WpSeXQSIirVq.jpg",
+        "provider_name": "Google Play Movies",
+        "provider_id": 3
+      }
+    ]
   }
 }

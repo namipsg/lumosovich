@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.0 — 2026-10-26
+
+- Add all 13 pinned TMDB v3 List, Guest Session rated-content, and Watch Provider catalog operations, bringing coverage to 134 of 152.
+- Add typed list reads and mutations with explicit user sessions, guest rating pages, provider catalogs, request contracts, response fixtures, and focused validation tests.
+- Exercise all 119 public read routes in the live smoke test. List writes remain covered by offline contracts without changing a TMDB account.
+
 ## 0.8.0 — 2026-10-24
 
 - Complete all 13 People and Credit operations in the pinned TMDB v3 specification by adding 12 public reads alongside the existing person details method. Coverage rises to 121 of 152 operations.

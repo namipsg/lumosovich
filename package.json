@@ -1,6 +1,6 @@
 {
   "name": "tmdb-lumosovich",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "Typed Node.js client for the TMDB API with IMDb ID lookup for movies, TV shows, and people",
   "keywords": [
     "tmdb",

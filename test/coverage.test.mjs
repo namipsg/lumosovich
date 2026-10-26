@@ -80,7 +80,15 @@ test('the sixth group completes all person and credit operations in the pinned s
     /^\/3\/(person|credit)(\/|$)/.test(entry.path));
   assert.equal(operations.length, 13);
   assert.ok(operations.every((entry) => entry.publicMethod));
-  assert.equal(checkCoverage(baseline).implemented, 121);
+  assert.ok(checkCoverage(baseline).implemented >= 121);
+});
+
+test('the seventh group covers lists, guest session ratings, and watch provider catalogs', () => {
+  const operations = ledger.operations.filter((entry) =>
+    /^\/3\/(list|guest_session|watch\/providers)(\/|$)/.test(entry.path));
+  assert.equal(operations.length, 13);
+  assert.ok(operations.every((entry) => entry.publicMethod));
+  assert.equal(checkCoverage(baseline).implemented, 134);
 });
 
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {

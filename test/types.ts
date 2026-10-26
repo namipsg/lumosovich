@@ -26,6 +26,10 @@ import {
   type PersonCreditsResponse,
   type PersonTaggedImagesPage,
   type CreditDetails,
+  type ListDetails,
+  type CreateListResponse,
+  type GuestRatedMovie,
+  type WatchProviderListResponse,
   type SearchPage,
   type TvCatalogPage,
   type TvCreditsResponse,
@@ -102,6 +106,10 @@ const episodeRating: Promise<RatingResponse> = tmdb.tv.episodes.rate(1399, 1, 1,
 const personCredits: Promise<PersonCreditsResponse> = tmdb.people.combinedCredits(31, { language: 'fa-IR' });
 const taggedImages: Promise<PersonTaggedImagesPage> = tmdb.people.taggedImages(31, { page: 2 });
 const credit: Promise<CreditDetails> = tmdb.credits.get('6024a814c0ae36003d59cc3c');
+const listDetails: Promise<ListDetails> = tmdb.lists.get(1, { page: 2 });
+const createdList: Promise<CreateListResponse> = tmdb.lists.create({ name: 'Example', sessionId: 'session' });
+const guestMovies: Promise<SearchPage<GuestRatedMovie>> = tmdb.guestSessions.ratedMovies('guest', { sortBy: 'created_at.desc' });
+const providers: Promise<WatchProviderListResponse> = tmdb.watchProviders.movies({ watchRegion: 'US' });
 
 people.then((page) => {
   const mediaType: 'movie' | 'tv' | undefined = page.results[0]?.known_for?.[0]?.media_type;
@@ -154,6 +162,14 @@ tmdb.people.movieCredits('31');
 tmdb.credits.get(31);
 // @ts-expect-error Tagged images do not accept a language option.
 tmdb.people.taggedImages(31, { language: 'en-US' });
+// @ts-expect-error List writes require a user session.
+tmdb.lists.addMovie(1, 550);
+// @ts-expect-error List clearing requires explicit confirmation.
+tmdb.lists.clear(1, { sessionId: 'session' });
+// @ts-expect-error Guest ratings have a fixed sort order.
+tmdb.guestSessions.ratedMovies('guest', { sortBy: 'rating.desc' });
+// @ts-expect-error Provider regions do not accept watch-region filtering.
+tmdb.watchProviders.regions({ watchRegion: 'US' });
 
 void [collections, companies, keywords, config, countries, jobs, languages,
   translations, zones, movieCertifications, tvCertifications, movieGenres, tvGenres,
@@ -164,4 +180,4 @@ void [collections, companies, keywords, config, countries, jobs, languages,
   trending, review, network, rating, tvAiring, tvCredits, tvImages,
   tvScreened, tvVideos, tvRating, tvChanges, tvGroups, tvGroup,
   seasonStates, seasonChanges, episodeCredits, episodeRating,
-  personCredits, taggedImages, credit];
+  personCredits, taggedImages, credit, listDetails, createdList, guestMovies, providers];
