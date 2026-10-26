@@ -99,6 +99,14 @@ test('the eighth group covers every account read and mutation', () => {
   assert.ok(checkCoverage(baseline).implemented >= 145);
 });
 
+test('the ninth group completes all authentication and session operations', () => {
+  const operations = ledger.operations.filter((entry) =>
+    entry.path.startsWith('/3/authentication'));
+  assert.equal(operations.length, 7);
+  assert.ok(operations.every((entry) => entry.publicMethod?.startsWith('authentication.')));
+  assert.equal(checkCoverage(baseline).implemented, 152);
+});
+
 test('coverage checks fail for missing operations, incorrect routes, methods, or fixtures', () => {
   for (const mutate of [
     (data) => data.ledger.operations.pop(),

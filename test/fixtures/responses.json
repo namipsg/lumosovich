@@ -1,4 +1,9 @@
 {
+  "authentication-validate-key": {
+    "success": true,
+    "status_code": 1,
+    "status_message": "Success."
+  },
   "account-details": {
     "avatar": {
       "gravatar": {
@@ -371,6 +376,32 @@
     ],
     "total_pages": 17,
     "total_results": 325
+  },
+  "authentication-create-guest-session": {
+    "success": true,
+    "guest_session_id": "1ce82ec1223641636ad4a60b07de3581",
+    "expires_at": "2016-08-27 16:26:40 UTC"
+  },
+  "authentication-create-request-token": {
+    "success": true,
+    "expires_at": "2016-08-26 17:04:39 UTC",
+    "request_token": "ff5c7eeb5a8870efe3cd7fc5c282cffd26800ecd"
+  },
+  "authentication-create-session": {
+    "success": true,
+    "session_id": "79191836ddaa0da3df76a5ffef6f07ad6ab0c641"
+  },
+  "authentication-create-session-from-v4-token": {
+    "success": true,
+    "session_id": "2629f70fb498edc263a0adb99118ac41f0053e8c"
+  },
+  "authentication-create-session-from-login": {
+    "success": true,
+    "expires_at": "2018-07-24 04:10:26 UTC",
+    "request_token": "1531f1a558c8357ce8990cf887ff196e8f5402ec"
+  },
+  "authentication-delete-session": {
+    "success": true
   },
   "certification-movie-list": {
     "certifications": {

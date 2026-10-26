@@ -59,8 +59,8 @@ export class TmdbHttpClient {
     return this.request('POST', path, parameters, { includeLanguage: false }, body);
   }
 
-  async delete(path: string, parameters: QueryParameters): Promise<unknown> {
-    return this.request('DELETE', path, parameters, { includeLanguage: false });
+  async delete(path: string, parameters: QueryParameters, body?: Record<string, unknown>): Promise<unknown> {
+    return this.request('DELETE', path, parameters, { includeLanguage: false }, body);
   }
 
   private async request(

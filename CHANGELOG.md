@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.11.0 — 2026-10-26
+
+- Add all seven pinned TMDB v3 authentication and session-lifecycle operations, bringing the ledger to 152 of 152 operations.
+- Provide typed API-key validation, temporary guest sessions, request tokens, user-session creation and deletion, v4-token conversion, and request-token login validation. Validate inputs and responses and include exact request contracts.
+- Live-test the three key-only GET routes along with all existing public reads, including TMDB's current key-validation response that omits optional status fields. User-session writes remain covered by offline contracts because no disposable account session is available.
+
 ## 0.10.0 — 2026-10-26
 
 - Add all 11 pinned TMDB v3 Account operations: details, favorites, lists, ratings, watchlists, and favorite/watchlist mutations. Coverage reaches 145 of 152.

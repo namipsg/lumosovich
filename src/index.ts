@@ -20,6 +20,8 @@ import { createAccountReadMethods } from './account-reads.js';
 import type { AccountReadMethods } from './account-read-types.js';
 import { createAccountMutationMethods } from './account-mutations.js';
 import type { AccountMutationMethods } from './account-mutation-types.js';
+import { createAuthenticationMethods } from './authentication.js';
+import type { AuthenticationMethods } from './authentication-types.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
 import type {
@@ -60,6 +62,12 @@ export type {
   AccountMutationSessionOptions,
 } from './account-mutation-types.js';
 export type AccountMethods = AccountReadMethods & AccountMutationMethods;
+export type {
+  AuthenticationGuestSessionResponse, AuthenticationKeyResponse,
+  AuthenticationLoginOptions, AuthenticationMethods,
+  AuthenticationRequestTokenResponse, AuthenticationSessionResponse,
+  AuthenticationSuccessResponse,
+} from './authentication-types.js';
 export type {
   CreditDetails, CreditMethods, PersonChangeListOptions, PersonChangeListPage,
   PersonChangesOptions, PersonChangesResponse, PersonCreditsResponse,
@@ -216,6 +224,7 @@ export class Lumosovich {
   readonly guestSessions: GuestSessionMethods;
   readonly watchProviders: WatchProviderMethods;
   readonly accounts: AccountReadMethods & AccountMutationMethods;
+  readonly authentication: AuthenticationMethods;
   readonly images: ImageMethods;
   readonly configuration: ConfigurationMethods;
   readonly certifications: CertificationMethods;
@@ -261,6 +270,7 @@ export class Lumosovich {
     this.guestSessions = createGuestSessionMethods(http);
     this.watchProviders = createWatchProviderMethods(http);
     this.accounts = { ...createAccountReadMethods(http), ...createAccountMutationMethods(http) };
+    this.authentication = createAuthenticationMethods(http);
     this.images = createImageMethods();
     this.configuration = createConfigurationMethods(http);
     this.certifications = createCertificationMethods(http);
