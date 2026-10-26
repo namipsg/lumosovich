@@ -6,7 +6,7 @@
 
 A small, typed Node.js wrapper for the TMDB API, including IMDb ID lookup through TMDB.
 
-**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, people and credit resources, and TV seasons, episodes, and episode groups.
+**Lumosovich** is being built incrementally toward full TMDB v3 API coverage. It currently supports external-ID lookup, search, discovery, trending, movie and TV series catalogs and metadata, reviews, keywords, networks, collections, companies, configuration, people and credit resources, lists, guest-session ratings, watch-provider catalogs, and TV seasons, episodes, and episode groups.
 
 The name comes from **Lumos** — a spell for bringing light — with a little Russian-style `-ovich` treatment.
 
@@ -14,11 +14,11 @@ Light up the movie database.
 
 ## Current status
 
-Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.8.0` covers **121 of 152 TMDB v3 operations**, including all TV, person, and credit operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
+Install [tmdb-lumosovich on npm](https://www.npmjs.com/package/tmdb-lumosovich), with source and issues on [GitHub](https://github.com/namipsg/lumosovich). Version `0.9.0` covers **134 of 152 TMDB v3 operations**, including all TV, person, credit, list, guest-session rating, and watch-provider catalog operations, measured against the official specification pinned on September 27, 2026. This is an early `0.x` library; full API coverage is still in progress. See the [coverage baseline](https://github.com/namipsg/lumosovich/blob/main/spec/README.md) for how coverage is checked.
 
-The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The read-only live smoke test exercises all 111 public read operations. Account-state and rating methods require a TMDB session and are verified by offline request contracts.
+The package moved from `lumosovich` to `tmdb-lumosovich` in version `0.7.1`; the public `Lumosovich` class kept its name. Previously published `lumosovich` versions remain installable, but new projects should use `tmdb-lumosovich`. The live smoke test exercises all 119 public read routes without changing account data. A new, unrated guest session currently receives HTTP 404 from TMDB on its rated-content routes. List mutations, account-state methods, and ratings require a TMDB session and are verified by offline request contracts.
 
-The release passes 196 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
+The release passes 245 offline tests and TypeScript declaration checks. See the [changelog](https://github.com/namipsg/lumosovich/blob/main/CHANGELOG.md) for earlier releases.
 
 ## Installation
 
@@ -372,6 +372,47 @@ const changes = await tmdb.people.changes(personId);
 
 The three credit collections return `cast` and `crew` arrays with TMDB's original fields; `combinedCredits()` includes both movie and TV roles. `taggedImages()` has paginated image records, including episode stills, while `images()` has portrait profiles. TMDB can report `page: 0` for tagged images even when page 1 is requested. `changeList()` and `changes()` accept optional `startDate`, `endDate`, and `page`; dates use `YYYY-MM-DD`. `popular()` and `taggedImages()` accept a positive page. Credit details, popular people, and the three credit collections support a `language` override. `latest()` can be incomplete while a new person record is being edited on TMDB.
 
+## Lists, guest sessions, and watch providers
+
+Public lists use numeric TMDB list IDs. Reading list details and checking whether a movie is present require no user session:
+
+```js
+const list = await tmdb.lists.get(1, { page: 1 });
+const status = await tmdb.lists.itemStatus(1, 550);
+console.log(list.name, status.item_present);
+```
+
+Creating or changing a list requires an existing TMDB **user** session. Supply `sessionId` explicitly for each write; a guest session cannot manage lists.
+
+```js
+const sessionId = process.env.TMDB_SESSION_ID;
+if (!sessionId) throw new Error('Set TMDB_SESSION_ID first');
+const created = await tmdb.lists.create({
+  name: 'Movies to watch', description: 'My picks', language: 'en', sessionId,
+});
+await tmdb.lists.addMovie(created.list_id, 550, { sessionId });
+await tmdb.lists.removeMovie(created.list_id, 550, { sessionId });
+await tmdb.lists.clear(created.list_id, { sessionId, confirm: true });
+await tmdb.lists.delete(created.list_id, { sessionId });
+```
+
+`clear()` requires an explicit boolean `confirm`; deleting a list and removing an item are separate operations. TMDB can return list IDs as strings in read responses, so inspect the returned `id` rather than assuming its runtime type. List writes are contract-tested offline; the live smoke test does not alter an account.
+
+```js
+const guestId = process.env.TMDB_GUEST_SESSION_ID;
+if (guestId) {
+  const ratedMovies = await tmdb.guestSessions.ratedMovies(guestId);
+  const ratedShows = await tmdb.guestSessions.ratedTv(guestId);
+  const ratedEpisodes = await tmdb.guestSessions.ratedTvEpisodes(guestId);
+}
+
+const regions = await tmdb.watchProviders.regions();
+const movieProviders = await tmdb.watchProviders.movies({ watchRegion: 'US' });
+const tvProviders = await tmdb.watchProviders.tv({ watchRegion: 'US' });
+```
+
+Guest rating lists accept `language`, positive `page`, and `sortBy: 'created_at.asc' | 'created_at.desc'`. A new unrated guest session may receive HTTP 404. Provider catalogs return a `results` array; movie and TV catalogs accept `watchRegion`, while the regions catalog accepts only `language`. Guest-session creation is part of the upcoming authentication group.
+
 ## Image URLs
 
 TMDB detail responses contain image paths. Build a safe public image URL with:
@@ -459,12 +500,14 @@ TMDB_API_KEY=... npm run test:live
 ```
 
 The credential is read from the environment, never from a tracked file. This checks
-all 111 public read operations. Account-state and rating methods require a TMDB
-session and are covered by offline contracts; the live test makes read-only requests.
+all 119 public read routes. The test creates a temporary guest session for the
+three rated-content routes and accepts TMDB's HTTP 404 for an unrated session.
+List and account mutations require a user session and are covered by offline
+contracts; the live test does not change account data.
 
 ## Roadmap
 
-Lists, authentication, and the remaining TMDB resources will expand coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
+Account resources, authentication, and the final parity audit will complete coverage in future releases. The [coverage ledger](https://github.com/namipsg/lumosovich/blob/main/spec/coverage.json) tracks implemented and remaining operations.
 
 The goal is to cover the TMDB API while keeping the library:
 

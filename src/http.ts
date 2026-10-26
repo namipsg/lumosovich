@@ -55,7 +55,7 @@ export class TmdbHttpClient {
     return this.request('GET', path, parameters, options);
   }
 
-  async post(path: string, parameters: QueryParameters, body: Record<string, unknown>): Promise<unknown> {
+  async post(path: string, parameters: QueryParameters, body?: Record<string, unknown>): Promise<unknown> {
     return this.request('POST', path, parameters, { includeLanguage: false }, body);
   }
 

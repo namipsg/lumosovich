@@ -144,5 +144,18 @@
   "person-movie-credits": {"args":[31,{"language":"fa-IR"}],"pathParameters":{"person_id":31},"query":{"language":"fa-IR"}},
   "person-tv-credits": {"args":[31,{"language":"fa-IR"}],"pathParameters":{"person_id":31},"query":{"language":"fa-IR"}},
   "person-tagged-images": {"args":[31,{"page":2}],"pathParameters":{"person_id":31},"query":{"page":"2"}},
-  "translations": {"args":[31],"pathParameters":{"person_id":31},"query":{}}
+  "translations": {"args":[31],"pathParameters":{"person_id":31},"query":{}},
+  "guest-session-rated-movies": {"args":["guest-session",{"language":"fa-IR","page":2,"sortBy":"created_at.asc"}],"pathParameters":{"guest_session_id":"guest-session"},"query":{"language":"fa-IR","page":"2","sort_by":"created_at.asc"}},
+  "guest-session-rated-tv": {"args":["guest-session",{"language":"fa-IR","page":2,"sortBy":"created_at.desc"}],"pathParameters":{"guest_session_id":"guest-session"},"query":{"language":"fa-IR","page":"2","sort_by":"created_at.desc"}},
+  "guest-session-rated-tv-episodes": {"args":["guest-session",{"language":"fa-IR","page":2,"sortBy":"created_at.asc"}],"pathParameters":{"guest_session_id":"guest-session"},"query":{"language":"fa-IR","page":"2","sort_by":"created_at.asc"}},
+  "list-add-movie": {"args":[1,550,{"sessionId":"contract-session"}],"pathParameters":{"list_id":1},"query":{"session_id":"contract-session"},"body":{"media_id":550}},
+  "list-check-item-status": {"args":[1,550,{"language":"fa-IR"}],"pathParameters":{"list_id":1},"query":{"language":"fa-IR","movie_id":"550"}},
+  "list-clear": {"args":[1,{"sessionId":"contract-session","confirm":true}],"pathParameters":{"list_id":1},"query":{"session_id":"contract-session","confirm":"true"}},
+  "list-create": {"args":[{"name":"Test list","description":"A test list","language":"en","sessionId":"contract-session"}],"query":{"session_id":"contract-session"},"body":{"name":"Test list","description":"A test list","language":"en"}},
+  "list-delete": {"args":[1,{"sessionId":"contract-session"}],"pathParameters":{"list_id":1},"query":{"session_id":"contract-session"}},
+  "list-details": {"args":[1,{"language":"fa-IR","page":2}],"pathParameters":{"list_id":1},"query":{"language":"fa-IR","page":"2"}},
+  "list-remove-movie": {"args":[1,550,{"sessionId":"contract-session"}],"pathParameters":{"list_id":1},"query":{"session_id":"contract-session"},"body":{"media_id":550}},
+  "watch-providers-available-regions": {"args":[{"language":"fa-IR"}],"query":{"language":"fa-IR"}},
+  "watch-providers-movie-list": {"args":[{"language":"fa-IR","watchRegion":"IR"}],"query":{"language":"fa-IR","watch_region":"IR"}},
+  "watch-provider-tv-list": {"args":[{"language":"fa-IR","watchRegion":"IR"}],"query":{"language":"fa-IR","watch_region":"IR"}}
 }

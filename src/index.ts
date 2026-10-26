@@ -10,6 +10,12 @@ import {
 import { createSearchMethods } from './search.js';
 import { createCreditMethods } from './person-resources.js';
 import type { CreditMethods } from './person-types.js';
+import { createListMethods } from './lists.js';
+import type { ListMethods } from './list-types.js';
+import { createGuestSessionMethods } from './guest-sessions.js';
+import type { GuestSessionMethods } from './guest-session-types.js';
+import { createWatchProviderMethods } from './watch-providers.js';
+import type { WatchProviderMethods } from './watch-provider-types.js';
 import { createCertificationMethods, createConfigurationMethods, createGenreMethods } from './reference.js';
 import type { CertificationMethods, ConfigurationMethods, GenreMethods } from './reference-types.js';
 import type {
@@ -27,6 +33,19 @@ import type { DiscoverMethods, KeywordMethods, NetworkMethods, ReviewMethods, Tr
 
 export { TmdbError } from './errors.js';
 export type { TmdbErrorCode } from './errors.js';
+export type {
+  ClearListOptions, CreateListInput, CreateListResponse, ListDetails,
+  ListDetailsOptions, ListItemStatus, ListMethods, ListMovie,
+  ListMutationResponse, ListSessionOptions,
+} from './list-types.js';
+export type {
+  GuestRatedEpisode, GuestRatedMovie, GuestRatedTv,
+  GuestSessionMethods, GuestSessionRatedOptions,
+} from './guest-session-types.js';
+export type {
+  WatchProviderEntry, WatchProviderListResponse, WatchProviderMethods,
+  WatchProviderOptions, WatchProviderRegionsResponse,
+} from './watch-provider-types.js';
 export type {
   CreditDetails, CreditMethods, PersonChangeListOptions, PersonChangeListPage,
   PersonChangesOptions, PersonChangesResponse, PersonCreditsResponse,
@@ -179,6 +198,9 @@ export class Lumosovich {
   readonly tv: TvMethods;
   readonly people: PersonMethods;
   readonly credits: CreditMethods;
+  readonly lists: ListMethods;
+  readonly guestSessions: GuestSessionMethods;
+  readonly watchProviders: WatchProviderMethods;
   readonly images: ImageMethods;
   readonly configuration: ConfigurationMethods;
   readonly certifications: CertificationMethods;
@@ -220,6 +242,9 @@ export class Lumosovich {
     this.tv = createTvMethods(http);
     this.people = createPersonMethods(http);
     this.credits = createCreditMethods(http);
+    this.lists = createListMethods(http);
+    this.guestSessions = createGuestSessionMethods(http);
+    this.watchProviders = createWatchProviderMethods(http);
     this.images = createImageMethods();
     this.configuration = createConfigurationMethods(http);
     this.certifications = createCertificationMethods(http);

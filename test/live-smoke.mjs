@@ -202,6 +202,34 @@ if (!apiKey && !accessToken) {
     assert.ok(creditId);
     assert.equal((await tmdb.credits.get(creditId)).id, creditId);
 
+    step = 'public list details';
+    assert.equal(Number((await tmdb.lists.get(1)).id), 1);
+    step = 'public list item status';
+    assert.equal(Number((await tmdb.lists.itemStatus(1, 550)).id), 1);
+    for (const method of ['regions', 'movies', 'tv']) {
+      step = `watch provider ${method}`;
+      assert.ok(Array.isArray((await tmdb.watchProviders[method]()).results));
+    }
+    step = 'temporary guest session';
+    const guestUrl = new URL('https://api.themoviedb.org/3/authentication/guest_session/new');
+    if (apiKey) guestUrl.searchParams.set('api_key', apiKey);
+    const guestResponse = await fetch(guestUrl, {
+      headers: accessToken ? { authorization: `Bearer ${accessToken}` } : {},
+    });
+    assert.equal(guestResponse.ok, true);
+    const guestSession = await guestResponse.json();
+    assert.equal(guestSession.success, true);
+    assert.ok(guestSession.guest_session_id);
+    for (const method of ['ratedMovies', 'ratedTv', 'ratedTvEpisodes']) {
+      step = `guest session ${method}`;
+      try {
+        assert.ok(Array.isArray((await tmdb.guestSessions[method](guestSession.guest_session_id)).results));
+      } catch (error) {
+        // An unrated guest session currently receives HTTP 404 from TMDB.
+        assert.ok(error instanceof TmdbError && error.code === 'HTTP_ERROR' && error.status === 404);
+      }
+    }
+
     for (const [method, query] of [
       ['tv', 'Game of Thrones'], ['multi', 'Inception'],
       ['people', 'Leonardo DiCaprio'], ['collections', 'Star Wars'],
@@ -225,7 +253,7 @@ if (!apiKey && !accessToken) {
       step = `${method} genres`;
       assert.ok((await tmdb.genres[method]()).genres.length > 0);
     }
-    console.log('TMDB live smoke passed: all 111 public read operations.');
+    console.log('TMDB live smoke passed: all 119 public read routes exercised.');
   } catch (error) {
     if (error instanceof TmdbError) {
       console.error(`TMDB live smoke failed at ${step}: ${error.code} (${error.status ?? 'no status'}).`);
