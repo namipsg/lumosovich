@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 — 2026-10-26
+
+- Publish the stable release with independent parity checks for all 152 operations in the pinned TMDB v3 OpenAPI snapshot: 135 GET and 17 POST/DELETE routes.
+- Audit required route parameters, documented JSON body fields, callable public methods, request contracts and response fixtures; add negative tests that detect parity drift.
+- Add a reviewed cleanup matrix for all 17 write operations and an offline failure-path lifecycle test that restores account state, ratings, a disposable list and session.
+- Add a migration guide and documented limits for live write testing. The public `Lumosovich` API remains compatible with 0.11.0.
+
 ## 0.11.0 — 2026-10-26
 
 - Add all seven pinned TMDB v3 authentication and session-lifecycle operations, bringing the ledger to 152 of 152 operations.

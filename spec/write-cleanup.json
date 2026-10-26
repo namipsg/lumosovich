@@ -1,0 +1,19 @@
+{
+  "account-add-favorite": { "kind": "restore-previous", "cleanupOperationIds": ["account-add-favorite"], "guidance": "Record the prior favorite value and send that value after the test." },
+  "account-add-to-watchlist": { "kind": "restore-previous", "cleanupOperationIds": ["account-add-to-watchlist"], "guidance": "Record the prior watchlist value and send that value after the test." },
+  "authentication-create-session": { "kind": "delete-created", "cleanupOperationIds": ["authentication-delete-session"], "guidance": "Delete the new session ID when the test finishes." },
+  "authentication-create-session-from-v4-token": { "kind": "delete-created", "cleanupOperationIds": ["authentication-delete-session"], "guidance": "Delete the converted session ID when the test finishes." },
+  "authentication-create-session-from-login": { "kind": "temporary-token", "cleanupOperationIds": [], "guidance": "This validates a temporary request token but does not create a session; let an unused token expire." },
+  "authentication-delete-session": { "kind": "terminal", "cleanupOperationIds": [], "guidance": "This is the final cleanup for a disposable session and cannot be undone." },
+  "list-add-movie": { "kind": "restore-previous", "cleanupOperationIds": ["list-remove-movie"], "guidance": "Check prior membership; remove the movie only if this test added it." },
+  "list-clear": { "kind": "disposable-only", "cleanupOperationIds": ["list-delete"], "guidance": "Clearing cannot reconstruct prior membership; use only a list created for the test, then delete it." },
+  "list-create": { "kind": "delete-created", "cleanupOperationIds": ["list-delete"], "guidance": "Delete the list created for the test in a finally block." },
+  "list-delete": { "kind": "terminal", "cleanupOperationIds": [], "guidance": "Delete only a disposable list because deletion cannot be undone." },
+  "list-remove-movie": { "kind": "restore-previous", "cleanupOperationIds": ["list-add-movie"], "guidance": "Check prior membership; re-add the movie only if it was present before the test." },
+  "movie-add-rating": { "kind": "restore-previous", "cleanupOperationIds": ["movie-add-rating", "movie-delete-rating"], "guidance": "Restore the prior rating, or delete the new rating if none existed." },
+  "movie-delete-rating": { "kind": "restore-previous", "cleanupOperationIds": ["movie-add-rating"], "guidance": "Record and restore a prior rating; if none existed, leave it unrated." },
+  "tv-series-add-rating": { "kind": "restore-previous", "cleanupOperationIds": ["tv-series-add-rating", "tv-series-delete-rating"], "guidance": "Restore the prior rating, or delete the new rating if none existed." },
+  "tv-series-delete-rating": { "kind": "restore-previous", "cleanupOperationIds": ["tv-series-add-rating"], "guidance": "Record and restore a prior rating; if none existed, leave it unrated." },
+  "tv-episode-add-rating": { "kind": "restore-previous", "cleanupOperationIds": ["tv-episode-add-rating", "tv-episode-delete-rating"], "guidance": "Restore the prior rating, or delete the new rating if none existed." },
+  "tv-episode-delete-rating": { "kind": "restore-previous", "cleanupOperationIds": ["tv-episode-add-rating"], "guidance": "Record and restore a prior rating; if none existed, leave it unrated." }
+}
